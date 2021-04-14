@@ -8,7 +8,7 @@ namespace OnlineMarket
 {
     class Calculator
     {
-        public static decimal GetFullPrice(
+        public static decimal getFullPrice(
                                     IEnumerable<string> destinations,
                                     IEnumerable<string> clients,
                                     IEnumerable<int> infantsIds,
@@ -18,26 +18,22 @@ namespace OnlineMarket
         {
             decimal fullPrice = default;
 
-            // Your solution supposed to be here.
+            var adress = destinations.ToArray();
+            var clientsInfo = clients.ToArray();
+            var infantsIdNumbers = infantsIds.ToArray();
+            var childrenIdNumbers = childrenIds.ToArray();
+            var orderPrices = prices.ToArray();
+            var orderCurrencies = currencies.ToArray();
 
-            //change IEnumerable to Array
-            string[] destinationsArray = destinations.ToArray();
-            string[] clientsArray = clients.ToArray();
-            int[] infantsIdsArray = infantsIds.ToArray();
-            int[] childrenIdsArray = childrenIds.ToArray();
-            decimal[] pricesArray = prices.ToArray();
-            string[] currenciesArray = currencies.ToArray();
-
-            if (Validator.validateData(destinationsArray, clientsArray, pricesArray, currenciesArray))
+            if (Validator.validateData(adress, clientsInfo, orderPrices, orderCurrencies))
             {
-                Convertor.convertCurrencies(ref pricesArray, ref currenciesArray);
-                Discount.checkStreetPrice(ref pricesArray, destinationsArray);
-                Discount.CheckoutPrice(ref pricesArray, infantsIdsArray, childrenIdsArray, destinationsArray);
+                Convertor.convertCurrencies(ref orderPrices, ref orderCurrencies);
+                Discount.checkStreetPrice(ref orderPrices, adress);
+                Discount.checkoutPrice(ref orderPrices, infantsIdNumbers, childrenIdNumbers, adress);
             }
 
-            //Compute full price of order
-            for (int i = 0; i < pricesArray.Length; i++)
-                fullPrice += pricesArray[i];
+            for (int i = 0; i < orderPrices.Length; i++)
+                fullPrice += orderPrices[i];
 
             return fullPrice;
         }

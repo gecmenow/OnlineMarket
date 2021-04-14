@@ -8,7 +8,7 @@ namespace OnlineMarket
 {
     class Discount
     {
-        public static void CheckoutPrice(ref decimal[] prices, int[] infantsIds, int[] childrenIdsArray, string[] destinationsArray)
+        public static void checkoutPrice(ref decimal[] prices, int[] infantsIds, int[] childrenIdsArray, string[] destinationsArray)
         {
             var dicscount = 0m;
 
@@ -59,7 +59,8 @@ namespace OnlineMarket
         {
             for (int i = 0; i < destinationsArray.Length; i++)
             {
-                destinationsArray[i] = destinationsArray[i].Split(" ").Skip(1).First();
+                destinationsArray[i] = destinationsArray[i].Substring(destinationsArray[i].IndexOf(" "));
+                destinationsArray[i] = destinationsArray[i].Substring(0, destinationsArray[i].IndexOf(","));
             }
 
             return destinationsArray;
