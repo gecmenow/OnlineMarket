@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace OnlineMarket
 {
-    class Convertor
+    class Converter
     {
-        public static void convertCurrencies(ref decimal[] prices, ref string[] currencies)
+        public static void ConvertCurrencies(ref decimal[] prices, ref string[] currencies)
         {
             for (int i = 0; i < currencies.Length; i++)
             {

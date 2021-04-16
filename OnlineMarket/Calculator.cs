@@ -8,7 +8,7 @@ namespace OnlineMarket
 {
     class Calculator
     {
-        public static decimal getFullPrice(
+        public static decimal GetFullPrice(
                                     IEnumerable<string> destinations,
                                     IEnumerable<string> clients,
                                     IEnumerable<int> infantsIds,
@@ -25,11 +25,11 @@ namespace OnlineMarket
             var orderPrices = prices.ToArray();
             var orderCurrencies = currencies.ToArray();
 
-            if (Validator.validateData(adress, clientsInfo, orderPrices, orderCurrencies))
+            if (Validator.ValidateData(adress, clientsInfo, orderPrices, orderCurrencies))
             {
-                Convertor.convertCurrencies(ref orderPrices, ref orderCurrencies);
-                Discount.checkStreetPrice(ref orderPrices, adress);
-                Discount.checkoutPrice(ref orderPrices, infantsIdNumbers, childrenIdNumbers, adress);
+                Converter.ConvertCurrencies(ref orderPrices, ref orderCurrencies);
+                Discount.CheckStreetPrice(ref orderPrices, adress);
+                Discount.CheckoutPrice(ref orderPrices, infantsIdNumbers, childrenIdNumbers, adress);
             }
 
             for (int i = 0; i < orderPrices.Length; i++)

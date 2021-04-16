@@ -8,7 +8,7 @@ namespace OnlineMarket
 {
     class Validator
     {
-        public static bool validateData(string[] destinations, string[] clients, decimal[] prices, string[] currencies)
+        public static bool ValidateData(string[] destinations, string[] clients, decimal[] prices, string[] currencies)
         {
             if (destinations.Length == clients.Length && prices.Length == currencies.Length)
                 return true;

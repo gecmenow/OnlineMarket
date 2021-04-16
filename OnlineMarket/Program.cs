@@ -32,7 +32,7 @@ namespace OnlineMarket
             var prices = new[] { 100, 25.23m, 58, 23.12m, 125 };
             var currencies = new[] { "USD", "USD", "EUR", "USD", "USD" };
 
-            return Calculator.getFullPrice(destinations, clients, infantsIds, childrenIds, prices, currencies);
+            return Calculator.GetFullPrice(destinations, clients, infantsIds, childrenIds, prices, currencies);
         }
 
         static void Main(string[] args)

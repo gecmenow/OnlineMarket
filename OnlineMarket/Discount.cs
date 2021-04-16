@@ -8,62 +8,62 @@ namespace OnlineMarket
 {
     class Discount
     {
-        public static void checkoutPrice(ref decimal[] prices, int[] infantsIds, int[] childrenIdsArray, string[] destinationsArray)
+        public static void CheckoutPrice(ref decimal[] prices, int[] infantsIds, int[] childrenIds, string[] destinations)
         {
-            var dicscount = 0m;
+            var disccount = 0m;
 
             for (int i = 0; i < infantsIds.Length; i++)
             {
-                dicscount = prices[infantsIds[i]] * 50 / 100;
-                prices[infantsIds[i]] -= dicscount;
+                disccount = prices[infantsIds[i]] * 50 / 100;
+                prices[infantsIds[i]] -= disccount;
             }
 
-            for (int i = 0; i < childrenIdsArray.Length; i++)
+            for (int i = 0; i < childrenIds.Length; i++)
             {
-                dicscount = prices[childrenIdsArray[i]] * 25 / 100;
+                disccount = prices[childrenIds[i]] * 25 / 100;
 
-                prices[childrenIdsArray[i]] -= dicscount;
+                prices[childrenIds[i]] -= disccount;
             }
 
-            var sameStreets = checkSameStreets(destinationsArray);
+            var streetsWithoutHiuseNumbers = RemoveHouseNumbers(destinations);
 
-            for (int i = 0; i < sameStreets.Length - 1; i++)
+            for (int i = 0; i < streetsWithoutHiuseNumbers.Length - 1; i++)
             {
-                if (sameStreets[i + 1] == sameStreets[i])
+                if (streetsWithoutHiuseNumbers[i + 1] == streetsWithoutHiuseNumbers[i])
                 {
-                    dicscount = prices[i + 1] * 15 / 100;
+                    disccount = prices[i + 1] * 15 / 100;
 
-                    prices[i + 1] -= dicscount;
+                    prices[i + 1] -= disccount;
                 }
             }
         }
 
-        public static void checkStreetPrice(ref decimal[] prices, string[] destinationsArray)
+        public static void CheckStreetPrice(ref decimal[] prices, string[] destinations)
         {
-            for (int i = 0; i < destinationsArray.Length; i++)
+            for (int i = 0; i < destinations.Length; i++)
             {
-                if (destinationsArray[i].Contains("Wayne Street"))
+                if (destinations[i].Contains("Wayne Street"))
                 {
                     prices[i] += 10;
                     continue;
                 }
 
-                if (destinationsArray[i].Contains("North Heather Street"))
+                if (destinations[i].Contains("North Heather Street"))
                 {
                     prices[i] -= 5.36m;
                 }
             }
         }
 
-        static string[] checkSameStreets(string[] destinationsArray)
+        static string[] RemoveHouseNumbers(string[] destinations)
         {
-            for (int i = 0; i < destinationsArray.Length; i++)
+            for (int i = 0; i < destinations.Length; i++)
             {
-                destinationsArray[i] = destinationsArray[i].Substring(destinationsArray[i].IndexOf(" "));
-                destinationsArray[i] = destinationsArray[i].Substring(0, destinationsArray[i].IndexOf(","));
+                destinations[i] = destinations[i].Substring(destinations[i].IndexOf(" "));
+                destinations[i] = destinations[i].Substring(0, destinations[i].IndexOf(","));
             }
 
-            return destinationsArray;
+            return destinations;
         }
     }
 }
