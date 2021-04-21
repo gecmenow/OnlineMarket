@@ -2,9 +2,10 @@
 
 namespace KramDeliveryFood
 {
-    public class DeliveryMethod
+    public enum DeliveryMethod
     {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
+        Pickup,
+        PostalService,
+        SoreDepartment
     }
 }
