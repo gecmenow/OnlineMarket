@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineMarket", "OnlineMarket\OnlineMarket.csproj", "{B654D708-40EA-4C8C-80A4-274CE161F1F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KramDeliveryFood", "KramDeliveryFood\KramDeliveryFood.csproj", "{51DD30A8-4906-4D69-9038-3A334CA01613}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KramDeliveryFood", "KramDeliveryFood\KramDeliveryFood.csproj", "{51DD30A8-4906-4D69-9038-3A334CA01613}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KramDeliverFood_v2", "KramDeliverFood_v2\KramDeliverFood_v2.csproj", "{1425CF6B-B158-4894-9C56-3A2D5EF69C60}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{51DD30A8-4906-4D69-9038-3A334CA01613}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51DD30A8-4906-4D69-9038-3A334CA01613}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51DD30A8-4906-4D69-9038-3A334CA01613}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1425CF6B-B158-4894-9C56-3A2D5EF69C60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1425CF6B-B158-4894-9C56-3A2D5EF69C60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1425CF6B-B158-4894-9C56-3A2D5EF69C60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1425CF6B-B158-4894-9C56-3A2D5EF69C60}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
