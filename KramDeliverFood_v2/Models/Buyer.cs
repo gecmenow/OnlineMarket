@@ -1,8 +1,9 @@
-﻿using System;
+﻿using KramDeliverFood_v2.Interfaces;
+using KramDeliverFood_v2.Logs;
+using KramDeliverFood_v2.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KramDeliverFood_v2
 {
@@ -12,11 +13,15 @@ namespace KramDeliverFood_v2
         public IEnumerable<string> Products { get; set; }
         public string Information { get; set; }
 
-        public IEnumerable<string> Order(string prodcuts)
+        public void Order()
         {
-            Products = Products.Append(prodcuts);
+            var product = new Product();
 
-            return Products;
+            UserMessage.Products(product.Products);
+
+            InputReader.UserOrder();
+
+            //TODO checkout
         }
 
         public Checkout Checkout(IEnumerable<string> products, string information)

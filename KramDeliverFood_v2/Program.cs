@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KramDeliverFood_v2.Logs;
+using System;
 
 namespace KramDeliverFood_v2
 {
@@ -6,27 +7,32 @@ namespace KramDeliverFood_v2
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello and welcome in \" Kram Delivery Food\" \n" +
-                "Tell us, who you are 1 - The Buyer, 2 - The Provider of the food. \n");
-            Console.Write("Make your choise: ");
+            Logger.WelcomeMessage();
 
-            var choice = Convert.ToInt32(Console.ReadLine());
+            Buyer buyer = new Buyer();
 
-            var result = choice switch
+            var flag = true;
+
+            while (flag)
             {
-                1 => "buyer method",
-                2 => "provider method",
-                _ => ""
-            };
+                var choice = InputReader.UserChoice();
 
-            if (result == "buyer method")
-            {
-                var temp = Console.ReadLine();
-
-                var buyer = new Buyer();
-
-                buyer.Order(temp);
+                switch(choice)
+                {
+                    case 1:
+                        buyer.Order();
+                        //buyer.Checkout();
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        flag = false;
+                        break;
+                }                
             }
+
+            Logger.ByeMessage();
+
             Console.ReadKey();
         }
     }

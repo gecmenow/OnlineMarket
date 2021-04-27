@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KramDeliverFood_v2
+namespace KramDeliverFood_v2.Interfaces
 {
     interface IBuyer
     {
-        public IEnumerable<string> Order(string prodcuts);
+        public void Order();
 
         public Checkout Checkout(IEnumerable<string> products, string information);
     }
