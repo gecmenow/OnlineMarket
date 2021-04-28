@@ -1,37 +1,57 @@
-﻿using KramDeliverFood_v2.Interfaces;
-using KramDeliverFood_v2.Logs;
-using KramDeliverFood_v2.Models;
+﻿using KramDeliverFoodCompleted.Check;
+using KramDeliverFoodCompleted.Interfaces;
+using KramDeliverFoodCompleted.Logs;
+using KramDeliverFoodCompleted.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
-namespace KramDeliverFood_v2
+namespace KramDeliverFoodCompleted.Models
 {
-    public class Buyer : IBuyer
+    public class Buyer : BaseBuyer
     {
-        public Guid Id { get; set; }
-        public IEnumerable<string> Products { get; set; }
-        public string Information { get; set; }
-
-        public void Order()
+        public new void Order()
         {
             var product = new Product();
 
-            UserMessage.Products(product.Products);
+            UserMessage.Products(product.GetProducts());
+            UserMessage.BuyInstruction();
 
-            InputReader.UserOrder();
+            while (true)
+            {
+                var input = InputReader.UserChoice();
 
-            //TODO checkout
+                while (!Checker.RealProductId(input))
+                    input = InputReader.UserChoice();
+
+                product = product.GetProduct(input);
+
+                product.AddProductToOrder(product);
+
+                if (!InputReader.BuyMoreProducts())
+                    break;
+
+                UserMessage.BuyInstruction();
+            }
+
+            UserMessage.UserInformation();
+
+            var userInfo = InputReader.UserInformation();
+
+            var orderedProducts = product.GetOrderedProducts();
+
+            Checkout(orderedProducts, userInfo);
         }
 
-        public Checkout Checkout(IEnumerable<string> products, string information)
+        void Checkout(IEnumerable<Product> products, string information)
         {
             var checkout = new Checkout();
 
             checkout.Order = products;
             checkout.Information = information;
 
-            return checkout;
+            UserMessage.Order(checkout, information);
+
+            UserMessage.SuccessfulOrder();
         }
     }
 }

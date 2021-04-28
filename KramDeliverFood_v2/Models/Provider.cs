@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KramDeliverFood_v2
+namespace KramDeliverFoodCompleted.Models
 {
-    public class Order
+    class Provider
     {
-        public IEnumerable<string> prodcuts { get; set; }
+
     }
 }

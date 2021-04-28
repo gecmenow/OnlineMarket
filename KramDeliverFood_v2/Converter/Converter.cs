@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace KramDeliverFood_v2.Converter
+namespace KramDeliverFoodCompleted.Converter
 {
-    class Converter
+    public class Converter
     {
         public static int UserInput(string input)
         {
             return Convert.ToInt32(input);
         }
-
     }
 }

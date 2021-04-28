@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineMarket", "OnlineMarke
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KramDeliveryFood", "KramDeliveryFood\KramDeliveryFood.csproj", "{51DD30A8-4906-4D69-9038-3A334CA01613}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KramDeliverFood_v2", "KramDeliverFood_v2\KramDeliverFood_v2.csproj", "{1425CF6B-B158-4894-9C56-3A2D5EF69C60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KramDeliverFoodCompleted", "KramDeliverFood_v2\KramDeliverFoodCompleted.csproj", "{1425CF6B-B158-4894-9C56-3A2D5EF69C60}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,7 +1,8 @@
-﻿using KramDeliverFood_v2.Logs;
+﻿using KramDeliverFoodCompleted.Logs;
+using KramDeliverFoodCompleted.Models;
 using System;
 
-namespace KramDeliverFood_v2
+namespace KramDeliverFoodCompleted
 {
     class Program
     {
