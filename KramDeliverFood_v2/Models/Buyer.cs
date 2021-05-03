@@ -1,8 +1,6 @@
 ﻿using KramDeliverFoodCompleted.Check;
 using KramDeliverFoodCompleted.Interfaces;
-using KramDeliverFoodCompleted.Logs;
-using KramDeliverFoodCompleted.Models;
-using System;
+using KramDeliverFoodCompleted.Interaction;
 using System.Collections.Generic;
 
 namespace KramDeliverFoodCompleted.Models

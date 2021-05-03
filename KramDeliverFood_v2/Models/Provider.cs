@@ -1,10 +1,4 @@
-﻿using KramDeliverFoodCompleted.Logs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using KramDeliverFoodCompleted.Interaction;
 namespace KramDeliverFoodCompleted.Models
 {
     public class Provider
