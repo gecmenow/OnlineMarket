@@ -13,45 +13,50 @@ namespace KramDeliverFoodCompleted.Models
         {
             var product = new Product();
 
-            UserMessage.Products(product.GetProducts());
-            UserMessage.BuyInstruction();
+            BuyerMessage.Products(product.GetProducts());
+            BuyerMessage.BuyInstruction();
 
             while (true)
             {
-                var input = InputReader.UserChoice();
+                var input = BuyerReader.UserChoice();
 
                 while (!Checker.RealProductId(input))
-                    input = InputReader.UserChoice();
+                    input = BuyerReader.UserChoice();
 
                 product = product.GetProduct(input);
 
                 product.AddProductToOrder(product);
 
-                if (!InputReader.BuyMoreProducts())
+                if (!BuyerReader.BuyMoreProducts())
                     break;
 
-                UserMessage.BuyInstruction();
+                BuyerMessage.BuyInstruction();
             }
 
-            UserMessage.UserInformation();
+            BuyerMessage.BuyerPhone();
 
-            var userInfo = InputReader.UserInformation();
+            var phoneNumber = BuyerReader.PhoneNumber();
+
+            BuyerMessage.BuyerAddress();
+
+            var address = BuyerReader.Address();
 
             var orderedProducts = product.GetOrderedProducts();
 
-            Checkout(orderedProducts, userInfo);
+            Checkout(orderedProducts, phoneNumber, address);
         }
 
-        void Checkout(IEnumerable<Product> products, string information)
+        void Checkout(IEnumerable<Product> products, string phoneNumber, string address)
         {
             var checkout = new Checkout();
 
             checkout.Order = products;
-            checkout.Information = information;
+            checkout.Address = address;
+            checkout.PhoneNumber = phoneNumber;
 
-            UserMessage.Order(checkout, information);
+            BuyerMessage.Order(checkout, address, phoneNumber);
 
-            UserMessage.SuccessfulOrder();
+            BuyerMessage.SuccessfulOrder();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using KramDeliverFoodCompleted.Logs;
+using KramDeliverFoodCompleted.Models;
 using System;
 
 namespace KramDeliverFoodCompleted.Check
@@ -72,12 +73,29 @@ namespace KramDeliverFoodCompleted.Check
         {
             var flag = false;
 
-            var product = new Models.Product();
+            var product = new Product();
 
             var productsLength = product.GetProducts().Count;
 
             if (id >= 0 && id < productsLength)
                 flag = true;
+
+            return flag;
+        }
+
+        public static bool ProductExist(Product product)
+        {
+            var flag = false;
+
+            var products = product.GetProducts();
+
+            foreach (var item in products)
+            {
+                if (item.Id == product.Id)
+                {
+                    flag = true;
+                }
+            }
 
             return flag;
         }

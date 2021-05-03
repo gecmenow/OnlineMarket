@@ -8,12 +8,11 @@ namespace KramDeliverFoodCompleted.Interfaces
     {
         public Guid Id { get; set; }
         public IEnumerable<string> Products { get; set; }
-        public string Information { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Address { get; set; }
 
         public void Order()
-        {
-
-        }
+        { }
 
         protected void Checkout(IEnumerable<BaseProduct> products, string information)
         { }

@@ -8,23 +8,29 @@ namespace KramDeliverFoodCompleted
     {
         static void Main(string[] args)
         {
-            Logger.WelcomeMessage();
-
-            Buyer buyer = new Buyer();
-
             var flag = true;
 
             while (flag)
             {
-                var choice = InputReader.UserChoice();
+                Logger.WelcomeMessage();
 
-                switch(choice)
+                Buyer buyer = new Buyer();
+            
+                var choice = BuyerReader.UserChoice();
+
+                var product = new Product();
+
+                var provider = new Provider();
+
+                switch (choice)
                 {
                     case 1:
+                        product.InitProducts();
                         buyer.Order();
-                        //buyer.Checkout();
                         break;
                     case 2:
+                        product.InitProducts();
+                        provider.AddProduct();
                         break;
                     case 3:
                         flag = false;
