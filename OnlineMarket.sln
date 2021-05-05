@@ -3,11 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineMarket", "OnlineMarket\OnlineMarket.csproj", "{B654D708-40EA-4C8C-80A4-274CE161F1F3}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KramDeliveryFood", "KramDeliveryFood\KramDeliveryFood.csproj", "{51DD30A8-4906-4D69-9038-3A334CA01613}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KramDeliverFoodCompleted", "KramDeliverFood_v2\KramDeliverFoodCompleted.csproj", "{1425CF6B-B158-4894-9C56-3A2D5EF69C60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KramDeliverFoodCompleted", "KramDeliverFoodCompleted\KramDeliverFoodCompleted.csproj", "{BFD33E73-C830-47CA-897D-9333882DC29F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,18 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B654D708-40EA-4C8C-80A4-274CE161F1F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B654D708-40EA-4C8C-80A4-274CE161F1F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B654D708-40EA-4C8C-80A4-274CE161F1F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B654D708-40EA-4C8C-80A4-274CE161F1F3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{51DD30A8-4906-4D69-9038-3A334CA01613}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{51DD30A8-4906-4D69-9038-3A334CA01613}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{51DD30A8-4906-4D69-9038-3A334CA01613}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{51DD30A8-4906-4D69-9038-3A334CA01613}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1425CF6B-B158-4894-9C56-3A2D5EF69C60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1425CF6B-B158-4894-9C56-3A2D5EF69C60}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1425CF6B-B158-4894-9C56-3A2D5EF69C60}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1425CF6B-B158-4894-9C56-3A2D5EF69C60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFD33E73-C830-47CA-897D-9333882DC29F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFD33E73-C830-47CA-897D-9333882DC29F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFD33E73-C830-47CA-897D-9333882DC29F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFD33E73-C830-47CA-897D-9333882DC29F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
