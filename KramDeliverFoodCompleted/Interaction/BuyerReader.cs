@@ -9,14 +9,14 @@ namespace KramDeliverFoodCompleted.Interaction
         {
             var input = Console.ReadLine();
 
-            while (!Checker.EmptyUserInput(input) && !Checker.NonStringUserInput(input) && !Checker.UserLengthInput(input))
+            while (!Checker.EmptyUserInput(input) && !Checker.NonLetterUserInput(input) && !Checker.UserLengthInput(input))
             {
                 Logger.RepeatInput();
 
                 input = Console.ReadLine();
             }
 
-            var result = Converter.Converter.UserInput(input);
+            int.TryParse(input, out var result);
 
             return result;
         }
@@ -44,7 +44,7 @@ namespace KramDeliverFoodCompleted.Interaction
         {
             var input = Console.ReadLine();
 
-            while (!Checker.EmptyUserInput(input) == false && BuyerInfoChecker.CheckPhone(input) == false)
+            while (Checker.EmptyUserInput(input) == false)
             {
                 Logger.RepeatInput();
 
@@ -58,7 +58,7 @@ namespace KramDeliverFoodCompleted.Interaction
         {
             var input = Console.ReadLine();
 
-            while (!Checker.EmptyUserInput(input) && BuyerInfoChecker.CheckAddress(input))
+            while (!Checker.EmptyUserInput(input))
             {
                 Logger.RepeatInput();
 

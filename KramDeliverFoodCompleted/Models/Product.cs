@@ -27,13 +27,13 @@ namespace KramDeliverFoodCompleted.Models
         {       
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("ru-RU");
 
-            var folderPath = Path.Combine(Environment.CurrentDirectory, Variables.Folder);
+            var folderPath = Path.Combine(Variables.CurrentDirectory, Variables.Folder);
 
             var path = Path.Combine(folderPath, Variables.BaseProducts);
 
             FolderCheck.FolderExist(folderPath);
 
-            FileCheck.FileExist(path);
+            FileCheck.CreateProductsFile(path);
 
             if (Checker.ProductExist(product) == false)
             {
@@ -46,7 +46,7 @@ namespace KramDeliverFoodCompleted.Models
 
         public static IList<Product> ReadBaseProducts()
         {
-            var path = Path.Combine(Environment.CurrentDirectory, Variables.Folder, Variables.BaseProducts);
+            var path = Path.Combine(Variables.CurrentDirectory, Variables.Folder, Variables.BaseProducts);
 
             var items = File.ReadLines(path).ToList();
 
@@ -64,7 +64,7 @@ namespace KramDeliverFoodCompleted.Models
 
         public static void ProductsFileSave(Product product)
         {
-            var path = Path.Combine(Environment.CurrentDirectory, Variables.Folder, Variables.ProductsForOrder);
+            var path = Path.Combine(Variables.CurrentDirectory, Variables.Folder, Variables.ProductsForOrder);
 
             string item = product.Id + ";" + product.Name + ";" + product.Price + ";" + product.Specifications + ";" + product.Description;
 
@@ -74,7 +74,7 @@ namespace KramDeliverFoodCompleted.Models
 
         public static IList<Product> ReadProductsForOrder()
         {
-            var path = Path.Combine(Environment.CurrentDirectory, Variables.Folder, Variables.ProductsForOrder);
+            var path = Path.Combine(Variables.CurrentDirectory, Variables.Folder, Variables.ProductsForOrder);
 
             var items = File.ReadLines(path).ToList();
 
@@ -136,7 +136,9 @@ namespace KramDeliverFoodCompleted.Models
 
         public void AddProductToOrder(Product product)
         {
-            FileCheck.ProductsFileExist();
+            var path = Path.Combine(Variables.CurrentDirectory, Variables.Folder, Variables.ProductsForOrder);
+
+            FileCheck.CreateProductsFile(path);
 
             ProductsFileSave(product); 
         }
