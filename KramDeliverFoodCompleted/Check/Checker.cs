@@ -16,18 +16,9 @@ namespace KramDeliverFoodCompleted.Check
             return flag;
         }
 
-        public static bool NonStringUserInput(string input)
+        public static bool NonLetterUserInput(object input)
         {
-            var flag = false;
-
-            try
-            {
-                var converted = Convert.ToInt32(input);
-            }
-            catch (Exception ex)
-            {
-                Logger.ExceptionMessage(ex);
-            }
+            var flag = input is string;
 
             return flag;
         }
@@ -52,7 +43,7 @@ namespace KramDeliverFoodCompleted.Check
 
             var inputSymbol = Convert.ToChar(input);
 
-            if (Char.IsLetter(inputSymbol))
+            if (char.IsLetter(inputSymbol))
                 if(inputSymbol == 'y' ||inputSymbol == 'n')
                     flag = true;
 
