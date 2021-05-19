@@ -32,7 +32,7 @@ namespace KramDeliverFoodCompleted.Interaction
                 inputProductData.Add(ProductField());
             }
 
-            product.Id = new Guid();
+            product.Id = Guid.NewGuid();
             product.Name = inputProductData[0];
             product.Price = Convert.ToDecimal(inputProductData[1]);
             product.Specifications = inputProductData[2];

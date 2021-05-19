@@ -10,9 +10,5 @@ namespace KramDeliverFoodCompleted.Interfaces
         public decimal Price { get; set; }
         public string Specifications { get; set; }
         public string Description { get; set; }
-        public IList<BaseProduct> Products { get; set; }
-
-        public virtual void AddProduct(BaseProduct product)
-        { }
     }
 }

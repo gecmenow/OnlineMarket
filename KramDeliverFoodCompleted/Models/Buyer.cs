@@ -7,11 +7,19 @@ namespace KramDeliverFoodCompleted.Models
 {
     public class Buyer : BaseBuyer
     {
+        private readonly Reporter _reporter;
+
+        private Product _product;
+
+        public Buyer(Product product, Reporter reporter)
+        {
+            _product = product;
+            _reporter = reporter;
+        }
+
         public new void Order()
         {
-            var product = new Product();
-
-            BuyerMessage.Products(product.GetProducts());
+            BuyerMessage.Products(_product.GetProducts());
             BuyerMessage.BuyInstruction();
 
             while (true)
@@ -21,9 +29,11 @@ namespace KramDeliverFoodCompleted.Models
                 while (!Checker.RealProductId(input))
                     input = BuyerReader.UserChoice();
 
-                product = product.GetProduct(input);
+                _product = _product.GetProduct(input);
 
-                product.AddProductToOrder(product);
+                _product.AddProductToOrder(_product);
+
+                _reporter.OrderedProduct(_product);
 
                 if (!BuyerReader.BuyMoreProducts())
                     break;
@@ -39,7 +49,7 @@ namespace KramDeliverFoodCompleted.Models
 
             var address = BuyerReader.Address();
 
-            var orderedProducts = product.GetOrderedProducts();
+            var orderedProducts = _product.GetOrderedProducts();
 
             Checkout(orderedProducts, phoneNumber, address);
         }

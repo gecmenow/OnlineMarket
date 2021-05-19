@@ -50,7 +50,7 @@ namespace KramDeliverFoodCompleted.Models
 
             var items = File.ReadLines(path).ToList();
 
-            List<Product> products = new List<Product>();
+            var products = new List<Product>();
 
             foreach (var item in items)
             {
@@ -78,7 +78,7 @@ namespace KramDeliverFoodCompleted.Models
 
             var items = File.ReadLines(path).ToList();
 
-            List<Product> products = new List<Product>();
+            var products = new List<Product>();
 
             foreach (var item in items)
             {

@@ -14,13 +14,17 @@ namespace KramDeliverFoodCompleted
             {
                 Logger.WelcomeMessage();
 
-                Buyer buyer = new Buyer();
+                var product = new Product();
+
+                var reporter = new Reporter();
+
+                var buyer = new Buyer(product, reporter);
             
                 var choice = BuyerReader.UserChoice();
 
-                var product = new Product();
+                var providerReader = new ProviderReader();
 
-                var provider = new Provider();
+                var provider = new Provider(providerReader, product, reporter);
 
                 switch (choice)
                 {
