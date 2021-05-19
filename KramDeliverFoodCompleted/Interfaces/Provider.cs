@@ -5,6 +5,13 @@ namespace KramDeliverFoodCompleted.Interfaces
 {
     public class Provider
     {
+        private Product _product;
+
+        public Provider(Product product)
+        {
+            _product = product;
+        }
+
         public void AddProduct()
         {
             ProviderMessage.AddProduct();
@@ -13,8 +20,7 @@ namespace KramDeliverFoodCompleted.Interfaces
 
             var newProduct = providerReader.InputProductFields();
 
-            var product = new Product();
-            product.AddProduct(newProduct);
+            _product.AddProduct(newProduct);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using KramDeliverFoodCompleted.Interaction;
 using KramDeliverFoodCompleted.Models;
+using KramDeliverFoodCompleted.Serialize;
 using System;
 
 namespace KramDeliverFoodCompleted.Check
@@ -10,7 +11,7 @@ namespace KramDeliverFoodCompleted.Check
         {
             var flag = false;
 
-            if (!String.IsNullOrWhiteSpace(input))
+            if (!string.IsNullOrWhiteSpace(input))
                 flag = true;
 
             return flag;
@@ -70,23 +71,6 @@ namespace KramDeliverFoodCompleted.Check
 
             if (id >= 0 && id < productsLength)
                 flag = true;
-
-            return flag;
-        }
-
-        public static bool ProductExist(Product product)
-        {
-            var flag = false;
-
-            var products = product.GetProducts();
-
-            foreach (var item in products)
-            {
-                if (item.Id == product.Id)
-                {
-                    flag = true;
-                }
-            }
 
             return flag;
         }

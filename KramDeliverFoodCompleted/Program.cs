@@ -1,5 +1,8 @@
-﻿using KramDeliverFoodCompleted.Interaction;
+﻿using KramDeliverFoodCompleted.Check;
+using KramDeliverFoodCompleted.Interaction;
+using KramDeliverFoodCompleted.Interfaces;
 using KramDeliverFoodCompleted.Models;
+using KramDeliverFoodCompleted.Serialize;
 using System;
 
 namespace KramDeliverFoodCompleted
@@ -18,13 +21,15 @@ namespace KramDeliverFoodCompleted
 
                 var reporter = new Reporter();
 
-                var buyer = new Buyer(product, reporter);
+                var checkout = new Checkout();
+
+                var buyer = new Buyer(product, reporter, checkout);
             
                 var choice = BuyerReader.UserChoice();
 
                 var providerReader = new ProviderReader();
 
-                var provider = new Provider(providerReader, product, reporter);
+                var provider = new Models.Provider(providerReader, product, reporter);
 
                 switch (choice)
                 {

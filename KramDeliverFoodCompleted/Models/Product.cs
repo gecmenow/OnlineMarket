@@ -1,5 +1,6 @@
 ﻿using KramDeliverFoodCompleted.Check;
 using KramDeliverFoodCompleted.Interfaces;
+using KramDeliverFoodCompleted.Serialize;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -35,16 +36,15 @@ namespace KramDeliverFoodCompleted.Models
 
             FileCheck.CreateProductsFile(path);
 
-            if (Checker.ProductExist(product) == false)
+            if (ProductExist(product) == false)
             {
-                string item = product.Id + ";" + product.Name + ";" + product.Price + ";" +
-                    product.Specifications + ";" + product.Description;
+                var item = Serializer.DoSerialization(product);
 
                 File.AppendAllText(path, item + Environment.NewLine);
             }            
         }
 
-        public static IList<Product> ReadBaseProducts()
+        private IList<Product> ReadBaseProducts()
         {
             var path = Path.Combine(Variables.CurrentDirectory, Variables.Folder, Variables.BaseProducts);
 
@@ -54,15 +54,15 @@ namespace KramDeliverFoodCompleted.Models
 
             foreach (var item in items)
             {
-                var temp = item.Replace("(", "").Replace(")", "").Split(";");
+                var desirilized = Serializer.DoDeserialization(item);
 
-                products.Add(new Product { Id = Guid.Parse(temp[0]), Name = temp[1], Price = Decimal.Parse(temp[2]), Specifications = temp[3], Description = temp[4] });
+                products.Add(desirilized);
             }
 
             return products;
         }
 
-        public static void ProductsFileSave(Product product)
+        private static void ProductsFileSave(Product product)
         {
             var path = Path.Combine(Variables.CurrentDirectory, Variables.Folder, Variables.ProductsForOrder);
 
@@ -72,7 +72,7 @@ namespace KramDeliverFoodCompleted.Models
 
         }
 
-        public static IList<Product> ReadProductsForOrder()
+        private static IList<Product> ReadProductsForOrder()
         {
             var path = Path.Combine(Variables.CurrentDirectory, Variables.Folder, Variables.ProductsForOrder);
 
@@ -148,6 +148,23 @@ namespace KramDeliverFoodCompleted.Models
             var products = ReadProductsForOrder();
 
             return products;
+        }
+
+        private bool ProductExist(Product product)
+        {
+            var flag = false;
+
+            var products = product.GetProducts();
+
+            foreach (var item in products)
+            {
+                if (item.Id == product.Id)
+                {
+                    flag = true;
+                }
+            }
+
+            return flag;
         }
     }
 }

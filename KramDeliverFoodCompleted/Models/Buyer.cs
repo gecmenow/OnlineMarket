@@ -7,14 +7,17 @@ namespace KramDeliverFoodCompleted.Models
 {
     public class Buyer : BaseBuyer
     {
-        private readonly Reporter _reporter;
+        private Reporter _reporter;
 
         private Product _product;
 
-        public Buyer(Product product, Reporter reporter)
+        private Checkout _checkout;
+
+        public Buyer(Product product, Reporter reporter, Checkout checkout)
         {
             _product = product;
             _reporter = reporter;
+            _checkout = checkout;
         }
 
         public new void Order()
@@ -56,13 +59,11 @@ namespace KramDeliverFoodCompleted.Models
 
         void Checkout(IEnumerable<Product> products, string phoneNumber, string address)
         {
-            var checkout = new Checkout();
+            _checkout.Order = products;
+            _checkout.Address = address;
+            _checkout.PhoneNumber = phoneNumber;
 
-            checkout.Order = products;
-            checkout.Address = address;
-            checkout.PhoneNumber = phoneNumber;
-
-            BuyerMessage.Order(checkout, address, phoneNumber);
+            BuyerMessage.Order(_checkout, address, phoneNumber);
 
             BuyerMessage.SuccessfulOrder();
         }
