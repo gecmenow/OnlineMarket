@@ -6,87 +6,29 @@ namespace KramDeliverFoodCompleted.Check
 {
     public class Checker
     {
-        public static bool EmptyUserInput(string input)
+        private readonly Product _product;
+
+        public Checker(Product product)
         {
-            var flag = false;
-
-            if (!String.IsNullOrWhiteSpace(input))
-                flag = true;
-
-            return flag;
+            _product = product;
         }
-
-        public static bool NonLetterUserInput(object input)
-        {
-            var flag = input is string;
-
-            return flag;
-        }
-
-        public static bool UserLengthInput(string input)
-        {
-            var flag = false;
-
-            if (input.Length == 1)
-                flag = true;
-
-            return flag;
-        }
-
         ///<summary>
-        ///<para> This method is checinkg user input for buying more products </para>
-        ///<para> and expecting y or n incoming. </para>
+        ///This method is checinkg user input for buying more products
+        ///and expecting y or n incoming.
         ///</summary>
-        public static bool BuyMoreProductsCorrect(string input)
+        public static bool IsBuyMoreProducts(string input)
         {
-            var flag = false;
-
-            var inputSymbol = Convert.ToChar(input);
-
-            if (char.IsLetter(inputSymbol))
-                if(inputSymbol == 'y' ||inputSymbol == 'n')
-                    flag = true;
-
-            return flag;
+            return (input == "y" || input == "n") ? true : false;
         }
 
-        public static bool BuyMoreProducts(string input)
+        public bool IsRealProductId(int id)
         {
             var flag = false;
 
-            if (input == "y")
-                flag = true;
-
-            return flag;
-        }
-
-        public static bool RealProductId(int id)
-        {
-            var flag = false;
-
-            var product = new Product();
-
-            var productsLength = product.GetProducts().Count;
+            var productsLength = _product.GetProducts().Count;
 
             if (id >= 0 && id < productsLength)
                 flag = true;
-
-            return flag;
-        }
-
-        public static bool ProductExist(Product product)
-        {
-            var flag = false;
-
-            var products = product.GetProducts();
-
-            foreach (var item in products)
-            {
-                if (item.Id == product.Id)
-                {
-                    flag = true;
-                }
-            }
 
             return flag;
         }

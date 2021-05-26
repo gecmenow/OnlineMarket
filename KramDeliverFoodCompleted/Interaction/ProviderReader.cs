@@ -7,21 +7,15 @@ namespace KramDeliverFoodCompleted.Interaction
 {
     public class ProviderReader
     {
-        string ProductField()
+        private readonly Product _product;
+        public ProviderReader(Product product)
         {
-            var product = String.Empty;
-
-            while (!Checker.EmptyUserInput(product))
-                product = Console.ReadLine();
-
-            return product;
+            _product = product;
         }
 
         public Product InputProductFields()
         {
-            var product = new Product();
-
-            var productNamespaces = product.GetProductsNamesapaces();
+            var productNamespaces = _product.GetProductsNamesapaces();
 
             var inputProductData = new List<string>();
 
@@ -32,11 +26,21 @@ namespace KramDeliverFoodCompleted.Interaction
                 inputProductData.Add(ProductField());
             }
 
-            product.Id = new Guid();
-            product.Name = inputProductData[0];
-            product.Price = Convert.ToDecimal(inputProductData[1]);
-            product.Specifications = inputProductData[2];
-            product.Description = inputProductData[3];
+            _product.Id = new Guid();
+            _product.Name = inputProductData[0];
+            _product.Price = Convert.ToDecimal(inputProductData[1]);
+            _product.Specifications = inputProductData[2];
+            _product.Description = inputProductData[3];
+
+            return _product;
+        }
+
+        string ProductField()
+        {
+            var product = string.Empty;
+
+            while (string.IsNullOrEmpty(product))
+                product = Console.ReadLine();
 
             return product;
         }

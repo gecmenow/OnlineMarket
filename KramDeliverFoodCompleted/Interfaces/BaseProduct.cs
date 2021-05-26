@@ -11,8 +11,5 @@ namespace KramDeliverFoodCompleted.Interfaces
         public string Specifications { get; set; }
         public string Description { get; set; }
         public IList<BaseProduct> Products { get; set; }
-
-        public virtual void AddProduct(BaseProduct product)
-        { }
     }
 }

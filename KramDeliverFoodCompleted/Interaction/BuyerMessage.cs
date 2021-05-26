@@ -6,7 +6,7 @@ namespace KramDeliverFoodCompleted.Interaction
 {
     public class BuyerMessage
     {
-        public static void Products(IEnumerable<Product> products)
+        public static void ShowProducts(IEnumerable<Product> products)
         {
             Console.WriteLine("We've got for you these products\n");
 
@@ -20,7 +20,7 @@ namespace KramDeliverFoodCompleted.Interaction
             }
         }
 
-        public static void Order(Checkout checkout, string address, string phone)
+        public static void MakeOrder(Checkout checkout, string address, string phone)
         {
             Console.WriteLine("You ordered these products\n");
 
@@ -68,7 +68,7 @@ namespace KramDeliverFoodCompleted.Interaction
                 "ул.Назв.дом номер,квартира номер\n");
         }
 
-        public static void SuccessfulOrder()
+        public static void ShowSuccessfulOrder()
         {
             Console.WriteLine("Congratulations. Your order is ready and wait for the delivering\n");
         }

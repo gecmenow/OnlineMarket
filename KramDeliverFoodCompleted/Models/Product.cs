@@ -35,7 +35,7 @@ namespace KramDeliverFoodCompleted.Models
 
             FileCheck.CreateProductsFile(path);
 
-            if (Checker.ProductExist(product) == false)
+            if (isProductExist(product.Id) == false)
             {
                 string item = product.Id + ";" + product.Name + ";" + product.Price + ";" +
                     product.Specifications + ";" + product.Description;
@@ -148,6 +148,21 @@ namespace KramDeliverFoodCompleted.Models
             var products = ReadProductsForOrder();
 
             return products;
+        }
+
+        private bool isProductExist(Guid productId)
+        {
+            var products = GetProducts();
+
+            foreach (var item in products)
+            {
+                if (item.Id == productId)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

@@ -1,22 +1,40 @@
 ﻿using KramDeliverFoodCompleted.Check;
+using KramDeliverFoodCompleted.Models;
 using System;
 
 namespace KramDeliverFoodCompleted.Interaction
 {
-    public class BuyerReader
+    public class BuyerReader:Reader
     {
-        public static int UserChoice()
+        private readonly Product _product;
+
+        public BuyerReader(Product product)
         {
-            var input = Console.ReadLine();
+            _product = product;
+        }
 
-            while (!Checker.EmptyUserInput(input) && !Checker.NonLetterUserInput(input) && !Checker.UserLengthInput(input))
+        public override int MakeInput()
+        {
+            var result = 0;
+
+            while (true)
             {
-                Logger.RepeatInput();
+                var input = Console.ReadLine();
 
-                input = Console.ReadLine();
+                var productsCount = _product.GetProducts().Count;
+
+                if (int.TryParse(input, out result))
+                {
+                    if (result > 0 && result <= productsCount)
+                    {
+                        Logger.RepeatInput();
+
+                        continue;
+                    }
+
+                    break;
+                }
             }
-
-            int.TryParse(input, out var result);
 
             return result;
         }
@@ -27,24 +45,24 @@ namespace KramDeliverFoodCompleted.Interaction
 
             var input = Console.ReadLine();
 
-            while(!Checker.BuyMoreProductsCorrect(input))
+            while(!Checker.IsBuyMoreProducts(input))
             {
                 Logger.RepeatInput();
 
                 input = Console.ReadLine();
             }
 
-            if (Checker.BuyMoreProducts(input))
+            if (Checker.IsBuyMoreProducts(input))
                 return true;
 
             return false;
         }
 
-        public static string PhoneNumber()
+        public static string EnterPhoneNumber()
         {
             var input = Console.ReadLine();
 
-            while (Checker.EmptyUserInput(input) == false)
+            while (string.IsNullOrEmpty(input) == false)
             {
                 Logger.RepeatInput();
 
@@ -54,11 +72,11 @@ namespace KramDeliverFoodCompleted.Interaction
             return input;
         }
 
-        public static string Address()
+        public static string EnterAddress()
         {
             var input = Console.ReadLine();
 
-            while (!Checker.EmptyUserInput(input))
+            while (string.IsNullOrEmpty(input) == false)
             {
                 Logger.RepeatInput();
 

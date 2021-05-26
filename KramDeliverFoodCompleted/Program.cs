@@ -1,4 +1,5 @@
-﻿using KramDeliverFoodCompleted.Interaction;
+﻿using KramDeliverFoodCompleted.Check;
+using KramDeliverFoodCompleted.Interaction;
 using KramDeliverFoodCompleted.Models;
 using System;
 
@@ -12,21 +13,31 @@ namespace KramDeliverFoodCompleted
 
             while (flag)
             {
-                Logger.WelcomeMessage();
-
-                Buyer buyer = new Buyer();
-            
-                var choice = BuyerReader.UserChoice();
+                Logger.ShowWelcomeMessage();
 
                 var product = new Product();
 
-                var provider = new Provider();
+                var buyerReader = new BuyerReader(product);
+
+                var checker = new Checker(product);
+
+                var checkout = new Checkout();
+
+                var buyer = new Buyer(buyerReader, checker, product, checkout);
+
+                var reader = new Reader();
+            
+                var choice = reader.MakeInput();
+
+                var providerReader = new ProviderReader(product);
+
+                var provider = new Provider(providerReader);
 
                 switch (choice)
                 {
                     case 1:
                         product.InitProducts();
-                        buyer.Order();
+                        buyer.MakeOrder();
                         break;
                     case 2:
                         product.InitProducts();
@@ -38,7 +49,7 @@ namespace KramDeliverFoodCompleted
                 }                
             }
 
-            Logger.ByeMessage();
+            Logger.ShowByeMessage();
 
             Console.ReadKey();
         }
