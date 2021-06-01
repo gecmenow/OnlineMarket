@@ -20,7 +20,7 @@ namespace KramDeliverFoodCompleted.Interaction
                 {
                     if (input.Length != 1)
                     { 
-                        Logger.RepeatInput();
+                        Messager.RepeatInput();
 
                         continue;
                     }

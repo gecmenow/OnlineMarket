@@ -13,7 +13,7 @@ namespace KramDeliverFoodCompleted
 
             while (flag)
             {
-                Logger.ShowWelcomeMessage();
+                Messager.ShowWelcomeMessage();
 
                 var product = new Product();
 
@@ -49,7 +49,7 @@ namespace KramDeliverFoodCompleted
                 }                
             }
 
-            Logger.ShowByeMessage();
+            Messager.ShowByeMessage();
 
             Console.ReadKey();
         }

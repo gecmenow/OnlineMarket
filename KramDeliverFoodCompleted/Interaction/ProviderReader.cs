@@ -15,7 +15,7 @@ namespace KramDeliverFoodCompleted.Interaction
 
         public Product InputProductFields()
         {
-            var productNamespaces = _product.GetProductsNamesapaces();
+            var productNamespaces = _product.GetProductsNamespaces();
 
             var inputProductData = new List<string>();
 

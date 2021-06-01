@@ -31,9 +31,10 @@ namespace KramDeliverFoodCompleted.Models
 
             var path = Path.Combine(folderPath, Variables.BaseProducts);
 
-            FolderCheck.FolderExist(folderPath);
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
 
-            FileCheck.CreateProductsFile(path);
+            using (var file = new StreamWriter(path, true)) ;
 
             if (isProductExist(product.Id) == false)
             {
@@ -101,7 +102,7 @@ namespace KramDeliverFoodCompleted.Models
             return products;
         }
 
-        public IEnumerable<string> GetProductsNamesapaces()
+        public IEnumerable<string> GetProductsNamespaces()
         {
             var productNamespaces = new List<string>();
 
@@ -138,7 +139,7 @@ namespace KramDeliverFoodCompleted.Models
         {
             var path = Path.Combine(Variables.CurrentDirectory, Variables.Folder, Variables.ProductsForOrder);
 
-            FileCheck.CreateProductsFile(path);
+            using (var file = new StreamWriter(path, true)) ;
 
             ProductsFileSave(product); 
         }
