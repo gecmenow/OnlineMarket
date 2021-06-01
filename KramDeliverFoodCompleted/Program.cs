@@ -28,7 +28,7 @@ namespace KramDeliverFoodCompleted
 
                 var providerReader = new ProviderReader(product);
 
-                var provider = new Provider(providerReader);
+                var provider = new Provider(product, providerReader);
 
                 switch (choice)
                 {

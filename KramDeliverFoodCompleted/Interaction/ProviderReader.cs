@@ -12,26 +12,19 @@ namespace KramDeliverFoodCompleted.Interaction
             _product = product;
         }
 
-        public Product InputProductFields()
+        public List<string> InputProductFields()
         {
             var productNamespaces = _product.GetProductsNamespaces();
 
             var inputProductData = new List<string>();
 
-            foreach (var prdct in productNamespaces)
+            foreach (var product in productNamespaces)
             {
-                var temp = prdct + " = ";
-                Console.Write(temp);
+                ProviderMessage.ShowInputProductField(product);
                 inputProductData.Add(ProductField());
             }
 
-            _product.Id = new Guid();
-            _product.Name = inputProductData[0];
-            _product.Price = Convert.ToDecimal(inputProductData[1]);
-            _product.Specifications = inputProductData[2];
-            _product.Description = inputProductData[3];
-
-            return _product;
+            return inputProductData;
         }
 
         string ProductField()

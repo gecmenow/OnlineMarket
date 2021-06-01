@@ -19,5 +19,11 @@ namespace KramDeliverFoodCompleted.Interaction
         {
             Console.WriteLine("Your product is sucessfully added to the data base.Thanks!");
         }
+
+        public static void ShowInputProductField(string product)
+        {
+            var temp = product + " = ";
+            Console.Write(temp);
+        }
     }
 }
