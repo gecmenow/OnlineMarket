@@ -1,5 +1,4 @@
-﻿using KramDeliverFoodCompleted.Check;
-using KramDeliverFoodCompleted.Interfaces;
+﻿using KramDeliverFoodCompleted.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -31,8 +30,10 @@ namespace KramDeliverFoodCompleted.Models
 
             var path = Path.Combine(folderPath, Variables.BaseProducts);
 
-            if (!Directory.Exists(path))
-                Directory.CreateDirectory(path);
+            if(!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
 
             using (var file = new StreamWriter(path, true)) ;
 
@@ -149,6 +150,18 @@ namespace KramDeliverFoodCompleted.Models
             var products = ReadProductsForOrder();
 
             return products;
+        }
+
+        public bool IsRealProductId(int id)
+        {
+            var flag = false;
+
+            var productsLength = GetProducts().Count;
+
+            if (id >= 0 && id < productsLength)
+                flag = true;
+
+            return flag;
         }
 
         private bool isProductExist(Guid productId)

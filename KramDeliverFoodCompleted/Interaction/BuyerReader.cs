@@ -1,5 +1,4 @@
-﻿using KramDeliverFoodCompleted.Check;
-using KramDeliverFoodCompleted.Models;
+﻿using KramDeliverFoodCompleted.Models;
 using System;
 
 namespace KramDeliverFoodCompleted.Interaction
@@ -27,7 +26,7 @@ namespace KramDeliverFoodCompleted.Interaction
                 {
                     if (result > 0 && result <= productsCount)
                     {
-                        Logger.RepeatInput();
+                        Messager.RepeatInput();
 
                         continue;
                     }
@@ -45,17 +44,26 @@ namespace KramDeliverFoodCompleted.Interaction
 
             var input = Console.ReadLine();
 
-            while(!Checker.IsBuyMoreProducts(input))
+            while(!IsBuyMoreProducts(input))
             {
-                Logger.RepeatInput();
+                Messager.RepeatInput();
 
                 input = Console.ReadLine();
             }
 
-            if (Checker.IsBuyMoreProducts(input))
+            if (IsBuyMoreProducts(input))
                 return true;
 
             return false;
+        }
+
+        ///<summary>
+        ///This method is checinkg user input for buying more products
+        ///and expecting y or n incoming.
+        ///</summary>
+        private static bool IsBuyMoreProducts(string input)
+        {
+            return (input == "y" || input == "n") ? true : false;
         }
 
         public static string EnterPhoneNumber()
@@ -64,7 +72,7 @@ namespace KramDeliverFoodCompleted.Interaction
 
             while (string.IsNullOrEmpty(input) == false)
             {
-                Logger.RepeatInput();
+                Messager.RepeatInput();
 
                 input = Console.ReadLine();
             }
@@ -78,7 +86,7 @@ namespace KramDeliverFoodCompleted.Interaction
 
             while (string.IsNullOrEmpty(input) == false)
             {
-                Logger.RepeatInput();
+                Messager.RepeatInput();
 
                 input = Console.ReadLine();
             }

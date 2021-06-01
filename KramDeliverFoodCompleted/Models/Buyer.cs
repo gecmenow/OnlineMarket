@@ -1,5 +1,4 @@
-﻿using KramDeliverFoodCompleted.Check;
-using KramDeliverFoodCompleted.Interfaces;
+﻿using KramDeliverFoodCompleted.Interfaces;
 using KramDeliverFoodCompleted.Interaction;
 using System.Collections.Generic;
 
@@ -8,14 +7,12 @@ namespace KramDeliverFoodCompleted.Models
     public class Buyer : BaseBuyer
     {
         private readonly BuyerReader _buyerReader;
-        private readonly Checker _checker;
         private readonly Product _product;
         private readonly Checkout _checkout;
 
-        public Buyer(BuyerReader buyerReader, Checker checker, Product product, Checkout checkout)
+        public Buyer(BuyerReader buyerReader, Product product, Checkout checkout)
         {
             _buyerReader = buyerReader;
-            _checker = checker;
             _product = product;
             _checkout = checkout;
         }
@@ -29,7 +26,7 @@ namespace KramDeliverFoodCompleted.Models
             {
                 var input = _buyerReader.MakeInput();
 
-                while (!_checker.IsRealProductId(input))
+                while (!_product.IsRealProductId(input))
                     input = _buyerReader.MakeInput();
 
                 var enteredProduct = _product.GetProduct(input);

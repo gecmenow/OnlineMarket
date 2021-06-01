@@ -1,5 +1,4 @@
-﻿using KramDeliverFoodCompleted.Check;
-using KramDeliverFoodCompleted.Interaction;
+﻿using KramDeliverFoodCompleted.Interaction;
 using KramDeliverFoodCompleted.Models;
 using System;
 
@@ -19,11 +18,9 @@ namespace KramDeliverFoodCompleted
 
                 var buyerReader = new BuyerReader(product);
 
-                var checker = new Checker(product);
-
                 var checkout = new Checkout();
 
-                var buyer = new Buyer(buyerReader, checker, product, checkout);
+                var buyer = new Buyer(buyerReader, product, checkout);
 
                 var reader = new Reader();
             
