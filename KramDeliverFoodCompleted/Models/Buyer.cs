@@ -19,8 +19,8 @@ namespace KramDeliverFoodCompleted.Models
     
         public void MakeOrder()
         {
-            BuyerMessage.ShowProducts(_product.GetProducts());
-            BuyerMessage.BuyInstruction();
+            BuyerMessager.ShowProducts(_product.GetProducts());
+            BuyerMessager.BuyInstruction();
 
             while (true)
             {
@@ -36,14 +36,14 @@ namespace KramDeliverFoodCompleted.Models
                 if (!BuyerReader.BuyMoreProducts())
                     break;
 
-                BuyerMessage.BuyInstruction();
+                BuyerMessager.BuyInstruction();
             }
 
-            BuyerMessage.BuyerPhone();
+            BuyerMessager.BuyerPhone();
 
             var phoneNumber = BuyerReader.EnterPhoneNumber();
 
-            BuyerMessage.BuyerAddress();
+            BuyerMessager.BuyerAddress();
 
             var address = BuyerReader.EnterAddress();
 
@@ -58,9 +58,9 @@ namespace KramDeliverFoodCompleted.Models
             _checkout.Address = address;
             _checkout.PhoneNumber = phoneNumber;
 
-            BuyerMessage.MakeOrder(_checkout, address, phoneNumber);
+            BuyerMessager.MakeOrder(_checkout, address, phoneNumber);
 
-            BuyerMessage.ShowSuccessfulOrder();
+            BuyerMessager.ShowSuccessfulOrder();
         }
     }
 }

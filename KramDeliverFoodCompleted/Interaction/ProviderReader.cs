@@ -20,7 +20,7 @@ namespace KramDeliverFoodCompleted.Interaction
 
             foreach (var product in productNamespaces)
             {
-                ProviderMessage.ShowInputProductField(product);
+                ProviderMessager.ShowInputProductField(product);
                 inputProductData.Add(ProductField());
             }
 

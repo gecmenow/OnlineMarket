@@ -25,7 +25,7 @@ namespace KramDeliverFoodCompleted.Models
 
             _product.AddProduct(_product);
 
-            ProviderMessage.ProductAdded();
+            ProviderMessager.ProductAdded();
         }
     }
 }

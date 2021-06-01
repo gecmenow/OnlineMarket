@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace KramDeliverFoodCompleted.Interaction
 {
-    public class ProviderMessage
+    public class ProviderMessager
     {
         public static void AddProduct()
         {
