@@ -23,7 +23,7 @@ namespace KramDeliverFoodCompleted.Models
 
             using (var file = new StreamWriter(path, true)) ;
 
-            if (!GetProducts().Any(x => x.Id == productId))
+            if (!GetProducts().Any(x => x.Id == product.Id))
             {
                 string item = product.Id + ";" + product.Name + ";" + product.Price + ";" +
                     product.Specifications + ";" + product.Description;

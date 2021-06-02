@@ -9,6 +9,7 @@ namespace KramDeliverFoodCompleted.Models
     public class StoreContext
     {
         private readonly Product _product;
+
         public StoreContext(Product product)
         {
             _product = product;

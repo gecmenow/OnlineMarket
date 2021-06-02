@@ -3,7 +3,7 @@ using System;
 
 namespace KramDeliverFoodCompleted.Interaction
 {
-    public class BuyerReader:Reader
+    public class BuyerReader : Reader
     {
         private readonly Product _product;
 

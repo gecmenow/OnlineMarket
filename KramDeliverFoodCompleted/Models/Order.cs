@@ -11,10 +11,9 @@ namespace KramDeliverFoodCompleted.Models
     public class Order
     {
         private readonly Product _product;
-
         private readonly ProductSaver _productSaver;
-
         private readonly Checkout _checkout;
+
         public Order(Product product, ProductSaver productSaver, Checkout checkout)
         {
             _product = product;
