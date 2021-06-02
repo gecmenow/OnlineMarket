@@ -23,7 +23,7 @@ namespace KramDeliverFoodCompleted.Models
 
             using (var file = new StreamWriter(path, true)) ;
 
-            if (!IsProductExist(product.Id))
+            if (!GetProducts().Any(x => x.Id == productId))
             {
                 string item = product.Id + ";" + product.Name + ";" + product.Price + ";" +
                     product.Specifications + ";" + product.Description;
@@ -76,11 +76,6 @@ namespace KramDeliverFoodCompleted.Models
             }
 
             return product;
-        }
-
-        private bool IsProductExist(Guid productId)
-        {
-            return GetProducts().Any(x => x.Id == productId);
         }
     }
 }
