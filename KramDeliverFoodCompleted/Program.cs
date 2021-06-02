@@ -8,11 +8,13 @@ namespace KramDeliverFoodCompleted
     {
         static void Main(string[] args)
         {
-            var flag = true;
+            var isRunning = true;
 
-            while (flag)
+            while (isRunning)
             {
                 Messager.ShowWelcomeMessage();
+
+                var productSaver = new ProductSaver();
 
                 var product = new Product();
 
@@ -20,28 +22,36 @@ namespace KramDeliverFoodCompleted
 
                 var checkout = new Checkout();
 
-                var buyer = new Buyer(buyerReader, product, checkout);
+                var order = new Order(product, productSaver, checkout);
+
+                var buyer = new Buyer(buyerReader, product, checkout, order);
 
                 var reader = new Reader();
             
                 var choice = reader.MakeInput();
 
-                var providerReader = new ProviderReader(product);
+                var productInfo = new UI.Product();
 
-                var provider = new Provider(product, providerReader);
+                var providerReader = new ProviderReader(product, productInfo);
+
+                var productModel = new Models.Data.Product();
+
+                var provider = new Provider(productModel, product, providerReader);
+
+                var storeContext = new StoreContext(product);
 
                 switch (choice)
                 {
                     case 1:
-                        product.InitProducts();
+                        storeContext.InitProducts();
                         buyer.MakeOrder();
                         break;
                     case 2:
-                        product.InitProducts();
+                        storeContext.InitProducts();
                         provider.AddProduct();
                         break;
                     case 3:
-                        flag = false;
+                        isRunning = false;
                         break;
                 }                
             }

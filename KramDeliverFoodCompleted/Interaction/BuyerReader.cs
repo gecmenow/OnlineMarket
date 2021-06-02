@@ -51,10 +51,7 @@ namespace KramDeliverFoodCompleted.Interaction
                 input = Console.ReadLine();
             }
 
-            if (IsBuyMoreProducts(input))
-                return true;
-
-            return false;
+            return IsBuyMoreProducts(input);
         }
 
         ///<summary>
@@ -63,14 +60,14 @@ namespace KramDeliverFoodCompleted.Interaction
         ///</summary>
         private static bool IsBuyMoreProducts(string input)
         {
-            return (input == "y" || input == "n") ? true : false;
+            return input == "y" || input == "n";
         }
 
         public static string EnterPhoneNumber()
         {
             var input = Console.ReadLine();
 
-            while (string.IsNullOrEmpty(input) == false)
+            while (!string.IsNullOrEmpty(input))
             {
                 Messager.RepeatInput();
 
@@ -84,7 +81,7 @@ namespace KramDeliverFoodCompleted.Interaction
         {
             var input = Console.ReadLine();
 
-            while (string.IsNullOrEmpty(input) == false)
+            while (!string.IsNullOrEmpty(input))
             {
                 Messager.RepeatInput();
 

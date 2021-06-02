@@ -7,14 +7,16 @@ namespace KramDeliverFoodCompleted.Interaction
     public class ProviderReader
     {
         private readonly Product _product;
-        public ProviderReader(Product product)
+        private readonly UI.Product _productInfo;
+        public ProviderReader(Product product, UI.Product productInfo)
         {
             _product = product;
+            _productInfo = productInfo;
         }
 
         public List<string> InputProductFields()
         {
-            var productNamespaces = _product.GetProductsNamespaces();
+            var productNamespaces = _productInfo.GetProductsNamespaces();
 
             var inputProductData = new List<string>();
 

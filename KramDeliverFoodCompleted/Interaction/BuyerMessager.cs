@@ -6,7 +6,7 @@ namespace KramDeliverFoodCompleted.Interaction
 {
     public class BuyerMessager
     {
-        public static void ShowProducts(IEnumerable<Product> products)
+        public static void ShowProducts(IEnumerable<Models.Data.Product> products)
         {
             Console.WriteLine("We've got for you these products\n");
 
