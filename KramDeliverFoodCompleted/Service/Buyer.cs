@@ -1,21 +1,20 @@
 ﻿using KramDeliverFoodCompleted;
 using KramDeliverFoodCompleted.Interaction;
+using KramDeliverFoodCompleted.Models;
 using System.Collections.Generic;
 
-namespace KramDeliverFoodCompleted.Models
+namespace KramDeliverFoodCompleted.Service
 {
     public class Buyer
     {
         private readonly BuyerReader _buyerReader;
         private readonly Product _product;
-        private readonly Checkout _checkout;
         private readonly Order _order;
 
-        public Buyer(BuyerReader buyerReader, Product product, Checkout checkout, Order order)
+        public Buyer(BuyerReader buyerReader, Product product, Order order)
         {
             _buyerReader = buyerReader;
             _product = product;
-            _checkout = checkout;
             _order = order;
         }
 
@@ -38,7 +37,10 @@ namespace KramDeliverFoodCompleted.Models
 
                 BuyerMessager.BuyInstruction();
             }
+        } 
 
+        public void MakeCheckout()
+        {
             BuyerMessager.BuyerPhone();
 
             var phoneNumber = BuyerReader.EnterPhoneNumber();
@@ -50,6 +52,6 @@ namespace KramDeliverFoodCompleted.Models
             var orderedProducts = _order.GetOrderedProducts();
 
             _order.MakeCheckout(orderedProducts, phoneNumber, address);
-        } 
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using KramDeliverFoodCompleted.Interaction;
 using KramDeliverFoodCompleted.Models;
+using KramDeliverFoodCompleted.Service;
 using System;
 
 namespace KramDeliverFoodCompleted
@@ -16,7 +17,9 @@ namespace KramDeliverFoodCompleted
 
                 var productSaver = new ProductSaver();
 
-                var product = new Product();
+                var product = new Service.Product();
+
+                var productModel = new Models.Product();
 
                 var buyerReader = new BuyerReader(product);
 
@@ -24,17 +27,13 @@ namespace KramDeliverFoodCompleted
 
                 var order = new Order(product, productSaver, checkout);
 
-                var buyer = new Buyer(buyerReader, product, checkout, order);
+                var buyer = new Buyer(buyerReader, product, order);
 
                 var reader = new Reader();
             
                 var choice = reader.MakeInput();
 
-                var productInfo = new UI.Product();
-
-                var providerReader = new ProviderReader(product, productInfo);
-
-                var productModel = new Models.Data.Product();
+                var providerReader = new ProviderReader(product);
 
                 var provider = new Provider(productModel, product, providerReader);
 
@@ -45,6 +44,7 @@ namespace KramDeliverFoodCompleted
                     case 1:
                         storeContext.InitProducts();
                         buyer.MakeOrder();
+                        buyer.MakeCheckout();
                         break;
                     case 2:
                         storeContext.InitProducts();

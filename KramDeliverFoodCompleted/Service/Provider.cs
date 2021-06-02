@@ -1,15 +1,15 @@
 ﻿using KramDeliverFoodCompleted.Interaction;
 using System;
 
-namespace KramDeliverFoodCompleted.Models
+namespace KramDeliverFoodCompleted.Service
 {
     public class Provider
     {
         private readonly ProviderReader _providerReader;
-        private readonly Data.Product _productModel;
+        private readonly Models.Product _productModel;
         private readonly Product _product;
 
-        public Provider(Data.Product productModel, Product product, ProviderReader providerReader)
+        public Provider(Models.Product productModel, Product product, ProviderReader providerReader)
         {
             _providerReader = providerReader;
             _productModel = productModel;

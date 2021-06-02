@@ -1,4 +1,4 @@
-﻿using KramDeliverFoodCompleted.Models;
+﻿using KramDeliverFoodCompleted.Service;
 using System;
 using System.Collections.Generic;
 
@@ -7,16 +7,15 @@ namespace KramDeliverFoodCompleted.Interaction
     public class ProviderReader
     {
         private readonly Product _product;
-        private readonly UI.Product _productInfo;
-        public ProviderReader(Product product, UI.Product productInfo)
+
+        public ProviderReader( Product product)
         {
             _product = product;
-            _productInfo = productInfo;
         }
 
         public List<string> InputProductFields()
         {
-            var productNamespaces = _productInfo.GetProductsNamespaces();
+            var productNamespaces = _product.GetProductsNamespaces();
 
             var inputProductData = new List<string>();
 
@@ -29,7 +28,7 @@ namespace KramDeliverFoodCompleted.Interaction
             return inputProductData;
         }
 
-        string ProductField()
+        private string ProductField()
         {
             var product = string.Empty;
 

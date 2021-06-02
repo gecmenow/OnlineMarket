@@ -1,4 +1,5 @@
 ﻿using KramDeliverFoodCompleted.Interaction;
+using KramDeliverFoodCompleted.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KramDeliverFoodCompleted.Models
+namespace KramDeliverFoodCompleted.Service
 {
     public class Order
     {
@@ -21,7 +22,7 @@ namespace KramDeliverFoodCompleted.Models
             _checkout = checkout;
         }
 
-        public void MakeCheckout(IEnumerable<Data.Product> products, string phoneNumber, string address)
+        public void MakeCheckout(IEnumerable<Models.Product> products, string phoneNumber, string address)
         {
             _checkout.Order = products;
             _checkout.Address = address;
@@ -43,19 +44,19 @@ namespace KramDeliverFoodCompleted.Models
             _productSaver.ProductsFileSave(product);
         }
 
-        public IList<Data.Product> GetOrderedProducts()
+        public IList<Models.Product> GetOrderedProducts()
         {
             var path = Path.Combine(Variables.CurrentDirectory, Variables.Folder, Variables.ProductsForOrder);
 
             var items = File.ReadLines(path).ToList();
 
-            List<Data.Product> products = new List<Data.Product>();
+            var products = new List<Models.Product>();
 
             foreach (var item in items)
             {
                 var temp = item.Replace("(", "").Replace(")", "").Split(";");
 
-                products.Add(new Data.Product { Id = Guid.Parse(temp[0]), Name = temp[1], Price = Decimal.Parse(temp[2]), Specifications = temp[3], Description = temp[4] });
+                products.Add(new Models.Product { Id = Guid.Parse(temp[0]), Name = temp[1], Price = Decimal.Parse(temp[2]), Specifications = temp[3], Description = temp[4] });
             }
 
             File.Delete(path);

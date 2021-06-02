@@ -5,9 +5,9 @@ namespace KramDeliverFoodCompleted.Interaction
 {
     public class BuyerReader : Reader
     {
-        private readonly Product _product;
+        private readonly Service.Product _product;
 
-        public BuyerReader(Product product)
+        public BuyerReader(Service.Product product)
         {
             _product = product;
         }

@@ -1,15 +1,16 @@
-﻿using System;
+﻿using KramDeliverFoodCompleted.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KramDeliverFoodCompleted.Models
+namespace KramDeliverFoodCompleted.Service
 {
     public class ProductSaver
     {
-        public void ProductsFileSave(Data.Product product)
+        public void ProductsFileSave(Models.Product product)
         {
             var path = Path.Combine(Variables.CurrentDirectory, Variables.Folder, Variables.ProductsForOrder);
 
