@@ -1,9 +1,5 @@
-﻿using KramDeliverFoodCompleted.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using System.Reflection;
 
 namespace KramDeliverFoodCompleted.Interaction
 {
@@ -20,7 +16,7 @@ namespace KramDeliverFoodCompleted.Interaction
             Console.WriteLine("Your product is sucessfully added to the data base.Thanks!");
         }
 
-        public static void ShowInputProductField(string product)
+        public static void ShowInputProductField(PropertyInfo product)
         {
             var temp = product + " = ";
             Console.Write(temp);

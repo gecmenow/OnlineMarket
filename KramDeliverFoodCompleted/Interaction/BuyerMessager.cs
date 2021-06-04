@@ -1,4 +1,5 @@
 ﻿using KramDeliverFoodCompleted.Models;
+using KramDeliverFoodCompleted.Service;
 using System;
 using System.Collections.Generic;
 
@@ -20,13 +21,13 @@ namespace KramDeliverFoodCompleted.Interaction
             }
         }
 
-        public static void MakeOrder(Checkout checkout, string address, string phone)
+        public static void ShowOrder(IEnumerable<Product> products, OrderService order)
         {
             Console.WriteLine("You ordered these products\n");
 
             var counter = 0;
 
-            foreach (var product in checkout.Order)
+            foreach (var product in products)
             {
                 Console.WriteLine(counter + " - " + product.Name);
 
@@ -34,8 +35,8 @@ namespace KramDeliverFoodCompleted.Interaction
             }
 
             Console.WriteLine("The products will be delivered to the person by this information. \n" +
-                address + "\n" +
-                "We'll call you by this phone - " + phone + " Thanks\n");
+                order.Address + "\n" +
+                "We'll call you by this phone - " + order.PhoneNumber + " Thanks\n");
         }
 
         public static void BuyInstruction()

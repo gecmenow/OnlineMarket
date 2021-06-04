@@ -9,56 +9,36 @@ namespace KramDeliverFoodCompleted
     {
         static void Main(string[] args)
         {
+            Messager.ShowWelcomeMessage();
+            var data = new StoreContext();
+            data.InitProducts();
+            var reader = new Reader();
+            var orderService = new OrderService(data);
+            var productService = new ProductService(data);
+            var userInteraction = new BuyerInteraction(productService, orderService);
+            var providerInteraction = new ProviderInteraction(productService);
             var isRunning = true;
 
             while (isRunning)
             {
-                Messager.ShowWelcomeMessage();
-
-                var productSaver = new ProductSaver();
-
-                var product = new Service.Product();
-
-                var productModel = new Models.Product();
-
-                var buyerReader = new BuyerReader(product);
-
-                var checkout = new Checkout();
-
-                var order = new Order(product, productSaver, checkout);
-
-                var buyer = new Buyer(buyerReader, product, order);
-
-                var reader = new Reader();
-            
                 var choice = reader.MakeInput();
-
-                var providerReader = new ProviderReader(product);
-
-                var provider = new Provider(productModel, product, providerReader);
-
-                var storeContext = new StoreContext(product);
 
                 switch (choice)
                 {
                     case 1:
-                        storeContext.InitProducts();
-                        buyer.MakeOrder();
-                        buyer.MakeCheckout();
+                        userInteraction.MakeOrder();
                         break;
                     case 2:
-                        storeContext.InitProducts();
-                        provider.AddProduct();
+                        providerInteraction.AddProduct();
                         break;
                     case 3:
                         isRunning = false;
                         break;
-                }                
+                }
+
+                Messager.ShowByeMessage();
             }
-
-            Messager.ShowByeMessage();
-
-            Console.ReadKey();
+                Console.ReadKey();
         }
     }
 }

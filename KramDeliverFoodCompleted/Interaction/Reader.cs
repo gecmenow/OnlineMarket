@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KramDeliverFoodCompleted.Interaction
 {
@@ -30,6 +26,22 @@ namespace KramDeliverFoodCompleted.Interaction
             }
 
             return result;
+        }
+
+        public static bool BuyMoreProducts()
+        {
+            BuyerMessager.BuyMore();
+
+            var input = Console.ReadLine();
+
+            while (input != "y" && input != "n")
+            {
+                Messager.RepeatInput();
+
+                input = Console.ReadLine();
+            }
+
+            return input == "y";
         }
     }
 }
