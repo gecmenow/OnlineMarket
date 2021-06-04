@@ -10,13 +10,11 @@ namespace KramDeliverFoodCompleted.Interaction
         public static void ShowProducts(IEnumerable<Product> products)
         {
             Console.WriteLine("We've got for you these products\n");
-
             var counter = 0;
 
             foreach (var product in products)
             {
                 Console.WriteLine(counter + " - " + product.Name);
-
                 counter++;
             }
         }
@@ -24,13 +22,11 @@ namespace KramDeliverFoodCompleted.Interaction
         public static void ShowOrder(IEnumerable<Product> products, OrderService order)
         {
             Console.WriteLine("You ordered these products\n");
-
             var counter = 0;
 
             foreach (var product in products)
             {
                 Console.WriteLine(counter + " - " + product.Name);
-
                 counter++;
             }
 
@@ -52,21 +48,12 @@ namespace KramDeliverFoodCompleted.Interaction
 
         public static void BuyerPhone()
         {
-            Console.WriteLine("Please type your phone number in this types of formats\n" +
-                "+380(xx)xxx xx xx\n" +
-                "+380xxxxxxxxx\n" +
-                "0xxxxxxxxx\n" +
-                "0xx xxx xx xx\n");
+            Console.WriteLine("Please type your phone number\n");
         }
 
         public static void BuyerAddress()
         {
-            Console.WriteLine("Please type your phone address in this types of formats\n" +
-                "улица Название, д. номер, кв. номер\n" +
-                "улица Назв. д.номер, кв.номер\n" +
-                "ул.Назв.д.номер,кв.номер\n" +
-                "ул.Назв.д.номер\n" +
-                "ул.Назв.дом номер,квартира номер\n");
+            Console.WriteLine("Please type your address");
         }
 
         public static void ShowSuccessfulOrder()

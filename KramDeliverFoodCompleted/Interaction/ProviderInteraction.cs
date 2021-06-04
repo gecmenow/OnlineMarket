@@ -1,16 +1,13 @@
 ﻿using KramDeliverFoodCompleted.Models;
 using KramDeliverFoodCompleted.Service;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KramDeliverFoodCompleted.Interaction
 {
     public class ProviderInteraction
     {
         private readonly ProductService _productService;
+
         public ProviderInteraction(ProductService productService)
         {
             _productService = productService;
@@ -18,10 +15,8 @@ namespace KramDeliverFoodCompleted.Interaction
 
         public void AddProduct()
         {
-            var product = new Product();
-
             ProviderMessager.AddProduct();
-
+            var product = new Product(); 
             var productFields = typeof(Product).GetProperties();
 
             foreach (var productField in productFields)
@@ -32,7 +27,7 @@ namespace KramDeliverFoodCompleted.Interaction
                 {
                     productField.SetValue(product, Guid.NewGuid());
                 }
-                else if(productField.PropertyType.Name == "Decimal")
+                else if (productField.PropertyType.Name == "Decimal")
                 {
                     productField.SetValue(product, decimal.Parse(Console.ReadLine()));
                 }
@@ -43,7 +38,6 @@ namespace KramDeliverFoodCompleted.Interaction
             }
 
             _productService.AddProduct(product);
-
             ProviderMessager.ProductAdded();
         }
     }

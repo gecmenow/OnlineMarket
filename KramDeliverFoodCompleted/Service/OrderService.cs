@@ -1,10 +1,6 @@
-﻿using KramDeliverFoodCompleted.Interaction;
-using KramDeliverFoodCompleted.Interfaces;
+﻿using KramDeliverFoodCompleted.Interfaces;
 using KramDeliverFoodCompleted.Models;
-using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 
 namespace KramDeliverFoodCompleted.Service
 {
@@ -13,7 +9,6 @@ namespace KramDeliverFoodCompleted.Service
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
         public IList<Product> OrderProducts { get; set; }
-
         private readonly StoreContext _data;
 
         public OrderService(StoreContext data)

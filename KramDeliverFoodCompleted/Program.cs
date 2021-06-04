@@ -35,10 +35,10 @@ namespace KramDeliverFoodCompleted
                         isRunning = false;
                         break;
                 }
-
-                Messager.ShowByeMessage();
             }
-                Console.ReadKey();
+
+            Messager.ShowByeMessage();
+            Console.ReadKey();
         }
     }
 }
