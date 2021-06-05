@@ -1,13 +1,9 @@
-﻿using KramDeliverFoodCompleted.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using System.Reflection;
 
 namespace KramDeliverFoodCompleted.Interaction
 {
-    public class ProviderMessage
+    public class ProviderMessager
     {
         public static void AddProduct()
         {
@@ -18,6 +14,12 @@ namespace KramDeliverFoodCompleted.Interaction
         public static void ProductAdded()
         {
             Console.WriteLine("Your product is sucessfully added to the data base.Thanks!");
+        }
+
+        public static void ShowInputProductField(PropertyInfo product)
+        {
+            var temp = product + " = ";
+            Console.Write(temp);
         }
     }
 }
