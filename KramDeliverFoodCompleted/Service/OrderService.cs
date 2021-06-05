@@ -9,9 +9,9 @@ namespace KramDeliverFoodCompleted.Service
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
         public IList<Product> OrderProducts { get; set; }
-        private readonly StoreContext _data;
+        private readonly IData _data;
 
-        public OrderService(StoreContext data)
+        public OrderService(IData data)
         {
             _data = data;
             _data.Order = new Order();
