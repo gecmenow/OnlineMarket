@@ -39,10 +39,18 @@ namespace KramDeliverFoodCompleted.Interaction
             }
 
             BuyerMessager.BuyerPhone();
-            _orderService.PhoneNumber = Console.ReadLine();
+
+            while(!_orderService.SetPhoneNumber(Console.ReadLine()))
+            {
+                BuyerMessager.RepeatData();
+            }
 
             BuyerMessager.BuyerAddress();
-            _orderService.PhoneNumber = Console.ReadLine();
+
+            while (!_orderService.SetAddress(Console.ReadLine()))
+            {
+                BuyerMessager.RepeatData();
+            }
 
             var productsFororder = _orderService.GetOrderedProducts();
             BuyerMessager.ShowOrder(productsFororder, _orderService);
