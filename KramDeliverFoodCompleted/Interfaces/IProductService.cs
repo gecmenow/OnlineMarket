@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace KramDeliverFoodCompleted.Interfaces
 {
-    public interface IProductService
+    interface IProductService
     {
-        public void AddProduct(Product product);
+        void AddProduct(Product product);
 
-        public IList<Product> GetProducts();
+        IList<Product> GetProducts();
     }
 }

@@ -19,20 +19,23 @@ namespace KramDeliverFoodCompleted.Interaction
             }
         }
 
-        public static void ShowOrder(IEnumerable<Product> products, OrderService order)
+        public static void ShowOrders(IList<Order> orders)
         {
             Console.WriteLine("You ordered these products\n");
             var counter = 0;
 
-            foreach (var product in products)
+            foreach (var order in orders)
             {
-                Console.WriteLine(counter + " - " + product.Name);
-                counter++;
-            }
+                foreach (var product in order.OrderProducts)
+                {
+                    Console.WriteLine(counter + " - " + product.Name);
+                    counter++;
+                }
 
-            Console.WriteLine("The products will be delivered to the person by this information. \n" +
-                order.Address + "\n" +
-                "We'll call you by this phone - " + order.PhoneNumber + " Thanks\n");
+                Console.WriteLine("The products will be delivered to the person by this information. \n" +
+                    order.Address + "\n" +
+                    "We'll call you by this phone - " + order.PhoneNumber + " Thanks\n");
+            }
         }
 
         public static void BuyInstruction()

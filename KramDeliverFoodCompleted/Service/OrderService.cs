@@ -10,21 +10,33 @@ namespace KramDeliverFoodCompleted.Service
         public string Address { get; set; }
         public IList<Product> OrderProducts { get; set; }
         private readonly IData _data;
+        private readonly Order _order;
 
         public OrderService(IData data)
         {
             _data = data;
-            _data.Order = new Order();
+            _data.Orders = new List<Order>();
+            _order = new Order();
         }
 
         public void AddProductToOrder(Product product)
         {
-            _data.Order.OrderProducts.Add(product);
+            _order.OrderProducts.Add(product);
         }
 
-        public IList<Product> GetOrderedProducts()
+        public Order GetOrder()
         {
-            return _data.Order.OrderProducts;
+            return _order;
+        }
+
+        public IList<Order> GetOrders()
+        {
+            return _data.Orders;
+        }
+
+        public void CompleteOrder(Order order)
+        {
+            _data.Orders.Add(order);
         }
     }
 }

@@ -6,7 +6,7 @@ namespace KramDeliverFoodCompleted.Interfaces
     public interface IData
     {
         IList<Product> BaseProducts { get; set; }
-        Order Order { get; set; }
+        IList<Order> Orders { get; set; }
 
         void InitProducts();
     }

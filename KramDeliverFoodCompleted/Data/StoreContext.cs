@@ -7,7 +7,7 @@ namespace KramDeliverFoodCompleted.Models
     public class StoreContext : IData
     {
         public IList<Product> BaseProducts { get; set; }
-        public Order Order { get; set; }
+        public IList<Order> Orders { get; set; }
 
         public StoreContext()
         {

@@ -44,8 +44,10 @@ namespace KramDeliverFoodCompleted.Interaction
             BuyerMessager.BuyerAddress();
             _orderService.PhoneNumber = Console.ReadLine();
 
-            var productsFororder = _orderService.GetOrderedProducts();
-            BuyerMessager.ShowOrder(productsFororder, _orderService);
+            var order = _orderService.GetOrder();
+            _orderService.CompleteOrder(order);
+            var orders = _orderService.GetOrders();
+            BuyerMessager.ShowOrders(orders);
         }  
 
         private int ReadInputData()
