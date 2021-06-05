@@ -46,6 +46,7 @@ namespace KramDeliverFoodCompleted.Interaction
 
             var order = _orderService.GetOrder();
             _orderService.CompleteOrder(order);
+
             var orders = _orderService.GetOrders();
             BuyerMessager.ShowOrders(orders);
         }  
