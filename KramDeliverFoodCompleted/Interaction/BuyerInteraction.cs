@@ -1,14 +1,14 @@
-﻿using KramDeliverFoodCompleted.Service;
+﻿using KramDeliverFoodCompleted.Interfaces;
 using System;
 
 namespace KramDeliverFoodCompleted.Interaction
 {
     public class BuyerInteraction
     {
-        private readonly ProductService _productService;
-        private readonly OrderService _orderService;
+        private readonly IProductService _productService;
+        private readonly IOrderService _orderService;
 
-        public BuyerInteraction(ProductService productService, OrderService orderService)
+        public BuyerInteraction(IProductService productService, IOrderService orderService)
         {
             _productService = productService;
             _orderService = orderService;
@@ -16,8 +16,8 @@ namespace KramDeliverFoodCompleted.Interaction
 
         public void MakeOrder()
         {
-            BuyerMessager.ShowProducts(_productService.GetProducts());
-            BuyerMessager.BuyInstruction();
+            BuyerMessanger.ShowBuyerProducts(_productService.GetProducts());
+            BuyerMessanger.ShowBuyInstruction();
 
             while (true)
             {
@@ -38,17 +38,25 @@ namespace KramDeliverFoodCompleted.Interaction
                 }
             }
 
-            BuyerMessager.BuyerPhone();
-            _orderService.PhoneNumber = Console.ReadLine();
+            BuyerMessanger.ShowAddPhoneMessage();
 
-            BuyerMessager.BuyerAddress();
-            _orderService.PhoneNumber = Console.ReadLine();
+            while (!_orderService.SetPhoneNumber(Console.ReadLine()))
+            {
+                BuyerMessanger.ShowWrongInputMessage();
+            } 
+
+            BuyerMessanger.ShowAddAddressMessage();
+            
+            while (!_orderService.SetAddressNumber(Console.ReadLine()))
+            {
+                BuyerMessanger.ShowWrongInputMessage();
+            }
 
             var order = _orderService.GetOrder();
             _orderService.CompleteOrder(order);
 
             var orders = _orderService.GetOrders();
-            BuyerMessager.ShowOrders(orders);
+            BuyerMessanger.ShowBuyerOrders(orders);
         }  
 
         private int ReadInputData()
@@ -64,7 +72,7 @@ namespace KramDeliverFoodCompleted.Interaction
                 {
                     if (result < 0 && result >= productsCount)
                     {
-                        Messager.RepeatInput();
+                        Messanger.RepeatInput();
                         continue;
                     }
 

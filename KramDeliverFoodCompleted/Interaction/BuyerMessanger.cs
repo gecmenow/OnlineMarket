@@ -5,11 +5,11 @@ using System.Collections.Generic;
 
 namespace KramDeliverFoodCompleted.Interaction
 {
-    public class BuyerMessager
+    public class BuyerMessanger
     {
-        public static void ShowProducts(IEnumerable<Product> products)
+        public static void ShowBuyerProducts(IEnumerable<Product> products)
         {
-            Console.WriteLine("We've got for you these products\n");
+            Console.WriteLine("\nWe've got for you these products\n");
             var counter = 0;
 
             foreach (var product in products)
@@ -19,9 +19,9 @@ namespace KramDeliverFoodCompleted.Interaction
             }
         }
 
-        public static void ShowOrders(IList<Order> orders)
+        public static void ShowBuyerOrders(IList<Order> orders)
         {
-            Console.WriteLine("You ordered these products\n");
+            Console.WriteLine("\nYou ordered these products\n");
             var counter = 0;
 
             foreach (var order in orders)
@@ -32,36 +32,41 @@ namespace KramDeliverFoodCompleted.Interaction
                     counter++;
                 }
 
-                Console.WriteLine("The products will be delivered to the person by this information. \n" +
+                Console.WriteLine("\nThe products will be delivered to the person by this information. \n" +
                     order.Address + "\n" +
                     "We'll call you by this phone - " + order.PhoneNumber + " Thanks\n");
             }
         }
 
-        public static void BuyInstruction()
+        public static void ShowBuyInstruction()
         {
             Console.WriteLine("\nType a serial number of the product and press Enter \n" +
                 "to confirm your order\n");
         }
 
-        public static void BuyMore()
+        public static void ShowWrongInputMessage()
         {
-            Console.WriteLine("If you want to buy more type - y, otherwise - n\n");
+            Console.WriteLine("Please, type a correct value");
         }
 
-        public static void BuyerPhone()
+        public static void ShowBuyMoreMessage()
         {
-            Console.WriteLine("Please type your phone number\n");
+            Console.WriteLine("\nIf you want to buy more type - y, otherwise - n\n");
         }
 
-        public static void BuyerAddress()
+        public static void ShowAddPhoneMessage()
         {
-            Console.WriteLine("Please type your address");
+            Console.WriteLine("\nPlease type your phone number\n");
+        }
+
+        public static void ShowAddAddressMessage()
+        {
+            Console.WriteLine("\nPlease type your address\n");
         }
 
         public static void ShowSuccessfulOrder()
         {
-            Console.WriteLine("Congratulations. Your order is ready and wait for the delivering\n");
+            Console.WriteLine("\nCongratulations. Your order is ready and wait for the delivering\n");
         }
     }
 }
