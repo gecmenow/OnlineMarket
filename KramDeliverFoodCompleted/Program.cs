@@ -1,8 +1,7 @@
 ﻿using KramDeliverFoodCompleted.Check;
 using KramDeliverFoodCompleted.Interaction;
-using KramDeliverFoodCompleted.Interfaces;
 using KramDeliverFoodCompleted.Models;
-using KramDeliverFoodCompleted.Serialize;
+using KramDeliverFoodCompleted.Service;
 using System;
 
 namespace KramDeliverFoodCompleted
@@ -11,44 +10,38 @@ namespace KramDeliverFoodCompleted
     {
         static void Main(string[] args)
         {
-            var flag = true;
+            Messager.ShowWelcomeMessage();
+            var serializerService = new SerializerService();
+            var data = new StoreContext(serializerService);
+            data.InitProducts();
+            var reader = new Reader();
+            var checker = new CheckerService();
+            var loggerService = new LoggerService();
+            var orderService = new OrderService(data, checker, loggerService);
+            var productService = new ProductService(data, loggerService, serializerService);
+            var userInteraction = new BuyerInteraction(productService, orderService);
+            var providerInteraction = new ProviderInteraction(productService);
+            var isRunning = true;
 
-            while (flag)
+            while (isRunning)
             {
-                Logger.WelcomeMessage();
-
-                var product = new Product();
-
-                var reporter = new Reporter();
-
-                var checkout = new Checkout();
-
-                var buyer = new Buyer(product, reporter, checkout);
-            
-                var choice = BuyerReader.UserChoice();
-
-                var providerReader = new ProviderReader();
-
-                var provider = new Models.Provider(providerReader, product, reporter);
+                var choice = reader.MakeInput();
 
                 switch (choice)
                 {
                     case 1:
-                        product.InitProducts();
-                        buyer.Order();
+                        userInteraction.MakeOrder();
                         break;
                     case 2:
-                        product.InitProducts();
-                        provider.AddProduct();
+                        providerInteraction.AddProduct();
                         break;
                     case 3:
-                        flag = false;
+                        isRunning = false;
                         break;
-                }                
+                }
             }
 
-            Logger.ByeMessage();
-
+            Messager.ShowByeMessage();
             Console.ReadKey();
         }
     }
