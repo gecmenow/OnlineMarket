@@ -11,32 +11,44 @@ namespace KramDeliverFoodCompleted.Service
         private readonly IData _data;
         private readonly ILoggerService _loggerService;
         private readonly ISerializerService _serializerService;
-        private readonly ICacheService cacheService;
+        private readonly ICacheService _cacheService;
+
+        delegate void AddToCacheDelegate(Product product);
 
         public ProductService(IData data, ILoggerService loggerService, ISerializerService serializerService, ICacheService cacheService)
         {
             _data = data;
             _loggerService = loggerService;
             _serializerService = serializerService;
+            _cacheService = cacheService;
         }
 
         public void AddProduct(Product product)
         {
-            //if (!GetProducts().Any(x => x.Id == product.Id))
-            //{
-                product.Id = Guid.NewGuid();
-               // _data.BaseProducts.Add(product);
-                _serializerService.DoSerialization<Product>(product);
-                _loggerService.AddLog("Product was added " + product.Id);
-            //}
+            product.Id = Guid.NewGuid();
+            _serializerService.DoSerialization<Product>(product);
+            AddToCacheDelegate addToCache = _cacheService.AddToCache;
+            addToCache(product);
+            _loggerService.AddLog("Product was added " + product.Id);
         }
 
         public IList<Product> GetProducts()
         {
-            var data = _serializerService.DoDeserialization<Product>();
+            if (_cacheService.GetFromCache() != null)
+            {
+                return _cacheService.GetFromCache();
+            }
 
-            return data;
-        }  
+            _data.BaseProducts = _serializerService.DoDeserialization<Product>();
+            AddToCacheDelegate addToCache = _cacheService.AddToCache;
+
+            foreach (var product in _data.BaseProducts)
+            {
+                addToCache(product);
+            }
+
+            return _data.BaseProducts;
+        }
 
         public bool IsRealProductId(int id)
         {

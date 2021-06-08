@@ -47,14 +47,19 @@ namespace KramDeliverFoodCompleted.Interaction
 
             BuyerMessager.BuyerAddress();
 
-            while (!_orderService.SetAddress(Console.ReadLine()))
+            while (!_orderService.SetAddressNumber(Console.ReadLine()))
             {
                 BuyerMessager.RepeatData();
             }
 
-            var productsFororder = _orderService.GetOrderedProducts();
-            BuyerMessager.ShowOrder(productsFororder, _orderService);
-        }  
+            var order = _orderService.GetOrder();
+            _orderService.CompleteOrder(order);
+            var currency = ReadInputData();
+            _orderService.GetSummary(currency);
+            var orders = _orderService.GetOrders();
+            BuyerMessager.ShowOrder(orders);
+            _orderService.ClearOrders();
+        }
 
         private int ReadInputData()
         {

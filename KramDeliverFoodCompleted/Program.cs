@@ -1,6 +1,6 @@
 ﻿using KramDeliverFoodCompleted.Check;
+using KramDeliverFoodCompleted.Data;
 using KramDeliverFoodCompleted.Interaction;
-using KramDeliverFoodCompleted.Models;
 using KramDeliverFoodCompleted.Service;
 using System;
 
@@ -17,8 +17,11 @@ namespace KramDeliverFoodCompleted
             var reader = new Reader();
             var checker = new CheckerService();
             var loggerService = new LoggerService();
-            var orderService = new OrderService(data, checker, loggerService);
-            var productService = new ProductService(data, loggerService, serializerService);
+            var currencyExchangeService = new CurrerncyExchangeService();
+            var orderService = new OrderService(data, checker, loggerService, currencyExchangeService);
+            var cache = new Cache();
+            var cacheService = new CacheService(cache);
+            var productService = new ProductService(data, loggerService, serializerService, cacheService);
             var userInteraction = new BuyerInteraction(productService, orderService);
             var providerInteraction = new ProviderInteraction(productService);
             var isRunning = true;

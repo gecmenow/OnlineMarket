@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace KramDeliverFoodCompleted.Interfaces
 {
-    public interface ICacheService
+    public interface ICache
     {
-        void AddToCache(Product data);
-        IList<Product> GetFromCache();
-        void DeleteFromCache(Product data) ;
+        List<Product> CacheData { get; set; }
     }
 }

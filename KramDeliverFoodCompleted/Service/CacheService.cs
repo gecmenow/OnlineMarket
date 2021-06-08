@@ -1,4 +1,5 @@
 ﻿using KramDeliverFoodCompleted.Interfaces;
+using KramDeliverFoodCompleted.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,19 +10,51 @@ namespace KramDeliverFoodCompleted.Service
 {
     public class CacheService : ICacheService
     {
-        public void GetFromCache()
+        private readonly ICache _cache;
+        private static readonly object _locker = new object();
+
+        public CacheService(ICache cache)
         {
-            throw new NotImplementedException();
+            _cache = cache;
         }
 
-        public void PutInCache()
+        public void AddToCache(Product data)
         {
-            throw new NotImplementedException();
+            lock (_locker)
+            {
+                if (_cache.CacheData.Count == 5)
+                {
+                    _cache.CacheData.RemoveAt(4);
+                }
+
+                _cache.CacheData.Add(data);
+            }
         }
 
-        public void UpdateCache()
+        public IList<Product> GetFromCache()
         {
-            throw new NotImplementedException();
+            lock (_locker)
+            {
+                if (_cache.CacheData.Count() != 0)
+                {
+                    while (_cache.CacheData.Count() < 5)
+                    {
+                        return _cache.CacheData;
+                    }
+                }
+
+                IList<Product> data = default;
+
+                return data;
+            }
+        }
+
+        public void DeleteFromCache(Product data)
+        {
+            lock (_locker)
+            {
+                _cache.CacheData.Remove(data);
+            }
         }
     }
 }
