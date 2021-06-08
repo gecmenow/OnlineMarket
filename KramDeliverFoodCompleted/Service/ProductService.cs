@@ -11,8 +11,9 @@ namespace KramDeliverFoodCompleted.Service
         private readonly IData _data;
         private readonly ILoggerService _loggerService;
         private readonly ISerializerService _serializerService;
+        private readonly ICacheService cacheService;
 
-        public ProductService(IData data, ILoggerService loggerService, ISerializerService serializerService)
+        public ProductService(IData data, ILoggerService loggerService, ISerializerService serializerService, ICacheService cacheService)
         {
             _data = data;
             _loggerService = loggerService;
