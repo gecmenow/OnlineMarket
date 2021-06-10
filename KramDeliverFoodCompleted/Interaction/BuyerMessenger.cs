@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace KramDeliverFoodCompleted.Interaction
 {
-    public class BuyerMessanger
+    public class BuyerMessenger
     {
         public static void ShowBuyerProducts(IEnumerable<Product> products)
         {

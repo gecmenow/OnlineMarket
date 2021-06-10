@@ -9,7 +9,7 @@ namespace KramDeliverFoodCompleted
     {
         private static void Main(string[] args)
         {
-            Messanger.ShowWelcomeMessage();
+            Messenger.ShowWelcomeMessage();
             var data = new StoreContext();
             data.InitProducts();
             var reader = new Reader();
@@ -37,7 +37,7 @@ namespace KramDeliverFoodCompleted
                 }
             }
 
-            Messanger.ShowByeMessage();
+            Messenger.ShowByeMessage();
             Console.ReadKey();
         }
     }

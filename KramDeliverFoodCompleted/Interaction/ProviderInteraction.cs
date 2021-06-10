@@ -15,7 +15,7 @@ namespace KramDeliverFoodCompleted.Interaction
 
         public void AddProduct()
         {
-            ProviderMessanger.ShowAddingProductMessage();
+            ProviderMessenger.ShowAddingProductMessage();
             var product = new Product();
             product.Id = Guid.NewGuid();
             Console.Write("Type product name: ");
@@ -27,7 +27,7 @@ namespace KramDeliverFoodCompleted.Interaction
             Console.Write("Type product description: ");
             product.Description = Console.ReadLine();
             _productService.AddProduct(product);
-            ProviderMessanger.ShowSuccessAddingMessage();
+            ProviderMessenger.ShowSuccessAddingMessage();
         }
     }
 }
