@@ -9,7 +9,8 @@ namespace KramDeliverFoodCompleted.Interaction
     {
         public static void ShowBuyerProducts(IEnumerable<Product> products)
         {
-            Console.WriteLine("We've got for you these products\n");
+            Console.WriteLine("\nWe've got for you these products\n");
+
             var counter = 0;
 
             foreach (var product in products)
