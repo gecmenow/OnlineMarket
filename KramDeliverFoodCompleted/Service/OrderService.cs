@@ -7,14 +7,12 @@ namespace KramDeliverFoodCompleted.Service
     public class OrderService : IOrderService
     {
         private readonly IData _data;
-        private readonly ICheckerService _checker;
 
-        public OrderService(IData data, ICheckerService checker)
+        public OrderService(IData data)
         {
             _data = data;
             _data.Orders = new List<Order>();
             _data.Order = new Order();
-            _checker = checker;
         }
 
         public void AddProductToOrder(Product product)
