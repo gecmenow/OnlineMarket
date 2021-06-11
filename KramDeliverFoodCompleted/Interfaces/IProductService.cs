@@ -8,5 +8,7 @@ namespace KramDeliverFoodCompleted.Interfaces
         public void AddProduct(Product product);
 
         public IList<Product> GetProducts();
+        bool IsRealProductId(int input);
+        Product GetProductById(int input);
     }
 }

@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace KramDeliverFoodCompleted.Interaction
 {
-    public class ProviderMessager
+    public class ProviderMessenger
     {
         public static void AddProduct()
         {

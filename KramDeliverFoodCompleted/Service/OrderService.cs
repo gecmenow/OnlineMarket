@@ -6,17 +6,15 @@ namespace KramDeliverFoodCompleted.Service
 {
     public class OrderService : IOrderService
     {
-        public string PhoneNumber { get; set; }
-        public string Address { get; set; }
-        public IList<Product> OrderProducts { get; set; }
         private readonly IData _data;
         private readonly ICheckerService _checker;
 
         public OrderService(IData data, ICheckerService checker)
         {
             _data = data;
-            _checker = checker;
+            _data.Orders = new List<Order>();
             _data.Order = new Order();
+            _checker = checker;
         }
 
         public void AddProductToOrder(Product product)
@@ -24,33 +22,43 @@ namespace KramDeliverFoodCompleted.Service
             _data.Order.OrderProducts.Add(product);
         }
 
-        public IList<Product> GetOrderedProducts()
+        public Order GetOrder()
         {
-            return _data.Order.OrderProducts;
+            return _data.Order;
         }
 
-        public bool SetPhoneNumber(string input)
+        public IList<Order> GetOrders()
         {
-            var valid = _checker.CheckPhone(input);
-
-            if (valid)
-            {
-                PhoneNumber = input;
-            }
-
-            return valid;
+            return _data.Orders;
         }
 
-        public bool SetAddress(string input)
+        public bool IsPhoneValid(string input)
         {
-            var valid = _checker.CheckAddress(input);
-
-            if (valid)
+            if (_checker.CheckPhone(input))
             {
-                Address = input;
+                _data.Order.PhoneNumber = input;
+
+                return true;
             }
 
-            return valid;
+            return false;
+        }
+
+        public bool IsAddressValid(string input)
+        {
+            if (_checker.CheckAddress(input))
+            {
+                _data.Order.Address = input;
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public void CompleteOrder(Order order)
+        {
+            _data.Orders.Add(order);
         }
     }
 }

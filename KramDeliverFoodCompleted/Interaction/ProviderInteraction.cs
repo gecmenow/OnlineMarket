@@ -15,13 +15,13 @@ namespace KramDeliverFoodCompleted.Interaction
 
         public void AddProduct()
         {
-            ProviderMessager.AddProduct();
+            ProviderMessenger.AddProduct();
             var product = new Product(); 
             var productFields = typeof(Product).GetProperties();
 
             foreach (var productField in productFields)
             {
-                ProviderMessager.ShowInputProductField(productField);
+                ProviderMessenger.ShowInputProductField(productField);
 
                 if (productField.PropertyType.Name == "Guid")
                 {
@@ -38,7 +38,7 @@ namespace KramDeliverFoodCompleted.Interaction
             }
 
             _productService.AddProduct(product);
-            ProviderMessager.ProductAdded();
+            ProviderMessenger.ProductAdded();
         }
     }
 }
