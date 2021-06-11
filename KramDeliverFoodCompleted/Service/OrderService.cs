@@ -7,6 +7,11 @@ namespace KramDeliverFoodCompleted.Service
     public class OrderService : IOrderService
     {
         private readonly IData _data;
+<<<<<<< Updated upstream
+=======
+        private readonly ICheckerService _checker;
+        private readonly ILoggerService _loggerService;
+>>>>>>> Stashed changes
 
         public OrderService(IData data)
         {

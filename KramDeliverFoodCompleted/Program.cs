@@ -15,7 +15,7 @@ namespace KramDeliverFoodCompleted
             data.InitProducts();
             var reader = new Reader();
             var checker = new CheckerService();
-            var orderService = new OrderService(data, checker);
+            var orderService = new OrderService(data);
             var productService = new ProductService(data);
             var userInteraction = new BuyerInteraction(productService, orderService, checker);
             var providerInteraction = new ProviderInteraction(productService);
