@@ -8,7 +8,7 @@ namespace KramDeliverFoodCompleted.Interfaces
 {
     public interface ICheckerService
     {
-        bool CheckPhone(string input);
-        bool CheckAddress(string input);
+        bool IsPhoneValid(string input);
+        bool IsAddressValid(string input);
     }
 }

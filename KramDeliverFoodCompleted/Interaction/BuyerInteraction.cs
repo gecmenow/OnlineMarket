@@ -42,14 +42,14 @@ namespace KramDeliverFoodCompleted.Interaction
 
             BuyerMessenger.ShowAddPhoneMessage();
 
-            while (!_checkerService.CheckPhone(Console.ReadLine()))
+            while (!_checkerService.IsPhoneValid(Console.ReadLine()))
             {
                 BuyerMessenger.ShowWrongInputMessage();
             }
 
             BuyerMessenger.ShowAddAddressMessage();
 
-            while (!_checkerService.CheckAddress(Console.ReadLine()))
+            while (!_checkerService.IsAddressValid(Console.ReadLine()))
             {
                 BuyerMessenger.ShowWrongInputMessage();
             } 
