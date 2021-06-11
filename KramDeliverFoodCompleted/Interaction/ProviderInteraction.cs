@@ -15,30 +15,19 @@ namespace KramDeliverFoodCompleted.Interaction
 
         public void AddProduct()
         {
-            ProviderMessenger.AddProduct();
-            var product = new Product(); 
-            var productFields = typeof(Product).GetProperties();
-
-            foreach (var productField in productFields)
-            {
-                ProviderMessenger.ShowInputProductField(productField);
-
-                if (productField.PropertyType.Name == "Guid")
-                {
-                    productField.SetValue(product, Guid.NewGuid());
-                }
-                else if (productField.PropertyType.Name == "Decimal")
-                {
-                    productField.SetValue(product, decimal.Parse(Console.ReadLine()));
-                }
-                else
-                {
-                    productField.SetValue(product, Console.ReadLine());
-                }
-            }
-
+            ProviderMessenger.ShowAddingProductMessage();
+            var product = new Product();
+            product.Id = Guid.NewGuid();
+            Console.Write("Type product name: ");
+            product.Name = Console.ReadLine();
+            Console.Write("Type product price: ");
+            product.Price = decimal.Parse(Console.ReadLine());
+            Console.Write("Type product specification: ");
+            product.Specifications = Console.ReadLine();
+            Console.Write("Type product description: ");
+            product.Description = Console.ReadLine();
             _productService.AddProduct(product);
-            ProviderMessenger.ProductAdded();
+            ProviderMessenger.ShowSuccessAddingMessage();
         }
     }
 }

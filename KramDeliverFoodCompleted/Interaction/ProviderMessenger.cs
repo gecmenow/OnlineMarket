@@ -5,13 +5,13 @@ namespace KramDeliverFoodCompleted.Interaction
 {
     public class ProviderMessenger
     {
-        public static void AddProduct()
+        public static void ShowAddingProductMessage()
         {
             Console.WriteLine("Please fill inputs to add a product to our data base.\n" +
                 "After filling press Enter");
         }
 
-        public static void ProductAdded()
+        public static void ShowSuccessAddingMessage()
         {
             Console.WriteLine("Your product is sucessfully added to the data base.Thanks!");
         }

@@ -29,7 +29,7 @@ namespace KramDeliverFoodCompleted.Interaction
 
         public static bool BuyMoreProducts()
         {
-            BuyerMessenger.BuyMore();
+            BuyerMessenger.ShowBuyMoreMessage();
             var input = Console.ReadLine();
 
             while (input != "y" && input != "n")
