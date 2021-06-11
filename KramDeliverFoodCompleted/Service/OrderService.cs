@@ -12,28 +12,18 @@ namespace KramDeliverFoodCompleted.Service
         private readonly ILoggerService _loggerService;
 
         public OrderService(IData data, ICheckerService checker, ILoggerService loggerService)
-=======
-
-        public OrderService(IData data)
->>>>>>> main
-        {
+        { 
             _data = data;
             _data.Orders = new List<Order>();
             _data.Order = new Order();
-<<<<<<< HEAD
             _checker = checker;
             _loggerService = loggerService;
-=======
->>>>>>> main
         }
 
         public void AddProductToOrder(Product product)
         {
             _data.Order.OrderProducts.Add(product);
-<<<<<<< HEAD
             _loggerService.AddLog("Product was added to order " + product.Id);
-=======
->>>>>>> main
         }
 
         public Order GetOrder()
