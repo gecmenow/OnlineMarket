@@ -15,7 +15,11 @@ namespace KramDeliverFoodCompleted.Models
             get
             {
                 return _name;
+<<<<<<< HEAD
             } 
+=======
+            }
+>>>>>>> fa27adc441d9a79a07873e4c2d774239356dbeb7
             set
             {
                 if (!string.IsNullOrEmpty(value))
@@ -24,7 +28,12 @@ namespace KramDeliverFoodCompleted.Models
                 }
             }
         }
+<<<<<<< HEAD
         public decimal Price 
+=======
+      
+        public decimal Price
+>>>>>>> fa27adc441d9a79a07873e4c2d774239356dbeb7
         {
             get
             {
@@ -38,7 +47,12 @@ namespace KramDeliverFoodCompleted.Models
                 }
             }
         }
+<<<<<<< HEAD
         public string Specifications 
+=======
+      
+        public string Specifications
+>>>>>>> fa27adc441d9a79a07873e4c2d774239356dbeb7
         {
             get
             {
@@ -52,6 +66,10 @@ namespace KramDeliverFoodCompleted.Models
                 }
             }
         }
+<<<<<<< HEAD
+=======
+      
+>>>>>>> fa27adc441d9a79a07873e4c2d774239356dbeb7
         public string Description 
         {
             get

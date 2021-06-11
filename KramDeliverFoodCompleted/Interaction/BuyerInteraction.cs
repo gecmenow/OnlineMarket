@@ -1,4 +1,4 @@
-﻿using KramDeliverFoodCompleted.Interfaces;
+using KramDeliverFoodCompleted.Interfaces;
 using System;
 
 namespace KramDeliverFoodCompleted.Interaction
@@ -28,8 +28,12 @@ namespace KramDeliverFoodCompleted.Interaction
                     input = ReadInputData();
                 }
 
+<<<<<<< HEAD
                 var product = _productService.GetProductById(input);
 
+=======
+                var product = _productService.GetProductById(input); 
+>>>>>>> fa27adc441d9a79a07873e4c2d774239356dbeb7
                 _orderService.AddProductToOrder(product);
 
                 if (!Reader.BuyMoreProducts())
@@ -40,6 +44,7 @@ namespace KramDeliverFoodCompleted.Interaction
 
             BuyerMessenger.ShowAddPhoneMessage();
 
+<<<<<<< HEAD
             while (!_orderService.IsPhoneValid(Console.ReadLine()))
             {
                 BuyerMessenger.ShowWrongInputMessage();
@@ -48,6 +53,16 @@ namespace KramDeliverFoodCompleted.Interaction
             BuyerMessenger.ShowAddAddressMessage();
 
             while (!_orderService.IsAddressValid(Console.ReadLine()))
+=======
+            while (!_orderService.SetPhoneNumber(Console.ReadLine()))
+            {
+                BuyerMessenger.ShowWrongInputMessage();
+            } 
+
+            BuyerMessenger.ShowAddAddressMessage();
+            
+            while (!_orderService.SetAddressNumber(Console.ReadLine()))
+>>>>>>> fa27adc441d9a79a07873e4c2d774239356dbeb7
             {
                 BuyerMessenger.ShowWrongInputMessage();
             }

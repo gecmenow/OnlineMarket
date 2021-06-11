@@ -9,8 +9,12 @@ namespace KramDeliverFoodCompleted.Interaction
     {
         public static void ShowBuyerProducts(IEnumerable<Product> products)
         {
+<<<<<<< HEAD
             Console.WriteLine("\nWe've got for you these products\n");
 
+=======
+            Console.WriteLine("We've got for you these products\n");
+>>>>>>> fa27adc441d9a79a07873e4c2d774239356dbeb7
             var counter = 0;
 
             foreach (var product in products)
@@ -81,7 +85,11 @@ namespace KramDeliverFoodCompleted.Interaction
 
         public static void ShowSuccessfulOrder()
         {
+<<<<<<< HEAD
             Console.WriteLine("Congratulations. Your order is ready and wait for the delivering\n");
+=======
+            Console.WriteLine("\nCongratulations. Your order is ready and wait for the delivering\n");
+>>>>>>> fa27adc441d9a79a07873e4c2d774239356dbeb7
         }
     }
 }

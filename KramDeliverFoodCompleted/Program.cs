@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿using KramDeliverFoodCompleted.Check;
+=======
+using KramDeliverFoodCompleted.Check;
+>>>>>>> fa27adc441d9a79a07873e4c2d774239356dbeb7
 using KramDeliverFoodCompleted.Interaction;
 using KramDeliverFoodCompleted.Models;
 using KramDeliverFoodCompleted.Service;
