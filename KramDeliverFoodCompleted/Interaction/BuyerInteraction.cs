@@ -1,4 +1,4 @@
-﻿using KramDeliverFoodCompleted.Interfaces;
+using KramDeliverFoodCompleted.Interfaces;
 using System;
 
 namespace KramDeliverFoodCompleted.Interaction

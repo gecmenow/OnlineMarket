@@ -9,7 +9,6 @@ namespace KramDeliverFoodCompleted.Models
         private decimal _price { get; set; }
         private string _specifications { get; set; }
         private string _description { get; set; }
-
         public string Name
         {
             get
