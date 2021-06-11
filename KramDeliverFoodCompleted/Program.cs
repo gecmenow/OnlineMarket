@@ -10,7 +10,7 @@ namespace KramDeliverFoodCompleted
     {
         static void Main(string[] args)
         {
-            Messager.ShowWelcomeMessage();
+            Messenger.ShowWelcomeMessage();
             var serializerService = new SerializerService();
             var data = new StoreContext(serializerService);
             data.InitProducts();
@@ -41,7 +41,7 @@ namespace KramDeliverFoodCompleted
                 }
             }
 
-            Messager.ShowByeMessage();
+            Messenger.ShowByeMessage();
             Console.ReadKey();
         }
     }

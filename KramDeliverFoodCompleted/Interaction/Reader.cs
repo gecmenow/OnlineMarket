@@ -16,7 +16,7 @@ namespace KramDeliverFoodCompleted.Interaction
                 {
                     if (input.Length != 1)
                     { 
-                        Messager.RepeatInput();
+                        Messenger.RepeatInput();
                         continue;
                     }
 
@@ -29,12 +29,12 @@ namespace KramDeliverFoodCompleted.Interaction
 
         public static bool BuyMoreProducts()
         {
-            BuyerMessager.BuyMore();
+            BuyerMessenger.ShowBuyMoreMessage();
             var input = Console.ReadLine();
 
             while (input != "y" && input != "n")
             {
-                Messager.RepeatInput();
+                Messenger.RepeatInput();
 
                 input = Console.ReadLine();
             }
