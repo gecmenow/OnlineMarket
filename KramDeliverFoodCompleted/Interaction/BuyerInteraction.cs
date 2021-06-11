@@ -1,4 +1,4 @@
-﻿using KramDeliverFoodCompleted.Interfaces;
+using KramDeliverFoodCompleted.Interfaces;
 using System;
 
 namespace KramDeliverFoodCompleted.Interaction
@@ -7,11 +7,13 @@ namespace KramDeliverFoodCompleted.Interaction
     {
         private readonly IProductService _productService;
         private readonly IOrderService _orderService;
+        private readonly ICheckerService _checkerService;
 
-        public BuyerInteraction(IProductService productService, IOrderService orderService)
+        public BuyerInteraction(IProductService productService, IOrderService orderService, ICheckerService checkerService)
         {
             _productService = productService;
             _orderService = orderService;
+            _checkerService = checkerService;
         }
 
         public void MakeOrder()
@@ -28,7 +30,7 @@ namespace KramDeliverFoodCompleted.Interaction
                     input = ReadInputData();
                 }
 
-                var product = _productService.GetProductById(input); 
+                var product = _productService.GetProductById(input);
 
                 _orderService.AddProductToOrder(product);
 
@@ -40,17 +42,17 @@ namespace KramDeliverFoodCompleted.Interaction
 
             BuyerMessenger.ShowAddPhoneMessage();
 
-            while (!_orderService.SetPhoneNumber(Console.ReadLine()))
-            {
-                BuyerMessenger.ShowWrongInputMessage();
-            } 
-
-            BuyerMessenger.ShowAddAddressMessage();
-            
-            while (!_orderService.SetAddressNumber(Console.ReadLine()))
+            while (!_checkerService.IsPhoneValid(Console.ReadLine()))
             {
                 BuyerMessenger.ShowWrongInputMessage();
             }
+
+            BuyerMessenger.ShowAddAddressMessage();
+
+            while (!_checkerService.IsAddressValid(Console.ReadLine()))
+            {
+                BuyerMessenger.ShowWrongInputMessage();
+            } 
 
             var order = _orderService.GetOrder();
             _orderService.CompleteOrder(order);

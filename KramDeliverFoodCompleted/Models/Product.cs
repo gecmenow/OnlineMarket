@@ -24,6 +24,7 @@ namespace KramDeliverFoodCompleted.Models
                 }
             }
         }
+
         public decimal Price 
         {
             get
@@ -38,7 +39,9 @@ namespace KramDeliverFoodCompleted.Models
                 }
             }
         }
+
         public string Specifications 
+
         {
             get
             {
@@ -52,6 +55,7 @@ namespace KramDeliverFoodCompleted.Models
                 }
             }
         }
+
         public string Description 
         {
             get

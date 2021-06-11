@@ -1,4 +1,5 @@
-﻿using KramDeliverFoodCompleted.Interaction;
+﻿using KramDeliverFoodCompleted.Check;
+using KramDeliverFoodCompleted.Interaction;
 using KramDeliverFoodCompleted.Models;
 using KramDeliverFoodCompleted.Service;
 using System;
@@ -13,9 +14,10 @@ namespace KramDeliverFoodCompleted
             var data = new StoreContext();
             data.InitProducts();
             var reader = new Reader();
-            var orderService = new OrderService(data);
+            var checker = new CheckerService();
+            var orderService = new OrderService(data, checker);
             var productService = new ProductService(data);
-            var userInteraction = new BuyerInteraction(productService, orderService);
+            var userInteraction = new BuyerInteraction(productService, orderService, checker);
             var providerInteraction = new ProviderInteraction(productService);
             var isRunning = true;
 
