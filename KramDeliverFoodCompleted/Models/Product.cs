@@ -10,12 +10,21 @@ namespace KramDeliverFoodCompleted.Models
         private string _specifications { get; set; }
         private string _description { get; set; }
 
+<<<<<<< HEAD
         public string Name
         {
             get
             {
                 return _name;
             }
+=======
+        public string Name 
+        { 
+            get
+            {
+                return _name;
+            } 
+>>>>>>> main
             set
             {
                 if (!string.IsNullOrEmpty(value))
@@ -24,7 +33,11 @@ namespace KramDeliverFoodCompleted.Models
                 }
             }
         }
+<<<<<<< HEAD
         public decimal Price
+=======
+        public decimal Price 
+>>>>>>> main
         {
             get
             {
@@ -38,7 +51,11 @@ namespace KramDeliverFoodCompleted.Models
                 }
             }
         }
+<<<<<<< HEAD
         public string Specifications
+=======
+        public string Specifications 
+>>>>>>> main
         {
             get
             {
@@ -52,7 +69,11 @@ namespace KramDeliverFoodCompleted.Models
                 }
             }
         }
+<<<<<<< HEAD
         public string Description
+=======
+        public string Description 
+>>>>>>> main
         {
             get
             {

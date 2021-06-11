@@ -7,22 +7,33 @@ namespace KramDeliverFoodCompleted.Service
     public class OrderService : IOrderService
     {
         private readonly IData _data;
+<<<<<<< HEAD
         private readonly ICheckerService _checker;
         private readonly ILoggerService _loggerService;
 
         public OrderService(IData data, ICheckerService checker, ILoggerService loggerService)
+=======
+
+        public OrderService(IData data)
+>>>>>>> main
         {
             _data = data;
             _data.Orders = new List<Order>();
             _data.Order = new Order();
+<<<<<<< HEAD
             _checker = checker;
             _loggerService = loggerService;
+=======
+>>>>>>> main
         }
 
         public void AddProductToOrder(Product product)
         {
             _data.Order.OrderProducts.Add(product);
+<<<<<<< HEAD
             _loggerService.AddLog("Product was added to order " + product.Id);
+=======
+>>>>>>> main
         }
 
         public Order GetOrder()
@@ -35,6 +46,7 @@ namespace KramDeliverFoodCompleted.Service
             return _data.Orders;
         }
 
+<<<<<<< HEAD
         public bool IsPhoneValid(string input)
         {
             if (_checker.CheckPhone(input))
@@ -57,6 +69,28 @@ namespace KramDeliverFoodCompleted.Service
             }
 
             return false;
+=======
+        public bool SetPhoneNumber(string number)
+        {
+            if (string.IsNullOrEmpty(number))
+            {
+                return false;
+            }
+
+            _data.Order.PhoneNumber = number;
+            return true;
+        }
+
+        public bool SetAddressNumber(string number)
+        {
+            if (string.IsNullOrEmpty(number))
+            {
+                return false;
+            }
+
+            _data.Order.Address = number;
+            return true;
+>>>>>>> main
         }
 
         public void CompleteOrder(Order order)

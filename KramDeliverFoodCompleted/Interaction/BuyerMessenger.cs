@@ -9,7 +9,11 @@ namespace KramDeliverFoodCompleted.Interaction
     {
         public static void ShowBuyerProducts(IEnumerable<Product> products)
         {
+<<<<<<< HEAD
             Console.WriteLine("We've got for you these products\n");
+=======
+            Console.WriteLine("\nWe've got for you these products\n");
+>>>>>>> main
             var counter = 0;
 
             foreach (var product in products)
@@ -56,15 +60,20 @@ namespace KramDeliverFoodCompleted.Interaction
 
         public static void ShowAddPhoneMessage()
         {
+<<<<<<< HEAD
             Console.WriteLine("Please type your phone number in this types of formats\n" +
                 "+380(xx)xxx xx xx\n" +
                 "+380xxxxxxxxx\n" +
                 "0xxxxxxxxx\n" +
                 "0xx xxx xx xx\n");
+=======
+            Console.WriteLine("\nPlease type your phone number\n");
+>>>>>>> main
         }
 
         public static void ShowAddAddressMessage()
         {
+<<<<<<< HEAD
             Console.WriteLine("Please type your phone address in this types of formats\n" +
                 "улица Название, д. номер, кв. номер\n" +
                 "улица Назв. д.номер, кв.номер\n" +
@@ -76,11 +85,18 @@ namespace KramDeliverFoodCompleted.Interaction
         public static void RepeatData()
         {
             Console.WriteLine("Please repeat your data in correct format");
+=======
+            Console.WriteLine("\nPlease type your address\n");
+>>>>>>> main
         }
 
         public static void ShowSuccessfulOrder()
         {
+<<<<<<< HEAD
             Console.WriteLine("Congratulations. Your order is ready and wait for the delivering\n");
+=======
+            Console.WriteLine("\nCongratulations. Your order is ready and wait for the delivering\n");
+>>>>>>> main
         }
     }
 }
