@@ -32,30 +32,6 @@ namespace KramDeliverFoodCompleted.Service
             return _data.Orders;
         }
 
-        public bool IsPhoneValid(string input)
-        {
-            if (_checker.CheckPhone(input))
-            {
-                _data.Order.PhoneNumber = input;
-
-                return true;
-            }
-
-            return false;
-        }
-
-        public bool IsAddressValid(string input)
-        {
-            if (_checker.CheckAddress(input))
-            {
-                _data.Order.Address = input;
-
-                return true;
-            }
-
-            return false;
-        }
-
         public void CompleteOrder(Order order)
         {
             _data.Orders.Add(order);

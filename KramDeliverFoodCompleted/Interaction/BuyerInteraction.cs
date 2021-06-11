@@ -7,11 +7,13 @@ namespace KramDeliverFoodCompleted.Interaction
     {
         private readonly IProductService _productService;
         private readonly IOrderService _orderService;
+        private readonly ICheckerService _checkerService;
 
-        public BuyerInteraction(IProductService productService, IOrderService orderService)
+        public BuyerInteraction(IProductService productService, IOrderService orderService, ICheckerService checkerService)
         {
             _productService = productService;
             _orderService = orderService;
+            _checkerService = checkerService;
         }
 
         public void MakeOrder()
@@ -28,12 +30,8 @@ namespace KramDeliverFoodCompleted.Interaction
                     input = ReadInputData();
                 }
 
-<<<<<<< HEAD
                 var product = _productService.GetProductById(input);
 
-=======
-                var product = _productService.GetProductById(input); 
->>>>>>> fa27adc441d9a79a07873e4c2d774239356dbeb7
                 _orderService.AddProductToOrder(product);
 
                 if (!Reader.BuyMoreProducts())
@@ -44,28 +42,17 @@ namespace KramDeliverFoodCompleted.Interaction
 
             BuyerMessenger.ShowAddPhoneMessage();
 
-<<<<<<< HEAD
-            while (!_orderService.IsPhoneValid(Console.ReadLine()))
+            while (!_checkerService.CheckPhone(Console.ReadLine()))
             {
                 BuyerMessenger.ShowWrongInputMessage();
             }
 
             BuyerMessenger.ShowAddAddressMessage();
 
-            while (!_orderService.IsAddressValid(Console.ReadLine()))
-=======
-            while (!_orderService.SetPhoneNumber(Console.ReadLine()))
+            while (!_checkerService.CheckAddress(Console.ReadLine()))
             {
                 BuyerMessenger.ShowWrongInputMessage();
             } 
-
-            BuyerMessenger.ShowAddAddressMessage();
-            
-            while (!_orderService.SetAddressNumber(Console.ReadLine()))
->>>>>>> fa27adc441d9a79a07873e4c2d774239356dbeb7
-            {
-                BuyerMessenger.ShowWrongInputMessage();
-            }
 
             var order = _orderService.GetOrder();
             _orderService.CompleteOrder(order);

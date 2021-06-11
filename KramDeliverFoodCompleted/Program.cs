@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 ﻿using KramDeliverFoodCompleted.Check;
-=======
-using KramDeliverFoodCompleted.Check;
->>>>>>> fa27adc441d9a79a07873e4c2d774239356dbeb7
 using KramDeliverFoodCompleted.Interaction;
 using KramDeliverFoodCompleted.Models;
 using KramDeliverFoodCompleted.Service;
@@ -21,7 +17,7 @@ namespace KramDeliverFoodCompleted
             var checker = new CheckerService();
             var orderService = new OrderService(data, checker);
             var productService = new ProductService(data);
-            var userInteraction = new BuyerInteraction(productService, orderService);
+            var userInteraction = new BuyerInteraction(productService, orderService, checker);
             var providerInteraction = new ProviderInteraction(productService);
             var isRunning = true;
 
