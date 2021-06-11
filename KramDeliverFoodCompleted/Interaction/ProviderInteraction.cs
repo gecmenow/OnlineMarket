@@ -1,14 +1,14 @@
-﻿using KramDeliverFoodCompleted.Models;
-using KramDeliverFoodCompleted.Service;
+﻿using KramDeliverFoodCompleted.Interfaces;
+using KramDeliverFoodCompleted.Models;
 using System;
 
 namespace KramDeliverFoodCompleted.Interaction
 {
     public class ProviderInteraction
     {
-        private readonly ProductService _productService;
+        private readonly IProductService _productService;
 
-        public ProviderInteraction(ProductService productService)
+        public ProviderInteraction(IProductService productService)
         {
             _productService = productService;
         }
