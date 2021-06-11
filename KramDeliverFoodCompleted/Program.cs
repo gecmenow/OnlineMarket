@@ -1,4 +1,4 @@
-﻿using KramDeliverFoodCompleted.Check;
+using KramDeliverFoodCompleted.Check;
 using KramDeliverFoodCompleted.Interaction;
 using KramDeliverFoodCompleted.Models;
 using KramDeliverFoodCompleted.Service;
@@ -6,9 +6,9 @@ using System;
 
 namespace KramDeliverFoodCompleted
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Messenger.ShowWelcomeMessage();
             var data = new StoreContext();
