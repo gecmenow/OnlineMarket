@@ -6,10 +6,11 @@ namespace KramDeliverFoodCompleted.Service
 {
     public class LoggerService : ILoggerService
     {
+        private const string _folderName = "Data";
+
         public void AddLog(string input)
         {
-            var folderName = "Data";
-            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, folderName);
+            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, _folderName);
 
             if (!Directory.Exists(path))
             {
