@@ -2,6 +2,6 @@
 {
     public interface ILoggerService
     {
-        public void AddLog(string input);
+        void AddLog(string input);
     }
 }
