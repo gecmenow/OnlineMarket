@@ -8,9 +8,9 @@ namespace KramDeliverFoodCompleted.Interfaces
         IList<Product> BaseProducts { get; set; }
         IList<Order> Orders { get; set; }
         Order Order { get; set; }
-        public string PhoneNumber { get; set; }
-        public string Address { get; set; }
-        public IList<Product> OrderProducts { get; set; }
+        string PhoneNumber { get; set; }
+        string Address { get; set; }
+        IList<Product> OrderProducts { get; set; }
 
         void InitProducts();
     }

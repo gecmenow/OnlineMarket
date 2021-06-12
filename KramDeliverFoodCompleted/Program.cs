@@ -1,23 +1,21 @@
-﻿using KramDeliverFoodCompleted.Check;
-using KramDeliverFoodCompleted.Interaction;
+﻿using KramDeliverFoodCompleted.Interaction;
 using KramDeliverFoodCompleted.Models;
 using KramDeliverFoodCompleted.Service;
 using System;
 
 namespace KramDeliverFoodCompleted
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Messenger.ShowWelcomeMessage();
             var serializerService = new SerializerService();
             var data = new StoreContext(serializerService);
             data.InitProducts();
             var reader = new Reader();
-            var checker = new CheckerService();
             var loggerService = new LoggerService();
-            var orderService = new OrderService(data, checker, loggerService);
+            var orderService = new OrderService(data, loggerService);
             var productService = new ProductService(data, loggerService, serializerService);
             var userInteraction = new BuyerInteraction(productService, orderService);
             var providerInteraction = new ProviderInteraction(productService);
