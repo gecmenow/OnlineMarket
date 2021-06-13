@@ -2,6 +2,7 @@
 using KramDeliverFoodCompleted.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace KramDeliverFoodCompleted.Service
 {
@@ -20,9 +21,13 @@ namespace KramDeliverFoodCompleted.Service
 
         public void AddProduct(Product product)
         {
-            product.Id = Guid.NewGuid();
-            _serializerService.DoSerialization<Product>(product);
-            _loggerService.AddLog("Product was added " + product.Id);
+            if (!GetProducts().Any(x => x.Id == product.Id))
+            {
+                product.Id = Guid.NewGuid();
+                _data.BaseProducts.Add(product);
+                _serializerService.DoSerialization<Product>(product);
+                _loggerService.AddLog("Product was added " + product.Id);
+            }
         }
 
         public IList<Product> GetProducts()
