@@ -7,13 +7,11 @@ namespace KramDeliverFoodCompleted.Interaction
     {
         private readonly IProductService _productService;
         private readonly IOrderService _orderService;
-        private readonly ICheckerService _checkerService;
 
-        public BuyerInteraction(IProductService productService, IOrderService orderService, ICheckerService checkerService)
+        public BuyerInteraction(IProductService productService, IOrderService orderService)
         {
             _productService = productService;
             _orderService = orderService;
-            _checkerService = checkerService;
         }
 
         public void MakeOrder()
@@ -42,14 +40,14 @@ namespace KramDeliverFoodCompleted.Interaction
 
             BuyerMessenger.ShowAddPhoneMessage();
 
-            while (!_checkerService.IsPhoneValid(Console.ReadLine()))
+            while (!_orderService.IsPhoneValid(Console.ReadLine()))
             {
                 BuyerMessenger.ShowWrongInputMessage();
             }
 
             BuyerMessenger.ShowAddAddressMessage();
 
-            while (!_checkerService.IsAddressValid(Console.ReadLine()))
+            while (!_orderService.IsAddressValid(Console.ReadLine()))
             {
                 BuyerMessenger.ShowWrongInputMessage();
             } 

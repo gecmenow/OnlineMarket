@@ -9,10 +9,12 @@ namespace KramDeliverFoodCompleted.Service
     public class ProductService : IProductService
     {
         private readonly IData _data;
+        private readonly ILoggerService _loggerService;
 
-        public ProductService(IData data)
+        public ProductService(IData data, ILoggerService loggerService)
         {
             _data = data;
+            _loggerService = loggerService;
         }
 
         public void AddProduct(Product product)
@@ -21,6 +23,7 @@ namespace KramDeliverFoodCompleted.Service
             {
                 product.Id = Guid.NewGuid();
                 _data.BaseProducts.Add(product);
+                _loggerService.AddLog("Product was added " + product.Id);
             }
         }
 
