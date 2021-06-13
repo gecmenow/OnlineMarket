@@ -34,18 +34,15 @@ namespace KramDeliverFoodCompleted.Service
             return _data.Orders;
         }
 
-        public void CompleteOrder(Order order)
-        {
-            _data.Orders.Add(order);
-        }
-
         public bool IsPhoneValid(string input)
         {
             if (checkPhone(input))
             {
                 _data.Order.PhoneNumber = input;
+
                 return true;
             }
+
             return false;
         }
 
@@ -54,10 +51,16 @@ namespace KramDeliverFoodCompleted.Service
             if (checkAddress(input))
             {
                 _data.Order.Address = input;
+
                 return true;
             }
 
             return false;
+        }
+
+        public void CompleteOrder(Order order)
+        {
+            _data.Orders.Add(order);
         }
 
         private bool checkPhone(string number)

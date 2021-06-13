@@ -1,5 +1,4 @@
 ﻿using KramDeliverFoodCompleted.Models;
-using KramDeliverFoodCompleted.Service;
 using System;
 using System.Collections.Generic;
 
@@ -73,7 +72,7 @@ namespace KramDeliverFoodCompleted.Interaction
                 "ул.Назв.дом номер,квартира номер\n");
         }
 
-        public static void RepeatData()
+        public static void ShowRepeatData()
         {
             Console.WriteLine("Please repeat your data in correct format");
         }

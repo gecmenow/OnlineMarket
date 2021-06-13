@@ -1,4 +1,4 @@
-using KramDeliverFoodCompleted.Interfaces;
+﻿using KramDeliverFoodCompleted.Interfaces;
 using System;
 
 namespace KramDeliverFoodCompleted.Interaction
@@ -50,7 +50,7 @@ namespace KramDeliverFoodCompleted.Interaction
             while (!_orderService.IsAddressValid(Console.ReadLine()))
             {
                 BuyerMessenger.ShowWrongInputMessage();
-            } 
+            }
 
             var order = _orderService.GetOrder();
             _orderService.CompleteOrder(order);
