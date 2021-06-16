@@ -47,6 +47,8 @@ namespace KramDeliverFoodCompleted.Service
 
         public void GetSummary(int currency)
         {
+            _data.currencies = _currerncyExchangeService.GetCurrencies();
+
             foreach (var product in _data.Order.OrderProducts)
             {
                 _data.Order.Summary += product.Price;
@@ -57,9 +59,7 @@ namespace KramDeliverFoodCompleted.Service
 
         decimal ConvertSummary(int currency, decimal summary)
         {
-            var currencies = _currerncyExchangeService.GetCurrencies();
-
-            Root currenciesModel = JsonConvert.DeserializeObject<Root>(currencies.ToString());
+            Root currenciesModel = JsonConvert.DeserializeObject<Root>(_data.currencies.ToString());
 
             var convertedSummary = 0M;
 

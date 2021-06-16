@@ -1,5 +1,6 @@
 ﻿using KramDeliverFoodCompleted.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace KramDeliverFoodCompleted.Interfaces
 {
@@ -9,6 +10,7 @@ namespace KramDeliverFoodCompleted.Interfaces
         IList<Order> Orders { get; set; }
         Order Order { get; set; }
         IList<Product> OrderProducts { get; set; }
+        Task<string> currencies { get; set; }
 
         void InitProducts();
     }

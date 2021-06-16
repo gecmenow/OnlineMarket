@@ -2,6 +2,7 @@
 using KramDeliverFoodCompleted.Models;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace KramDeliverFoodCompleted.Data
 {
@@ -11,6 +12,7 @@ namespace KramDeliverFoodCompleted.Data
         public Order Order { get; set; }
         public IList<Order> Orders { get; set; }
         public IList<Product> OrderProducts { get; set; }
+        public Task<string> currencies { get; set; }
 
         private readonly ISerializerService _serializerService;
 
