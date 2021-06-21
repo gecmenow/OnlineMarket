@@ -41,6 +41,8 @@ namespace KramDeliverFoodCompleted.Service
                     {
                         return _cache.CacheData;
                     }
+
+                    return _cache.CacheData;
                 }
 
                 IList<Product> data = default;

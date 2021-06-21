@@ -1,24 +1,22 @@
-﻿using KramDeliverFoodCompleted.Check;
 using KramDeliverFoodCompleted.Data;
 using KramDeliverFoodCompleted.Interaction;
+using KramDeliverFoodCompleted.Models;
 using KramDeliverFoodCompleted.Service;
 using System;
 
 namespace KramDeliverFoodCompleted
-{
-    class Program
+{    
+    public class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            Messager.ShowWelcomeMessage();
+            Messenger.ShowWelcomeMessage();
             var serializerService = new SerializerService();
             var data = new StoreContext(serializerService);
             data.InitProducts();
             var reader = new Reader();
-            var checker = new CheckerService();
             var loggerService = new LoggerService();
-            var currencyExchangeService = new CurrerncyExchangeService();
-            var orderService = new OrderService(data, checker, loggerService, currencyExchangeService);
+            var orderService = new OrderService(data, loggerService);
             var cache = new Cache();
             var cacheService = new CacheService(cache);
             var productService = new ProductService(data, loggerService, serializerService, cacheService);
@@ -44,7 +42,7 @@ namespace KramDeliverFoodCompleted
                 }
             }
 
-            Messager.ShowByeMessage();
+            Messenger.ShowByeMessage();
             Console.ReadKey();
         }
     }

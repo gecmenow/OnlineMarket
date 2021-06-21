@@ -1,14 +1,14 @@
-﻿using KramDeliverFoodCompleted.Service;
+﻿using KramDeliverFoodCompleted.Interfaces;
 using System;
 
 namespace KramDeliverFoodCompleted.Interaction
 {
     public class BuyerInteraction
     {
-        private readonly ProductService _productService;
-        private readonly OrderService _orderService;
+        private readonly IProductService _productService;
+        private readonly IOrderService _orderService;
 
-        public BuyerInteraction(ProductService productService, OrderService orderService)
+        public BuyerInteraction(IProductService productService, IOrderService orderService)
         {
             _productService = productService;
             _orderService = orderService;
@@ -16,8 +16,8 @@ namespace KramDeliverFoodCompleted.Interaction
 
         public void MakeOrder()
         {
-            BuyerMessager.ShowProducts(_productService.GetProducts());
-            BuyerMessager.BuyInstruction();
+            BuyerMessenger.ShowBuyerProducts(_productService.GetProducts());
+            BuyerMessenger.ShowBuyInstruction();
 
             while (true)
             {
@@ -28,7 +28,7 @@ namespace KramDeliverFoodCompleted.Interaction
                     input = ReadInputData();
                 }
 
-                var product = _productService.GetProductById(input); 
+                var product = _productService.GetProductById(input);
 
                 _orderService.AddProductToOrder(product);
 
@@ -38,28 +38,26 @@ namespace KramDeliverFoodCompleted.Interaction
                 }
             }
 
-            BuyerMessager.BuyerPhone();
+            BuyerMessenger.ShowAddPhoneMessage();
 
-            while(!_orderService.SetPhoneNumber(Console.ReadLine()))
+            while (!_orderService.IsPhoneValid(Console.ReadLine()))
             {
-                BuyerMessager.RepeatData();
+                BuyerMessenger.ShowWrongInputMessage();
             }
 
-            BuyerMessager.BuyerAddress();
+            BuyerMessenger.ShowAddAddressMessage();
 
-            while (!_orderService.SetAddressNumber(Console.ReadLine()))
+            while (!_orderService.IsAddressValid(Console.ReadLine()))
             {
-                BuyerMessager.RepeatData();
+                BuyerMessenger.ShowWrongInputMessage();
             }
 
             var order = _orderService.GetOrder();
             _orderService.CompleteOrder(order);
-            var currency = ReadInputData();
-            _orderService.GetSummary(currency);
+
             var orders = _orderService.GetOrders();
-            BuyerMessager.ShowOrder(orders);
-            _orderService.ClearOrders();
-        }
+            BuyerMessenger.ShowBuyerOrders(orders);
+        }  
 
         private int ReadInputData()
         {
@@ -74,7 +72,7 @@ namespace KramDeliverFoodCompleted.Interaction
                 {
                     if (result < 0 && result >= productsCount)
                     {
-                        Messager.RepeatInput();
+                        Messenger.RepeatInput();
                         continue;
                     }
 

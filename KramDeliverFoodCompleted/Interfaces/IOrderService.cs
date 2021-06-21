@@ -6,11 +6,10 @@ namespace KramDeliverFoodCompleted.Interfaces
     public interface IOrderService
     {
         Order GetOrder();
+        bool IsPhoneValid(string number);
+        bool IsAddressValid(string number);
+        void AddProductToOrder(Product product);
+        IList<Order> GetOrders();
         void CompleteOrder(Order order);
-        public bool SetPhoneNumber(string number);
-        public bool SetAddressNumber(string number);
-
-        public void AddProductToOrder(Product product);
-        public IList<Product> GetOrderedProducts();
     }
 }

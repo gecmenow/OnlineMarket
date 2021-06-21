@@ -1,27 +1,21 @@
 ﻿using KramDeliverFoodCompleted.Interfaces;
 using KramDeliverFoodCompleted.Models;
-using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Linq;
-using static KramDeliverFoodCompleted.Interfaces.ICurrerncyExchangeService;
+using System.Text.RegularExpressions;
 
 namespace KramDeliverFoodCompleted.Service
 {
     public class OrderService : IOrderService
     {
         private readonly IData _data;
-        private readonly ICheckerService _checker;
         private readonly ILoggerService _loggerService;
-        private readonly ICurrerncyExchangeService _currerncyExchangeService;
 
-        public OrderService(IData data, ICheckerService checker, ILoggerService loggerService, ICurrerncyExchangeService currerncyExchangeService)
+        public OrderService(IData data, ILoggerService loggerService)
         {
             _data = data;
-            _checker = checker;
-            _loggerService = loggerService;
-            _currerncyExchangeService = currerncyExchangeService;
             _data.Orders = new List<Order>();
             _data.Order = new Order();
+            _loggerService = loggerService;
         }
 
         public void AddProductToOrder(Product product)
@@ -40,80 +34,50 @@ namespace KramDeliverFoodCompleted.Service
             return _data.Orders;
         }
 
-        public IList<Product> GetOrderedProducts()
+        public bool IsPhoneValid(string input)
         {
-            return _data.Order.OrderProducts;
-        }
-
-        public void GetSummary(int currency)
-        {
-            foreach (var product in _data.Order.OrderProducts)
+            if (checkPhone(input))
             {
-                _data.Order.Summary += product.Price;
+                _data.Order.PhoneNumber = input;
+
+                return true;
             }
 
-            _data.Order.Summary = ConvertSummary(currency, _data.Order.Summary);
+            return false;
         }
 
-        decimal ConvertSummary(int currency, decimal summary)
+        public bool IsAddressValid(string input)
         {
-            var currencies = _currerncyExchangeService.GetCurrencies();
-
-            Root currenciesModel = JsonConvert.DeserializeObject<Root>(currencies.ToString());
-
-            var convertedSummary = 0M;
-
-            switch (currency)
+            if (checkAddress(input))
             {
-                case (int)Currencies.eur:
-                    var value = currenciesModel.ExchangeRate.Where(x => int.Parse(x.Currency) == currency).Select(x => x.PurchaseRate).FirstOrDefault();
-                    convertedSummary = summary * value;
-                    _data.Order.Currency = Currencies.eur.ToString();
-                    break;
-                case (int)Currencies.usd:
-                    value = currenciesModel.ExchangeRate.Where(x => int.Parse(x.Currency) == currency).Select(x => x.PurchaseRate).FirstOrDefault();
-                    convertedSummary = summary * value;
-                    _data.Order.Currency = Currencies.usd.ToString();
-                    break;
-                default:
-                    convertedSummary = summary;
-                    break;
+                _data.Order.Address = input;
+
+                return true;
             }
 
-            return convertedSummary;
-        }
-
-        public bool SetPhoneNumber(string number)
-        {
-            if (string.IsNullOrEmpty(number))
-            {
-                return false;
-            }
-
-            _data.Order.PhoneNumber = number;
-
-            return true;
-        }
-
-        public bool SetAddressNumber(string number)
-        {
-            if (string.IsNullOrEmpty(number))
-            {
-                return false;
-            }
-
-            _data.Order.Address = number;
-            return true;
+            return false;
         }
 
         public void CompleteOrder(Order order)
         {
             _data.Orders.Add(order);
         }
-
-        public void ClearOrders()
+        private bool checkPhone(string number)
         {
-            _data.Orders.Clear();
+            var pattern = @"^(\+380|0)(\(\d{2}\)|\d{2})\s?\d{3}\s?\d{2}\s?\d{2}$";
+            var expression = new Regex(pattern);
+            var isMatch = expression.IsMatch(number);
+
+            return isMatch;
+        }
+
+        private bool checkAddress(string address)
+        {
+            var pattern = @"(^([а-я]{5}|[а-я]{2})\s?(.|\s{1})\s?([А-Я][а-я]{9}|[А-Я][а-я]{4})(,|.)\s?([а-я]|[а-я]{3})(.|\s{1})\s?\d{2})|(,\s?([а-я]{2}|[а-я]{8})(.|\s{1})\s?\d{2})$";
+            var expression = new Regex(pattern);
+            var isMatch = expression.IsMatch(address);
+
+            return isMatch;
         }
     }
 }
