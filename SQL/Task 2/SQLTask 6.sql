@@ -1,4 +1,5 @@
-SELECT COUNT(*) AS SuppliersCount
+SELECT Country, Region, COUNT(*) AS SuppliersCount
 FROM Suppliers s
 WHERE s.Region IS NOT NULL
-HAVING COUNT(SupplierID) > 1
+GROUP BY Country, Region
+HAVING COUNT(*) > 1
