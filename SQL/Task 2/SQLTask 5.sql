@@ -1,4 +1,7 @@
-SELECT *
-FROM Region r
-RIGHT JOIN Employees e ON e.Region = r.RegionDescription
-WHERE e.City != 'London'
+SELECT EmployeeID
+FROM Employees e
+WHERE e.Region = 'WA'
+EXCEPT
+SELECT EmployeeID
+FROM Employees empl
+WHERE empl.City = 'Seattle'
