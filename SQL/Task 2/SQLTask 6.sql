@@ -1,5 +1,4 @@
-SELECT Region,Country, COUNT(*) AS SuppliersCount
+SELECT COUNT(*) AS SuppliersCount
 FROM Suppliers s
-WHERE s.Region = 'Quebec'
-GROUP BY Region,Country
+WHERE s.Region IS NOT NULL
 HAVING COUNT(SupplierID) > 1
