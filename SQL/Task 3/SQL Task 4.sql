@@ -1,6 +1,6 @@
-SELECT Region.RegionID, RegionDescription
-FROM Region
-LEFT JOIN Territories ON Region.RegionID = Territories.RegionID
-LEFT JOIN EmployeeTerritories ON Territories.TerritoryID = EmployeeTerritories.TerritoryID
-LEFT JOIN Employees ON EmployeeTerritories.EmployeeID = Employees.EmployeeID
+SELECT Region.RegionDescription
+FROM Employees
+INNER JOIN EmployeeTerritories ON Employees.EmployeeID = EmployeeTerritories.EmployeeID
+INNer JOIn Territories ON EmployeeTerritories.TerritoryID = Territories.TerritoryID
+RIGHT JOIN Region ON Territories.RegionID = Region.RegionID
 WHERE Employees.EmployeeID IS NULL
