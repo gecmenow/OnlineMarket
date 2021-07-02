@@ -1,4 +1,4 @@
-SELECT CategoryName
+SELECT CategoryName, MAX(Products.UnitPrice) as price
 FROM Categories
-WHERE CategoryID = (SELECT CategoryID From Products
-WHERE UnitPrice = (SELECT MAX(UnitPrice) FROM Products)) 
+INNER JOIN Products ON Categories.CategoryID = Products.CategoryID
+GROUP BY Categories.CategoryName
