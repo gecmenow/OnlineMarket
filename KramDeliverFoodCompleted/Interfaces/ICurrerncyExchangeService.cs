@@ -1,7 +1,5 @@
-﻿using System;
+﻿using KramDeliverFoodCompleted.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace KramDeliverFoodCompleted.Interfaces
@@ -15,6 +13,6 @@ namespace KramDeliverFoodCompleted.Interfaces
             uah
         }
 
-        Task<string> GetCurrencies();
+        Task<IList<ExchangeRate>> GetCurrencies();
     }
 }

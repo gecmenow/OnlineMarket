@@ -54,6 +54,7 @@ namespace KramDeliverFoodCompleted.Interaction
 
             var order = _orderService.GetOrder();
             _orderService.CompleteOrder(order);
+            Messager.ShowCurrencies();
             var currency = ReadInputData();
             _orderService.GetSummary(currency);
             var orders = _orderService.GetOrders();

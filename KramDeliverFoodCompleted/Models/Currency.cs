@@ -25,7 +25,7 @@ namespace KramDeliverFoodCompleted.Models
         public decimal PurchaseRate { get; set; }
     }
 
-    public class Root
+    public class Currency
     {
         [JsonProperty("date")]
         public string Date { get; set; }

@@ -54,29 +54,27 @@ namespace KramDeliverFoodCompleted.Service
                 _data.Order.Summary += product.Price;
             }
 
-            _data.Order.Summary = ConvertSummary(currency, _data.Order.Summary);
+            _data.Order.Summary = ConvertSummary(currency);
         }
 
-        decimal ConvertSummary(int currency, decimal summary)
+        decimal ConvertSummary(int currency)
         {
-            Root currenciesModel = JsonConvert.DeserializeObject<Root>(_data.currencies.ToString());
-
             var convertedSummary = 0M;
 
             switch (currency)
             {
                 case (int)Currencies.eur:
-                    var value = currenciesModel.ExchangeRate.Where(x => int.Parse(x.Currency) == currency).Select(x => x.PurchaseRate).FirstOrDefault();
-                    convertedSummary = summary * value;
+                    var value = _data.currencies.Result.Where(x => x.Currency == Currencies.eur.ToString().ToUpper()).Select(x => x.PurchaseRate).FirstOrDefault();
+                    convertedSummary = _data.Order.Summary / value;
                     _data.Order.Currency = Currencies.eur.ToString();
                     break;
                 case (int)Currencies.usd:
-                    value = currenciesModel.ExchangeRate.Where(x => int.Parse(x.Currency) == currency).Select(x => x.PurchaseRate).FirstOrDefault();
-                    convertedSummary = summary * value;
+                    value = _data.currencies.Result.Where(x => int.Parse(x.Currency) == currency).Select(x => x.PurchaseRate).FirstOrDefault();
+                    convertedSummary = _data.Order.Summary / value;
                     _data.Order.Currency = Currencies.usd.ToString();
                     break;
                 default:
-                    convertedSummary = summary;
+                    convertedSummary = _data.Order.Summary;
                     break;
             }
 

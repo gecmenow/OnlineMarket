@@ -17,9 +17,15 @@ namespace KramDeliverFoodCompleted.Interaction
             Console.WriteLine("Please repeat input");
         }  
 
+        public static void ShowCurrencies()
+        {
+            Console.Write("Type 1 or 2 or else number if you want to buy in usd/eur/uah: ");
+        }
+
         public static void ShowByeMessage()
         {
             Console.WriteLine("Thanks for visiting");
         }
     }
 }
+ 
