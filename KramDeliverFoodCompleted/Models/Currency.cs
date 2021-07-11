@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace KramDeliverFoodCompleted.Models
 {
-    // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse); 
     public class ExchangeRate
     {
         [JsonProperty("baseCurrency")]

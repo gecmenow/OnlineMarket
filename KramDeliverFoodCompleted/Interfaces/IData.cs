@@ -10,7 +10,7 @@ namespace KramDeliverFoodCompleted.Interfaces
         IList<Order> Orders { get; set; }
         Order Order { get; set; }
         IList<Product> OrderProducts { get; set; }
-        Task<IList<ExchangeRate>> currencies { get; set; }
+        IList<ExchangeRate> Currencies { get; set; }
 
         void InitProducts();
     }

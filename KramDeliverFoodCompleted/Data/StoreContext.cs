@@ -12,7 +12,7 @@ namespace KramDeliverFoodCompleted.Data
         public Order Order { get; set; }
         public IList<Order> Orders { get; set; }
         public IList<Product> OrderProducts { get; set; }
-        public Task<IList<ExchangeRate>> currencies { get; set; }
+        public IList<ExchangeRate> Currencies { get; set; }
 
         private readonly ISerializerService _serializerService;
 

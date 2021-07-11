@@ -3,7 +3,7 @@ using KramDeliverFoodCompleted.Models;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
-using static KramDeliverFoodCompleted.Interfaces.ICurrerncyExchangeService;
+using static KramDeliverFoodCompleted.Interfaces.ICurrerncies;
 
 namespace KramDeliverFoodCompleted.Service
 {
@@ -12,9 +12,9 @@ namespace KramDeliverFoodCompleted.Service
         private readonly IData _data;
         private readonly ICheckerService _checker;
         private readonly ILoggerService _loggerService;
-        private readonly ICurrerncyExchangeService _currerncyExchangeService;
+        private readonly ICurrerncies _currerncyExchangeService;
 
-        public OrderService(IData data, ICheckerService checker, ILoggerService loggerService, ICurrerncyExchangeService currerncyExchangeService)
+        public OrderService(IData data, ICheckerService checker, ILoggerService loggerService, ICurrerncies currerncyExchangeService)
         {
             _data = data;
             _checker = checker;
@@ -43,42 +43,6 @@ namespace KramDeliverFoodCompleted.Service
         public IList<Product> GetOrderedProducts()
         {
             return _data.Order.OrderProducts;
-        }
-
-        public void GetSummary(int currency)
-        {
-            _data.currencies = _currerncyExchangeService.GetCurrencies();
-
-            foreach (var product in _data.Order.OrderProducts)
-            {
-                _data.Order.Summary += product.Price;
-            }
-
-            _data.Order.Summary = ConvertSummary(currency);
-        }
-
-        decimal ConvertSummary(int currency)
-        {
-            var convertedSummary = 0M;
-
-            switch (currency)
-            {
-                case (int)Currencies.eur:
-                    var value = _data.currencies.Result.Where(x => x.Currency == Currencies.eur.ToString().ToUpper()).Select(x => x.PurchaseRate).FirstOrDefault();
-                    convertedSummary = _data.Order.Summary / value;
-                    _data.Order.Currency = Currencies.eur.ToString();
-                    break;
-                case (int)Currencies.usd:
-                    value = _data.currencies.Result.Where(x => int.Parse(x.Currency) == currency).Select(x => x.PurchaseRate).FirstOrDefault();
-                    convertedSummary = _data.Order.Summary / value;
-                    _data.Order.Currency = Currencies.usd.ToString();
-                    break;
-                default:
-                    convertedSummary = _data.Order.Summary;
-                    break;
-            }
-
-            return convertedSummary;
         }
 
         public bool SetPhoneNumber(string number)
@@ -112,6 +76,44 @@ namespace KramDeliverFoodCompleted.Service
         public void ClearOrders()
         {
             _data.Orders.Clear();
+        }
+
+        public void GetSummary(int currency)
+        {
+            var currencies = _currerncyExchangeService.GetCurrencies().Result;
+
+            _data.Currencies = JsonConvert.DeserializeObject<Currency>(currencies).ExchangeRate.Where(x => x.Currency != null).ToList();
+
+            foreach (var product in _data.Order.OrderProducts)
+            {
+                _data.Order.Summary += product.Price;
+            }
+
+            _data.Order.Summary = ConvertSummary(currency);
+        }
+
+        decimal ConvertSummary(int currency)
+        {
+            var convertedSummary = 0M;
+
+            switch (currency)
+            {
+                case (int)Currencies.Eur:
+                    var value = _data.Currencies.Where(x => x.Currency == Currencies.Eur.ToString().ToUpper()).Select(x => x.PurchaseRate).FirstOrDefault();
+                    convertedSummary = _data.Order.Summary / value;
+                    _data.Order.Currency = Currencies.Eur.ToString();
+                    break;
+                case (int)Currencies.Usd:
+                    value = _data.Currencies.Where(x => x.Currency == Currencies.Usd.ToString().ToUpper()).Select(x => x.PurchaseRate).FirstOrDefault();
+                    convertedSummary = _data.Order.Summary / value;
+                    _data.Order.Currency = Currencies.Usd.ToString();
+                    break;
+                default:
+                    convertedSummary = _data.Order.Summary;
+                    break;
+            }
+
+            return convertedSummary;
         }
     }
 }

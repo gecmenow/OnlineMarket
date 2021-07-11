@@ -4,15 +4,15 @@ using System.Threading.Tasks;
 
 namespace KramDeliverFoodCompleted.Interfaces
 {
-    public interface ICurrerncyExchangeService
+    public interface ICurrerncies
     {
         enum Currencies
         { 
-            usd,
-            eur,
-            uah
+            Usd,
+            Eur,
+            Uah
         }
 
-        Task<IList<ExchangeRate>> GetCurrencies();
+        Task<string> GetCurrencies();
     }
 }

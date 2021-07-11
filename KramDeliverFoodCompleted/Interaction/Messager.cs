@@ -19,7 +19,7 @@ namespace KramDeliverFoodCompleted.Interaction
 
         public static void ShowCurrencies()
         {
-            Console.Write("Type 1 or 2 or else number if you want to buy in usd/eur/uah: ");
+            Console.Write("Type 1 or 2 or else number if you want to buy in eur/usd/uah: ");
         }
 
         public static void ShowByeMessage()
