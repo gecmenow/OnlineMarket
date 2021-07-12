@@ -1,8 +1,6 @@
 ﻿using KramDeliverFoodCompleted.Interfaces;
 using KramDeliverFoodCompleted.Models;
-using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace KramDeliverFoodCompleted.Data
 {
