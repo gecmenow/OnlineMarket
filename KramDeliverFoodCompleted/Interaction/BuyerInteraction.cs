@@ -40,14 +40,14 @@ namespace KramDeliverFoodCompleted.Interaction
 
             BuyerMessenger.ShowAddPhoneMessage();
 
-            while (!_orderService.SetPhoneNumber(Console.ReadLine()))
+            while (!_orderService.IsPhoneValid(Console.ReadLine()))
             {
                 BuyerMessenger.ShowRepeatData();
             }
 
             BuyerMessenger.ShowAddAddressMessage();
 
-            while (!_orderService.SetAddressNumber(Console.ReadLine()))
+            while (!_orderService.IsAddressValid(Console.ReadLine()))
             {
                 BuyerMessenger.ShowRepeatData();
             }

@@ -7,8 +7,6 @@ namespace KramDeliverFoodCompleted.Interfaces
     {
         Order GetOrder();
         void CompleteOrder(Order order);
-        bool SetPhoneNumber(string number);
-        bool SetAddressNumber(string number);
         void AddProductToOrder(Product product);
         bool IsPhoneValid(string number);
         bool IsAddressValid(string number);
