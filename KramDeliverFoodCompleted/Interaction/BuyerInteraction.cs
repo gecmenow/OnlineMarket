@@ -16,8 +16,8 @@ namespace KramDeliverFoodCompleted.Interaction
 
         public void MakeOrder()
         {
-            BuyerMessager.ShowProducts(_productService.GetProducts());
-            BuyerMessager.BuyInstruction();
+            BuyerMessenger.ShowBuyerProducts(_productService.GetProducts());
+            BuyerMessenger.ShowBuyInstruction();
 
             while (true)
             {
@@ -28,7 +28,7 @@ namespace KramDeliverFoodCompleted.Interaction
                     input = ReadInputData();
                 }
 
-                var product = _productService.GetProductById(input); 
+                var product = _productService.GetProductById(input);
 
                 _orderService.AddProductToOrder(product);
 
@@ -38,27 +38,27 @@ namespace KramDeliverFoodCompleted.Interaction
                 }
             }
 
-            BuyerMessager.BuyerPhone();
+            BuyerMessenger.ShowAddPhoneMessage();
 
-            while(!_orderService.SetPhoneNumber(Console.ReadLine()))
+            while (!_orderService.SetPhoneNumber(Console.ReadLine()))
             {
-                BuyerMessager.RepeatData();
+                BuyerMessenger.ShowRepeatData();
             }
 
-            BuyerMessager.BuyerAddress();
+            BuyerMessenger.ShowAddAddressMessage();
 
             while (!_orderService.SetAddressNumber(Console.ReadLine()))
             {
-                BuyerMessager.RepeatData();
+                BuyerMessenger.ShowRepeatData();
             }
 
             var order = _orderService.GetOrder();
             _orderService.CompleteOrder(order);
-            Messager.ShowCurrencies();
+            Messenger.ShowCurrencies();
             var currency = ReadInputData();
             _orderService.GetSummary(currency);
             var orders = _orderService.GetOrders();
-            BuyerMessager.ShowOrder(orders);
+            BuyerMessenger.ShowBuyerOrders(orders);
             _orderService.ClearOrders();
         }
 
@@ -75,7 +75,7 @@ namespace KramDeliverFoodCompleted.Interaction
                 {
                     if (result < 0 && result >= productsCount)
                     {
-                        Messager.RepeatInput();
+                        Messenger.RepeatInput();
                         continue;
                     }
 

@@ -2,7 +2,7 @@
 
 namespace KramDeliverFoodCompleted.Interaction
 {
-    public class Messager
+    public class Messenger
     {
         public static void ShowWelcomeMessage()
         {

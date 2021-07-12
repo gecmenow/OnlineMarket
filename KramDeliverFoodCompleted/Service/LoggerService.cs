@@ -1,19 +1,16 @@
 ﻿using KramDeliverFoodCompleted.Interfaces;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KramDeliverFoodCompleted.Service
 {
     public class LoggerService : ILoggerService
     {
+        private const string FolderName = "Data";
+
         public void AddLog(string input)
         {
-            var folderName = "Data";
-            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, folderName);
+            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, FolderName);
 
             if (!Directory.Exists(path))
             {

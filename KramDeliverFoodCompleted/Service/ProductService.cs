@@ -25,11 +25,14 @@ namespace KramDeliverFoodCompleted.Service
 
         public void AddProduct(Product product)
         {
-            product.Id = Guid.NewGuid();
-            _serializerService.DoSerialization<Product>(product);
-            AddToCacheDelegate addToCache = _cacheService.AddToCache;
-            addToCache(product);
-            _loggerService.AddLog("Product was added " + product.Id);
+            if (!GetProducts().Any(x => x.Id == product.Id))
+            {
+                product.Id = Guid.NewGuid();
+                _serializerService.DoSerialization<Product>(product);
+                AddToCacheDelegate addToCache = _cacheService.AddToCache;
+                addToCache(product);
+                _loggerService.AddLog("Product was added " + product.Id);
+            }
         }
 
         public IList<Product> GetProducts()
