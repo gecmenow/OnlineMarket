@@ -6,8 +6,6 @@ namespace KramDeliverFoodCompleted.Models
     {
         public Guid Id { get; set; }
         private string _name { get; set; }
-        private Guid _categoryId { get; set; }
-        private Guid _providerId { get; set; }
         private decimal _price { get; set; }
         private string _specifications { get; set; }
         private string _description { get; set; }
@@ -22,36 +20,6 @@ namespace KramDeliverFoodCompleted.Models
                 if (!string.IsNullOrEmpty(value))
                 {
                     _name = value;
-                }
-            }
-        }
-
-        public Guid CategoryId
-        {
-            get
-            {
-                return _categoryId;
-            }
-            set
-            {
-                if (value != Guid.Empty)
-                {
-                    _categoryId = value;
-                }
-            }
-        }
-
-        public Guid ProviderId
-        {
-            get
-            {
-                return _providerId;
-            }
-            set
-            {
-                if (value != Guid.Empty)
-                {
-                    _providerId = value;
                 }
             }
         }

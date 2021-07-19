@@ -1,7 +1,7 @@
-﻿using KramDeliverFoodCompleted.Interfaces;
+﻿using KramDeliveryFood_v3.Interfaces;
 using System.Collections.Generic;
 
-namespace KramDeliverFoodCompleted.Models
+namespace KramDeliveryFood_v3.Models
 {
     public class StoreContext : IData
     {
@@ -17,7 +17,7 @@ namespace KramDeliverFoodCompleted.Models
 
         public void InitProducts()
         {
-           
+
         }
     }
 }

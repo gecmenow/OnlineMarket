@@ -1,7 +1,7 @@
-﻿using KramDeliverFoodCompleted.Models;
+﻿using KramDeliveryFood_v3.Models;
 using System.Collections.Generic;
 
-namespace KramDeliverFoodCompleted.Interfaces
+namespace KramDeliveryFood_v3.Interfaces
 {
     public interface IData
     {

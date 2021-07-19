@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace KramDeliverFoodCompleted.Models
+namespace KramDeliveryFood_v3.Models
 {
     public class Buyers
     {
