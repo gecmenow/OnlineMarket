@@ -2,15 +2,16 @@
 
 namespace KramDeliverFoodCompleted.Models
 {
-    public class Order
+    public class Orders
     {
-        public List<Product> OrderProducts { get; set; }
+        public List<Products> OrderProducts { get; set; }
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
+        public enum OrderStatus { };
 
-        public Order()
+        public Orders()
         {
-            OrderProducts = new List<Product>();
+            OrderProducts = new List<Products>();
         }
     }
 }

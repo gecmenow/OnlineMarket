@@ -19,20 +19,20 @@ namespace KramDeliverFoodCompleted.Service
             _serializerService = serializerService;
         }
 
-        public void AddProduct(Product product)
+        public void AddProduct(Products product)
         {
             if (!GetProducts().Any(x => x.Id == product.Id))
             {
                 product.Id = Guid.NewGuid();
                 _data.BaseProducts.Add(product);
-                _serializerService.DoSerialization<Product>(product);
+                _serializerService.DoSerialization<Products>(product);
                 _loggerService.AddLog("Product was added " + product.Id);
             }
         }
 
-        public IList<Product> GetProducts()
+        public IList<Products> GetProducts()
         {
-            var data = _serializerService.DoDeserialization<Product>();
+            var data = _serializerService.DoDeserialization<Products>();
 
             return data;
         }  
@@ -44,11 +44,11 @@ namespace KramDeliverFoodCompleted.Service
             return id >= 0 && id < productsLength;
         }
 
-        public Product GetProductById(int id)
+        public Products GetProductById(int id)
         {
             var products = GetProducts();
             var counter = 0;
-            Product product = default;
+            Products product = default;
 
             foreach (var item in products)
             {

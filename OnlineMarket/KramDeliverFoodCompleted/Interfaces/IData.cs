@@ -5,12 +5,12 @@ namespace KramDeliverFoodCompleted.Interfaces
 {
     public interface IData
     {
-        IList<Product> BaseProducts { get; set; }
-        IList<Order> Orders { get; set; }
-        Order Order { get; set; }
+        IList<Products> BaseProducts { get; set; }
+        IList<Orders> Orders { get; set; }
+        Orders Order { get; set; }
         string PhoneNumber { get; set; }
         string Address { get; set; }
-        IList<Product> OrderProducts { get; set; }
+        IList<Products> OrderProducts { get; set; }
 
         void InitProducts();
     }

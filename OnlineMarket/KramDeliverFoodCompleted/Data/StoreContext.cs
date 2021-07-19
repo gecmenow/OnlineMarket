@@ -6,23 +6,23 @@ namespace KramDeliverFoodCompleted.Models
 {
     public class StoreContext : IData
     {
-        public IList<Product> BaseProducts { get; set; }
-        public IList<Order> Orders { get; set; }
-        public Order Order { get; set; }
+        public IList<Products> BaseProducts { get; set; }
+        public IList<Orders> Orders { get; set; }
+        public Orders Order { get; set; }
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
-        public IList<Product> OrderProducts { get; set; }
+        public IList<Products> OrderProducts { get; set; }
         private readonly ISerializerService _serializerService;
 
         public StoreContext(ISerializerService serializerService)
         {
-            BaseProducts = new List<Product>();
+            BaseProducts = new List<Products>();
             _serializerService = serializerService;
         }
 
         public void InitProducts()
         {
-            BaseProducts = _serializerService.DoDeserialization<Product>();
+            BaseProducts = _serializerService.DoDeserialization<Products>();
         }
     }
 }
