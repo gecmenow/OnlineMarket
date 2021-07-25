@@ -11,6 +11,7 @@ namespace KramDeliveryFood_v3.Models
         private decimal _price { get; set; }
         private string _specifications { get; set; }
         private string _description { get; set; }
+        private string _productType { get; set; }
         public string Name
         {
             get
@@ -97,6 +98,21 @@ namespace KramDeliveryFood_v3.Models
                 if (!string.IsNullOrEmpty(value))
                 {
                     _description = value;
+                }
+            }
+        }
+
+        public string ProductType
+        {
+            get
+            {
+                return _productType;
+            }
+            set
+            {
+                if (!string.IsNullOrEmpty(value))
+                {
+                    _productType = value;
                 }
             }
         }
