@@ -2,16 +2,16 @@
 
 namespace KramDeliveryFood_v3.Models
 {
-    public class Orders
+    public class Order
     {
-        public List<Products> OrderProducts { get; set; }
+        public List<Product> OrderProducts { get; set; }
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
         public OrderStatus OrderStatus { get; set; }
 
-        public Orders()
+        public Order()
         {
-            OrderProducts = new List<Products>();
+            OrderProducts = new List<Product>();
         }
     }
 }

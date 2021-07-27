@@ -5,10 +5,10 @@ namespace KramDeliveryFood_v3.Interfaces
 {
     public interface IData
     {
-        IList<Products> BaseProducts { get; set; }
-        IList<Orders> Orders { get; set; }
-        Orders Order { get; set; }
-        IList<Products> OrderProducts { get; set; }
+        IList<Product> BaseProducts { get; set; }
+        IList<Order> Orders { get; set; }
+        Order Order { get; set; }
+        IList<Product> OrderProducts { get; set; }
 
         void InitProducts();
     }

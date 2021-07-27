@@ -1,6 +1,6 @@
 ﻿namespace KramDeliveryFood_v3.Models
 {
-    public enum Delivers
+    public enum Deliver
     {
         NovaPoshta,
         InTime,

@@ -1,12 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace KramDeliveryFood_v3.Models
 {
-    public class Products
+    public class Product
     {
-        public Guid Id { get; set; }
+        public Guid ProductID { get; set; }
         private string _name { get; set; }
         private Guid _categoryId { get; set; }
+        private string _categoryName { get; set; }
         private Guid _providerId { get; set; }
         private decimal _price { get; set; }
         private string _specifications { get; set; }
@@ -38,6 +40,21 @@ namespace KramDeliveryFood_v3.Models
                 if (value != Guid.Empty)
                 {
                     _categoryId = value;
+                }
+            }
+        }
+
+        public string CategoryName
+        {
+            get
+            {
+                return _categoryName;
+            }
+            set
+            {
+                if (!string.IsNullOrEmpty(value))
+                {
+                    _categoryName = value;
                 }
             }
         }

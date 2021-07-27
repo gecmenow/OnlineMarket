@@ -1,8 +1,8 @@
 ﻿using KramDeliveryFood_v3.Models;
-using KramDeliveryFood_v3.Service;
+using KramDeliveryFood_v3.Repositories;
+using Microsoft.Extensions.Configuration;
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace KramDeliveryFood_v3
@@ -11,101 +11,42 @@ namespace KramDeliveryFood_v3
     {
         static void Main(string[] args)
         {
-            var storeContext = new StoreContext();
-            storeContext.InitProducts();
-            var products = storeContext.BaseProducts;
-            var productsAsc = products.OrderBy(p => p.Name);
+            var configuration = Initialize();
+            var repository = new Repository(configuration.GetConnectionString("DefaultConnection"));
+            //var repositoryContrib = new RepoContrib(configuration.GetConnectionString("DefaultConnection"));
 
             Console.WriteLine("---Task 1---");
-
-            foreach(var product in productsAsc)
-            {
-                Console.WriteLine(product.Id + " " + product.Name);
-            }
-
-            var providers = storeContext.Providers;
-            var productsWithProviders = products.Join(providers,
-                pr => pr.ProviderId,
-                prov => prov.ProdviderId,
-                (pr, prov) => new { Provider = prov.Name, Name = pr.Name });
+            var t1_product = repository.GetProductById(Guid.Parse("4b0b95d6-f272-47b1-80da-28711621dfa9"));
+            //var providerContrib = repositoryContrib.GetProviderById(Guid.Parse("F08E1482-6C5D-4E8A-AE78-01417E19BEF8"));
+            Console.WriteLine($"{t1_product.ProductID}, {t1_product.Name}");
 
             Console.WriteLine("---Task 2---");
-
-            foreach (var provProducts in productsWithProviders)
-            {
-                Console.WriteLine(provProducts.Provider + " " + provProducts.Name);
-            }
-
-            var categories = storeContext.Categories;
-            var categoriesProducts = categories.Join(products,
-                cat => cat.CategoryId,
-                pr => pr.CategoryId,
-                (cat, pr) => new { CategoryId = cat.CategoryId, Category = cat.Name })
-                .GroupBy(cat => cat.CategoryId)
-                .Select(cat => new
-                {
-                    CategoryName = cat.Select(c=>c.Category).FirstOrDefault(),
-                    CategoryCount = cat.Count(),
-                });
+            var t2_product = repository.GetCategoryWithProductsById(Guid.Parse("caa70cb5-b151-4930-8e1f-bf9aef018762"));
+            //var providerContrib = repositoryContrib.GetProviderById(Guid.Parse("F08E1482-6C5D-4E8A-AE78-01417E19BEF8"));
+            Console.WriteLine($"{t2_product.CategoryName}, {t2_product.ProductID}, {t2_product.Name}");
 
             Console.WriteLine("---Task 3---");
-
-            foreach (var category in categoriesProducts)
+            var t3_product = repository.GetProducts();
+            //var providerContrib = repositoryContrib.GetProviderById(Guid.Parse("F08E1482-6C5D-4E8A-AE78-01417E19BEF8"));
+            foreach(var product in t3_product)
             {
-                Console.WriteLine(category.CategoryName + " " + category.CategoryCount);
+                Console.WriteLine($"{product.ProductID}, {product.Name}");
             }
-
-            var providersProductsDesc = products.Join(providers,
-                pr => pr.ProviderId,
-                prov => prov.ProdviderId,
-                (pr, prov) => new { ProviderId = prov.ProdviderId, Provider = prov.Name})
-                .GroupBy(prov => prov.ProviderId)
-                .Select(prov => new
-                {
-                    ProviderName = prov.Select(prov=>prov.Provider).FirstOrDefault(),
-                    ProductsCount = prov.Count(),
-                })
-                .OrderByDescending(prov => prov.ProductsCount);
 
             Console.WriteLine("---Task 4---");
-
-            foreach (var provider in providersProductsDesc)
-            {
-                Console.WriteLine(provider.ProviderName + " " + provider.ProductsCount);
-            }
-
-            var providerJhon = products.Join(providers,
-                pr => pr.ProviderId,
-                prov => prov.ProdviderId,
-                (pr, prov) => new Products { ProviderId = prov.ProdviderId, Name = pr.Name, CategoryId = pr.CategoryId, ProductType = pr.ProductType }).ToList()
-                .Where(prov => prov.ProviderId == Guid.Parse("fafcc8dd-54ba-408d-8ed7-677ccb2169b4"));
-
-            var providerTomas = products.Join(providers,
-                pr => pr.ProviderId,
-                prov => prov.ProdviderId,
-                (pr, prov) => new Products { ProviderId = prov.ProdviderId, Name = pr.Name, CategoryId = pr.CategoryId, ProductType = pr.ProductType }).ToList()
-                .Where(prov => prov.ProviderId == Guid.Parse("c797ed97-cc0c-47c5-8ab3-b92aac8cb024"));
-
-            var commonProducts = providerJhon.Join(providerTomas,
-                prJ => prJ.ProductType,
-                prT => prT.ProductType,
-                (prJ, prT) => new { ProviderJhon = prJ.ProviderId, ProviderTomas = prT.ProviderId, Product = prJ.ProductType});
-
-            Console.WriteLine("---Task 5.1---");
-
-            foreach (var common in commonProducts)
-            {
-                Console.WriteLine(common.ProviderJhon + " " + common.ProviderTomas + " " + common.Product);
-            }
-
-            Console.WriteLine("---Task 5.2---");
-
-            //foreach (var various in variousProducts)
-            //{
-            //    Console.WriteLine(various.ProviderId + " " + various.Name);
-            //}
+            var t4_product = repository.GetCategoryWithProductsById(Guid.Parse("caa70cb5-b151-4930-8e1f-bf9aef018762"));
+            //var providerContrib = repositoryContrib.GetProviderById(Guid.Parse("F08E1482-6C5D-4E8A-AE78-01417E19BEF8"));
+            Console.WriteLine($"{t2_product.CategoryName}, {t2_product.ProductID}, {t2_product.Name}");
 
             Console.ReadKey();
+        }
+
+        private static IConfiguration Initialize()
+        {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+            return builder.Build();
         }
     }
 }
