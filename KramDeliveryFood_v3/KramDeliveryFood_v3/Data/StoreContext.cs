@@ -32,7 +32,7 @@ namespace KramDeliveryFood_v3.Models
                 new Products { Id = Guid.Parse("3a236768-58fd-4bb9-bc8a-a986df3ff94a"), Name = "Hamburger", Price = 85.00M, Specifications = "278 ккал. б22 ,ж11 ,у19", Description = "творог, яйцо, мука, сметана", CategoryId = Guid.Parse("e4bcf5dc-c988-4072-927d-e4259ee0ac76"), ProviderId = Guid.Parse("c797ed97-cc0c-47c5-8ab3-b92aac8cb024"), ProductType = "Burger" }
                 );
             BaseProducts.Add(
-               new Products { Id = Guid.Parse("3a236768-58fd-4bb9-bc8a-a986df3ff94a"), Name = "Hamburger", Price = 85.00M, Specifications = "278 ккал. б22 ,ж11 ,у19", Description = "творог, яйцо, мука, сметана", CategoryId = Guid.Parse("e4bcf5dc-c988-4072-927d-e4259ee0ac76"), ProviderId = Guid.Parse("c797ed97-cc0c-47c5-8ab3-b92aac8cb024"), ProductType = "Burger" }
+                new Products { Id = Guid.Parse("3a236768-58fd-4bb9-bc8a-a986df3ff94a"), Name = "Hamburger", Price = 85.00M, Specifications = "278 ккал. б22 ,ж11 ,у19", Description = "творог, яйцо, мука, сметана", CategoryId = Guid.Parse("e4bcf5dc-c988-4072-927d-e4259ee0ac76"), ProviderId = Guid.Parse("fafcc8dd-54ba-408d-8ed7-677ccb2169b4"), ProductType = "Burger" }
                );
             BaseProducts.Add(
                 new Products { Id = Guid.Parse("2361e2c1-51b3-4dbb-af95-3adfcbfd3fdd"), Name = "Cappuccino", Price = 85.00M, Specifications = "278 ккал. б22 ,ж11 ,у19", Description = "творог, яйцо, мука, сметана", CategoryId = Guid.Parse("ce9cfd84-067f-4a2c-a210-0e066b22507b"), ProviderId = Guid.Parse("c797ed97-cc0c-47c5-8ab3-b92aac8cb024"), ProductType = "Coffe" }
