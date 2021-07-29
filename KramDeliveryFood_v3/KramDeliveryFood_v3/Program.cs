@@ -74,36 +74,43 @@ namespace KramDeliveryFood_v3
                 Console.WriteLine(provider.ProviderName + " " + provider.ProductsCount);
             }
 
-            var providerJhon = products.Join(providers,
-                pr => pr.ProviderId,
-                prov => prov.ProdviderId,
-                (pr, prov) => new Products { ProviderId = prov.ProdviderId, Name = pr.Name, CategoryId = pr.CategoryId, ProductType = pr.ProductType }).ToList()
-                .Where(prov => prov.ProviderId == Guid.Parse("fafcc8dd-54ba-408d-8ed7-677ccb2169b4"));
+            var providerJhon = products.Where(provider => provider.ProviderId == Guid.Parse("fafcc8dd-54ba-408d-8ed7-677ccb2169b4")).ToList();
+            var providerTomas = products.Where(provider => provider.ProviderId == Guid.Parse("c797ed97-cc0c-47c5-8ab3-b92aac8cb024")).ToList();
 
-            var providerTomas = products.Join(providers,
-                pr => pr.ProviderId,
-                prov => prov.ProdviderId,
-                (pr, prov) => new Products { ProviderId = prov.ProdviderId, Name = pr.Name, CategoryId = pr.CategoryId, ProductType = pr.ProductType }).ToList()
-                .Where(prov => prov.ProviderId == Guid.Parse("c797ed97-cc0c-47c5-8ab3-b92aac8cb024"));
+            //var providerJhon = products.Join(providers,
+            //    pr => pr.ProviderId,
+            //    prov => prov.ProdviderId,
+            //    (pr, prov) => new Products { ProviderId = prov.ProdviderId, Name = pr.Name, CategoryId = pr.CategoryId, ProductType = pr.ProductType }).ToList()
+            //    .Where(prov => prov.ProviderId == Guid.Parse("fafcc8dd-54ba-408d-8ed7-677ccb2169b4")).ToList();
 
-            var commonProducts = providerJhon.Join(providerTomas,
-                prJ => prJ.ProductType,
-                prT => prT.ProductType,
-                (prJ, prT) => new { ProviderJhon = prJ.ProviderId, ProviderTomas = prT.ProviderId, Product = prJ.ProductType});
+            //var providerTomas = products.Join(providers,
+            //    pr => pr.ProviderId,
+            //    prov => prov.ProdviderId,
+            //    (pr, prov) => new Products { ProviderId = prov.ProdviderId, Name = pr.Name, CategoryId = pr.CategoryId, ProductType = pr.ProductType }).ToList()
+            //    .Where(prov => prov.ProviderId == Guid.Parse("c797ed97-cc0c-47c5-8ab3-b92aac8cb024")).ToList();
+
+            var commonProducts = providerTomas.Intersect(providerJhon, new ProductsComparer()).ToList();
+
+            //var commonProducts = providerJhon.Join(providerTomas,
+            //    prJ => prJ.ProductType,
+            //    prT => prT.ProductType,
+            //    (prJ, prT) => new { ProviderJhon = prJ.ProviderId, ProviderTomas = prT.ProviderId, Product = prJ.ProductType});
 
             Console.WriteLine("---Task 5.1---");
 
             foreach (var common in commonProducts)
             {
-                Console.WriteLine(common.ProviderJhon + " " + common.ProviderTomas + " " + common.Product);
+                Console.WriteLine(common.Id + " " + common.Name + " " + common.ProductType);
             }
+
+            var variousProducts = providerJhon.Except(providerTomas, new ProductsComparer()).ToList();
 
             Console.WriteLine("---Task 5.2---");
 
-            //foreach (var various in variousProducts)
-            //{
-            //    Console.WriteLine(various.ProviderId + " " + various.Name);
-            //}
+            foreach (var various in variousProducts)
+            {
+                Console.WriteLine(various.ProviderId + " " + various.Name);
+            }
 
             Console.ReadKey();
         }

@@ -7,12 +7,12 @@ namespace KramDeliveryFood_v3.Service
     {
         public override bool Equals(Products x, Products y)
         {
-            return x.ProductType == y.ProductType;
+            return x?.ProductType == y?.ProductType;
         }
 
         public override int GetHashCode(Products products)
         {
-            return products.GetHashCode();
+            return products.ProductType.GetHashCode();
         }
     }
 }
