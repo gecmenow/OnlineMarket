@@ -1,8 +1,8 @@
-﻿using KramDeliveryFood_v3.Models;
+﻿using KramDelivery.Domain.Models;
 using System;
 using System.Collections.Generic;
 
-namespace KramDeliveryFood_v3.Interfaces
+namespace KramDelivery.Domain.Interfaces
 {
     public interface IRepository
     {

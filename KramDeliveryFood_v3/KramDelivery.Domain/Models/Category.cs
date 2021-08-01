@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace KramDeliveryFood_v3.Models
+namespace KramDelivery.Domain.Models
 {
-    public class Categorie
+    public class Category
     {
         public Guid CategoryId { get; set; }
         public string Name { get; set; }

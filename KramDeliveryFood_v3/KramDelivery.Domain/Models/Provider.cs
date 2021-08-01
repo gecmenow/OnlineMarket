@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace KramDeliveryFood_v3.Models
+namespace KramDelivery.Domain.Models
 {
     public class Provider
     {
-        public Guid ProdviderId { get; set; }
+        public Guid ProviderId { get; set; }
         public string Name { get; set; }
         public string PhoneNumber { get; set; }
         public string Address { get; set; }

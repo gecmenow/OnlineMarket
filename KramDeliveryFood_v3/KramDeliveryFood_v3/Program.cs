@@ -1,5 +1,6 @@
-﻿using KramDeliveryFood_v3.Models;
-using KramDeliveryFood_v3.Repositories;
+﻿using KramDelivery.Domain.Models;
+using KramDelivery.Domain.Service;
+using KramDeliveryFood.Data;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.IO;
@@ -9,44 +10,68 @@ namespace KramDeliveryFood_v3
 {
     public class Program
     {
+        private static DataContext _context;
         static void Main(string[] args)
         {
-            var configuration = Initialize();
-            var repository = new Repository(configuration.GetConnectionString("DefaultConnection"));
-            //var repositoryContrib = new RepoContrib(configuration.GetConnectionString("DefaultConnection"));
+            _context = new DataContext();
+            _context.Database.EnsureCreated();
+            var data = new StoreContext();
+            data.InitProducts();
+            var productService = new ProductService(data);
+            var products = productService.GetProducts();
+            var productsByAlphabet = products.OrderBy(p=>p.Name).ToList();
+            Console.WriteLine("---Task 1 ---\n");
 
-            Console.WriteLine("---Task 1---");
-            var t1_product = repository.GetProductById(Guid.Parse("4b0b95d6-f272-47b1-80da-28711621dfa9"));
-            //var providerContrib = repositoryContrib.GetProviderById(Guid.Parse("F08E1482-6C5D-4E8A-AE78-01417E19BEF8"));
-            Console.WriteLine($"{t1_product.ProductID}, {t1_product.Name}");
-
-            Console.WriteLine("---Task 2---");
-            var t2_product = repository.GetCategoryWithProductsById(Guid.Parse("caa70cb5-b151-4930-8e1f-bf9aef018762"));
-            //var providerContrib = repositoryContrib.GetProviderById(Guid.Parse("F08E1482-6C5D-4E8A-AE78-01417E19BEF8"));
-            Console.WriteLine($"{t2_product.CategoryName}, {t2_product.ProductID}, {t2_product.Name}");
-
-            Console.WriteLine("---Task 3---");
-            var t3_product = repository.GetProducts();
-            //var providerContrib = repositoryContrib.GetProviderById(Guid.Parse("F08E1482-6C5D-4E8A-AE78-01417E19BEF8"));
-            foreach(var product in t3_product)
+            foreach (var product in productsByAlphabet)
             {
-                Console.WriteLine($"{product.ProductID}, {product.Name}");
+                Console.WriteLine(product.Name);
             }
 
-            Console.WriteLine("---Task 4---");
-            var t4_product = repository.GetCategoryWithProductsById(Guid.Parse("caa70cb5-b151-4930-8e1f-bf9aef018762"));
-            //var providerContrib = repositoryContrib.GetProviderById(Guid.Parse("F08E1482-6C5D-4E8A-AE78-01417E19BEF8"));
-            Console.WriteLine($"{t2_product.CategoryName}, {t2_product.ProductID}, {t2_product.Name}");
+            var productsWithProvider = products.Select(p => new {ProviderName = p.Provider.Name, ProcutName = p.Name }).ToList();
+            Console.WriteLine("\n---Task 2 ---\n");
+
+            foreach (var product in productsWithProvider)
+            {
+                Console.WriteLine(product.ProviderName + " - " + product.ProcutName);
+            }
+
+            var categoryProductsCount = products.GroupBy(p => p.CategoryId).Select(c => new { CategoryName = c.Select(c => c.Categorie.Name).FirstOrDefault(), CategoryCount = c.Count() }).ToList();
+            Console.WriteLine("\n---Task 3 ---\n");
+
+            foreach (var category in categoryProductsCount)
+            {
+                Console.WriteLine(category.CategoryName + " - " + category.CategoryCount);
+            }
+
+            var providerProductDesc = products.GroupBy(p => p.ProviderId).Select(p => new { ProviderName = p.Select(p => p.Provider.Name).FirstOrDefault(), ProductsCount = p.Count() }).OrderByDescending(p => p.ProductsCount).ToList();
+            Console.WriteLine("\n---Task 4 ---\n");
+
+            foreach (var product in providerProductDesc)
+            {
+                Console.WriteLine(product.ProviderName + " - " + product.ProductsCount);
+            }
+
+            var productsJhon = products.Where(provider => provider.ProviderId == Guid.Parse("fafcc8dd-54ba-408d-8ed7-677ccb2169b4")).ToList();
+            var productsTomas = products.Where(provider => provider.ProviderId == Guid.Parse("c797ed97-cc0c-47c5-8ab3-b92aac8cb024")).ToList();
+            var commonProducts = productsJhon.Intersect(productsJhon, new ProductComparer()).ToList();
+            Console.WriteLine("---Task 5.1---");
+
+            foreach (var common in commonProducts)
+            {
+                Console.WriteLine(common.Name + " " + common.ProductType);
+            }
+
+            var variousProductsJhon = productsJhon.Except(productsTomas, new ProductComparer()).ToList();
+            var variousProductsTomas = productsTomas.Except(productsJhon, new ProductComparer()).ToList();
+            var variousProducts = variousProductsJhon.Concat(variousProductsTomas).ToList();
+            Console.WriteLine("---Task 5.2---");
+
+            foreach (var various in variousProducts)
+            {
+                Console.WriteLine(various.ProviderId + " " + various.Name);
+            }
 
             Console.ReadKey();
-        }
-
-        private static IConfiguration Initialize()
-        {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-            return builder.Build();
         }
     }
 }
