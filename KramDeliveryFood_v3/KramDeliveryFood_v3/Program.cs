@@ -54,7 +54,7 @@ namespace KramDeliveryFood_v3
             var productsJhon = products.Where(provider => provider.ProviderId == Guid.Parse("fafcc8dd-54ba-408d-8ed7-677ccb2169b4")).ToList();
             var productsTomas = products.Where(provider => provider.ProviderId == Guid.Parse("c797ed97-cc0c-47c5-8ab3-b92aac8cb024")).ToList();
             var commonProducts = productsJhon.Intersect(productsJhon, new ProductComparer()).ToList();
-            Console.WriteLine("---Task 5.1---");
+            Console.WriteLine("\n---Task 5.1---\n");
 
             foreach (var common in commonProducts)
             {
@@ -64,7 +64,7 @@ namespace KramDeliveryFood_v3
             var variousProductsJhon = productsJhon.Except(productsTomas, new ProductComparer()).ToList();
             var variousProductsTomas = productsTomas.Except(productsJhon, new ProductComparer()).ToList();
             var variousProducts = variousProductsJhon.Concat(variousProductsTomas).ToList();
-            Console.WriteLine("---Task 5.2---");
+            Console.WriteLine("\n---Task 5.2---\n");
 
             foreach (var various in variousProducts)
             {
