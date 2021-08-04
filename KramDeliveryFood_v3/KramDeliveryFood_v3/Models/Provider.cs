@@ -2,7 +2,7 @@
 
 namespace KramDeliveryFood_v3.Models
 {
-    public class Providers
+    public class Provider
     {
         public Guid ProdviderId { get; set; }
         public string Name { get; set; }

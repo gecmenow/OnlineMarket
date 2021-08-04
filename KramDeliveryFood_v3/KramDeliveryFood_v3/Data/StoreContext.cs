@@ -5,14 +5,14 @@ namespace KramDeliveryFood_v3.Models
 {
     public class StoreContext : IData
     {
-        public IList<Products> BaseProducts { get; set; }
-        public IList<Orders> Orders { get; set; }
-        public Orders Order { get; set; }
-        public IList<Products> OrderProducts { get; set; }
+        public IList<Product> BaseProducts { get; set; }
+        public IList<Order> Orders { get; set; }
+        public Order Order { get; set; }
+        public IList<Product> OrderProducts { get; set; }
 
         public StoreContext()
         {
-            BaseProducts = new List<Products>();
+            BaseProducts = new List<Product>();
         }
 
         public void InitProducts()
