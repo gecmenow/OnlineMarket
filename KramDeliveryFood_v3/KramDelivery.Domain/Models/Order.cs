@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KramDelivery.Domain.Enums;
+using System;
 using System.Collections.Generic;
 
 namespace KramDelivery.Domain.Models
@@ -13,10 +14,5 @@ namespace KramDelivery.Domain.Models
         public OrderStatus OrderStatus { get; set; }
         public Guid BuyerId { get; set; }
         public Buyer Buyer { get; set; }
-
-        //public Order()
-        //{
-        //    Products = new List<Product>();
-        //}
     }
 }
