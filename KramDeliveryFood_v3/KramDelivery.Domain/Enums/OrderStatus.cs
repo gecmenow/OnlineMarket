@@ -1,4 +1,4 @@
-﻿namespace KramDelivery.Domain.Models
+﻿namespace KramDelivery.Domain.Enums
 {
     public enum OrderStatus
     {
