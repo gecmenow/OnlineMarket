@@ -3,14 +3,14 @@ using System.Collections.Generic;
 
 namespace KramDeliveryFood_v3.Service
 {
-    public class ProductsComparer : EqualityComparer<Products>
+    public class ProductsComparer : EqualityComparer<Product>
     {
-        public override bool Equals(Products x, Products y)
+        public override bool Equals(Product x, Product y)
         {
             return x?.ProductType == y?.ProductType;
         }
 
-        public override int GetHashCode(Products products)
+        public override int GetHashCode(Product products)
         {
             return products.ProductType.GetHashCode();
         }

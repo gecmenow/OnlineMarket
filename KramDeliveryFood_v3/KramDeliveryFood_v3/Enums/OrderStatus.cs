@@ -1,4 +1,4 @@
-﻿namespace KramDeliveryFood_v3.Models
+﻿namespace KramDeliveryFood_v3.Enums
 {
     public enum OrderStatus
     {

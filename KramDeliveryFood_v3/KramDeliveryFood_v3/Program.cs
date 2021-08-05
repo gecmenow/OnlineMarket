@@ -20,7 +20,7 @@ namespace KramDeliveryFood_v3
 
             foreach(var product in productsAsc)
             {
-                Console.WriteLine(product.Id + " " + product.Name);
+                Console.WriteLine(product.ProductId + " " + product.Name);
             }
 
             var providers = storeContext.Providers;
