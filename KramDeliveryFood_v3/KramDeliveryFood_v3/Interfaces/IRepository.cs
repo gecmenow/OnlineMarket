@@ -8,8 +8,8 @@ namespace KramDeliveryFood_v3.Interfaces
     {
         List<Product> GetProducts();
         Product GetProductById(Guid id);
-        Guid AddProducts(Product provider);
-        Guid UpdateProducts(Product provider);
-        Guid DeleteProducts();
+        void AddProduct(Product product);
+        void UpdateProduct(Product product);
+        void DeleteProduct(Guid id);
     }
 }

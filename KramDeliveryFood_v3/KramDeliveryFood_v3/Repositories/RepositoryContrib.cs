@@ -10,12 +10,12 @@ namespace KramDeliveryFood_v3.Repositories
 {
     public class RepositoryContrib : IRepository
     {
-        public Guid AddProducts(Product provider)
+        public void AddProduct(Product provider)
         {
             throw new NotImplementedException();
         }
 
-        public Guid DeleteProducts()
+        public void DeleteProduct(Guid Id)
         {
             throw new NotImplementedException();
         }
@@ -30,7 +30,7 @@ namespace KramDeliveryFood_v3.Repositories
             throw new NotImplementedException();
         }
 
-        public Guid UpdateProducts(Product provider)
+        public void UpdateProduct(Product product)
         {
             throw new NotImplementedException();
         }

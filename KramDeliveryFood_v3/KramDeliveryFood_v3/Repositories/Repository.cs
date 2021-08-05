@@ -19,14 +19,79 @@ namespace KramDeliveryFood_v3.Repositories
         {
             db = new SqlConnection(connectionString);
         }
-        public Guid AddProducts(Product provider)
+        public void AddProduct(Product product)
         {
-            throw new NotImplementedException();
+            var sql = "INSERT INTO [dbo].[Products]([ProductID], [Name], [CategoryId], [CategoryName], [ProviderId], [Price], [Specifications], [Description], [ProductType]) " +
+                "VALUES " +
+                "(@ProductId, @Name, @CategoryId, "+
+                "@CategoryName, @ProviderId, @Price,"+ 
+                "@Specifications, @Description, @ProductType)";
+
+            db.Execute(sql, new
+            {
+                product.ProductId,
+                product.Name,
+                product.CategoryId,
+                product.CategoryName,
+                product.ProviderId,
+                product.Price,
+                product.Specifications,
+                product.Description,
+                product.ProductType,
+            });
         }
 
-        public Guid DeleteProducts()
+        public void AddProductByCategory(Product product, Guid id)
         {
-            throw new NotImplementedException();
+            var sqlCategoryName = "SELECT * " +
+                "FROM Categories " +
+                "WHERE Categories.CategoryID = @id";
+            var categoryName = db.Query<Categorie>(sqlCategoryName, new { id }).SingleOrDefault().CategoryName;
+            var sql =
+                "INSERT INTO [dbo].[Products]([ProductID], [Name], [CategoryId], [CategoryName], [ProviderId], [Price], [Specifications], [Description], [ProductType])" +
+                "VALUES " +
+                "(@ProductId, @Name, @CategoryId, " +
+                "@CategoryName, @ProviderId, @Price," +
+                "@Specifications, @Description, @ProductType)";
+
+            db.Execute(sql, new
+            {
+                product.ProductId,
+                product.Name,
+                product.CategoryId,
+                categoryName,
+                product.ProviderId,
+                product.Price,
+                product.Specifications,
+                product.Description,
+                product.ProductType,
+            });
+        }
+
+        public void DeleteProduct(Guid ProductId)
+        {
+            var sql = "DELETE FROM [dbo].[Products] WHERE ProductId = @ProductId";
+
+            db.Execute(sql, new
+            {
+                ProductId,
+            });
+        }
+
+        public void DeleteProductByCategory(Guid ProductId, Guid CategoryId)
+        {
+            var sqlCategoryName = "SELECT * " +
+                "FROM Categories " +
+                "WHERE Categories.CategoryID = @CategoryId";
+            var categoryName = db.Query<Categorie>(sqlCategoryName, new { CategoryId }).SingleOrDefault().CategoryName;
+
+            var sql = "DELETE FROM [dbo].[Products] WHERE ProductId = @ProductId AND CategoryName = @categoryName";
+
+            db.Execute(sql, new
+            {
+                ProductId,
+                categoryName
+            });
         }
 
         public Product GetProductById(Guid id)
@@ -34,7 +99,7 @@ namespace KramDeliveryFood_v3.Repositories
             var sql = "SELECT * from Products " +
             "WHERE Products.ProductID = @id";
 
-            return db.Query<Product>(sql, new { id = id }).SingleOrDefault();
+            return db.Query<Product>(sql, new { id }).SingleOrDefault();
         }
 
         public Product GetCategoryWithProductsById(Guid id)
@@ -44,7 +109,7 @@ namespace KramDeliveryFood_v3.Repositories
                     "INNER JOIN Products ON Categories.CategoryID = Products.CategoryID " +
                     "WHERE Categories.CategoryID = @id ";
 
-            return db.Query<Product>(sql, new { id = id }).SingleOrDefault();
+            return db.Query<Product>(sql, new { id }).FirstOrDefault();
         }
 
         public List<Product> GetProducts()
@@ -65,9 +130,35 @@ namespace KramDeliveryFood_v3.Repositories
             return db.Query<List<Product>>(sql).SingleOrDefault();
         }
 
-        public Guid UpdateProducts(Product provider)
+        public void UpdateProduct(Product product)
         {
-            throw new NotImplementedException();
+            var sql = "UPDATE Products " +
+                "SET Name = @Name " +
+                "WHERE ProductId = @ProductId";
+
+                db.Execute(sql, new
+                {
+                    product.Name,
+                    product.ProductId,
+                });
+        }
+
+        public void UpdateProductByCategory(Product product, Guid Categoryid)
+        {
+            var sqlCategoryName = "SELECT * " +
+                "FROM Categories " +
+                "WHERE Categories.CategoryID = @Categoryid";
+            var categoryName = db.Query<Categorie>(sqlCategoryName, new { Categoryid }).SingleOrDefault().CategoryName;
+
+            var sql = "UPDATE Products " +
+                "SET Name = @Name " +
+                "WHERE CategoryName = @categoryName";
+
+            db.Execute(sql, new
+            {
+                product.Name,
+                categoryName,
+            });
         }
     }
 }
