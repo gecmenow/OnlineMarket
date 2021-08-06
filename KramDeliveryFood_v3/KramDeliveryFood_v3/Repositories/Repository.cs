@@ -112,12 +112,12 @@ namespace KramDeliveryFood_v3.Repositories
             return db.Query<Product>(sql, new { id }).FirstOrDefault();
         }
 
-        public List<Product> GetProducts()
+        public IList<Product> GetProducts()
         {
             var sql = "SELECT *" +
                    "FROM Products";
 
-            List<Product> list = db.Query<Product>(sql).ToList();
+            IList<Product> list = db.Query<Product>(sql).ToList();
             return list;
         }
 

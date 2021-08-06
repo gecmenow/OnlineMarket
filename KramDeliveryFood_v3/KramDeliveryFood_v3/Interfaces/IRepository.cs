@@ -6,7 +6,7 @@ namespace KramDeliveryFood_v3.Interfaces
 {
     public interface IRepository
     {
-        List<Product> GetProducts();
+        IList<Product> GetProducts();
         Product GetProductById(Guid id);
         void AddProduct(Product product);
         void UpdateProduct(Product product);
