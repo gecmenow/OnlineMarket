@@ -19,7 +19,7 @@ namespace KramDeliveryFood_v3
             data.InitProducts();
             var productService = new ProductService(data);
             var products = productService.GetProducts();
-            var productsByAlphabet = products.OrderBy(p=>p.Name).ToList();
+            var productsByAlphabet = products.OrderBy(p => p.Name).ToList();
             Console.WriteLine("---Task 1 ---\n");
 
             foreach (var product in productsByAlphabet)
@@ -27,7 +27,7 @@ namespace KramDeliveryFood_v3
                 Console.WriteLine(product.Name);
             }
 
-            var productsWithProvider = products.Select(p => new {ProviderName = p.Provider.Name, ProcutName = p.Name }).ToList();
+            var productsWithProvider = products.Select(p => new { ProviderName = p.Provider.Name, ProcutName = p.Name }).ToList();
             Console.WriteLine("\n---Task 2 ---\n");
 
             foreach (var product in productsWithProvider)
