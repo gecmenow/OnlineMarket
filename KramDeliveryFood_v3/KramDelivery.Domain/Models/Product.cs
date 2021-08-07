@@ -8,7 +8,7 @@ namespace KramDelivery.Domain.Models
         public Guid ProductID { get; set; }
         public Category Categorie { get; set; }
         public Provider Provider { get; set; }
-        private string Name { get; set; }
+        public string Name { get; set; }
         public Guid CategoryId { get; set; }
         public string CategoryName { get; set; }
         public Guid ProviderId { get; set; }
