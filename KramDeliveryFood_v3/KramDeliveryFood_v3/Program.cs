@@ -15,11 +15,11 @@ namespace KramDeliveryFood_v3
             storeContext.InitProducts();
             var productService = new ProductService(storeContext);
             var products = productService.GetAllPRoducts();
-            var productsAsc = products.OrderBy(p => p.Name);
+            var sortedProducts = products.OrderBy(p => p.Name);
 
             Console.WriteLine("---Task 1---");
 
-            foreach(var product in productsAsc)
+            foreach(var product in sortedProducts)
             {
                 Console.WriteLine(product.ProductId + " " + product.Name);
             }
@@ -42,11 +42,11 @@ namespace KramDeliveryFood_v3
                 Console.WriteLine(category.CategoryName + " " + category.CategoryCount);
             }
 
-            var providersProductsDesc = productService.GetProvidersProductsDesc();
+            var sortedProvidersProducts = productService.GetProvidersProductsDesc();
 
             Console.WriteLine("---Task 4---");
 
-            foreach (var provider in providersProductsDesc)
+            foreach (var provider in sortedProvidersProducts)
             {
                 Console.WriteLine(provider.ProviderName + " " + provider.ProductsCount);
             }

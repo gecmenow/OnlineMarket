@@ -11,5 +11,8 @@ namespace KramDeliveryFood_v3.Interfaces
     {
         IList<Product> GetAllPRoducts();
         IList<(string Provider, string Product)> GetProductsWithProviders();
+        IList<(string CategoryName, int CategoryCount)> GetCategoriesProducts();
+        IList<(string ProviderName, int ProductsCount)> GetProvidersProductsDesc();
+        (IList<Product>, IList<Product>) GetGrouppedProducts(Guid firstProvider, Guid secondProvider);
     }
 }
