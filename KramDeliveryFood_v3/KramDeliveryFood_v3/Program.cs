@@ -9,15 +9,10 @@ namespace KramDeliveryFood_v3
 {
     public class Program
     {
-        private static DataContext _context;
         static void Main(string[] args)
         {
-            _context = new DataContext();
-            _context.Database.EnsureCreated();
-            var data = new StoreContext();
-            data.InitProducts();
-            var productService = new ProductService(data);
-            var products = productService.GetProducts();
+            var unitOfWork = new UnitOfWork();
+            var products = unitOfWork.Products.GetProducts();
             var productsByAlphabet = products.OrderBy(p => p.Name).ToList();
             Console.WriteLine("---Task 1 ---\n");
 

@@ -17,7 +17,6 @@ namespace KramDelivery.Domain.Models
         public string Description { get; set; }
         public string ProductType { get; set; }
         public int ProductCount { get; set; }
-        public int OrderId { get; set; }
         public List<Order> OrderProducts = new();
     }
 }
