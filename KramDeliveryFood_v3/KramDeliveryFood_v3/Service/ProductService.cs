@@ -69,7 +69,7 @@ namespace KramDeliveryFood_v3.Service
             return providersProductsDesc;
         }
 
-        public (IList<Product>, IList<Product>) GetCommonProducts(Guid firstProvider, Guid secondProvider)
+        public (IList<Product>, IList<Product>) GetGrouppedProducts(Guid firstProvider, Guid secondProvider)
         {
             var providerJhon = _products.Where(provider => provider.ProviderId == firstProvider).ToList();
             var providerTomas = _products.Where(provider => provider.ProviderId == secondProvider).ToList();

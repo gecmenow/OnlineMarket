@@ -51,7 +51,7 @@ namespace KramDeliveryFood_v3
                 Console.WriteLine(provider.ProviderName + " " + provider.ProductsCount);
             }
 
-            var groupedProducts = productService.GetCommonProducts(
+            var groupedProducts = productService.GetGrouppedProducts(
                 Guid.Parse("fafcc8dd-54ba-408d-8ed7-677ccb2169b4"), 
                 Guid.Parse("c797ed97-cc0c-47c5-8ab3-b92aac8cb024")
                 );
