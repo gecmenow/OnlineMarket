@@ -26,7 +26,7 @@ namespace KramDeliveryFood_v3
             var providers = storeContext.Providers;
             var productsWithProviders = products.Join(providers,
                 pr => pr.ProviderId,
-                prov => prov.ProdviderId,
+                prov => prov.ProviderId,
                 (pr, prov) => new { Provider = prov.Name, Name = pr.Name });
 
             Console.WriteLine("---Task 2---");
@@ -57,8 +57,8 @@ namespace KramDeliveryFood_v3
 
             var providersProductsDesc = products.Join(providers,
                 pr => pr.ProviderId,
-                prov => prov.ProdviderId,
-                (pr, prov) => new { ProviderId = prov.ProdviderId, Provider = prov.Name})
+                prov => prov.ProviderId,
+                (pr, prov) => new { ProviderId = prov.ProviderId, Provider = prov.Name})
                 .GroupBy(prov => prov.ProviderId)
                 .Select(prov => new
                 {
