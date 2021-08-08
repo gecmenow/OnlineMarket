@@ -48,13 +48,13 @@ namespace KramDeliveryFood_v3.Models
                 );
 
             Providers.Add(
-                new Provider { ProdviderId = Guid.Parse("880e63a0-c3a5-4afe-bf01-277a3da15da6"), Name = "Lucas", Address = "ul.Ulichnaya 1", PhoneNumber = "123456789" });
+                new Provider { ProviderId = Guid.Parse("880e63a0-c3a5-4afe-bf01-277a3da15da6"), Name = "Lucas", Address = "ul.Ulichnaya 1", PhoneNumber = "123456789" });
             Providers.Add(
-                new Provider { ProdviderId = Guid.Parse("c797ed97-cc0c-47c5-8ab3-b92aac8cb024"), Name = "Tomas", Address = "ul.Centralnaya", PhoneNumber = "987654321" });
+                new Provider { ProviderId = Guid.Parse("c797ed97-cc0c-47c5-8ab3-b92aac8cb024"), Name = "Tomas", Address = "ul.Centralnaya", PhoneNumber = "987654321" });
             Providers.Add(
-                new Provider { ProdviderId = Guid.Parse("fafcc8dd-54ba-408d-8ed7-677ccb2169b4"), Name = "Jhon", Address = "ul.Mira", PhoneNumber = "147258369" });
+                new Provider { ProviderId = Guid.Parse("fafcc8dd-54ba-408d-8ed7-677ccb2169b4"), Name = "Jhon", Address = "ul.Mira", PhoneNumber = "147258369" });
             Providers.Add(
-                new Provider { ProdviderId = Guid.Parse("f5ea11aa-5c42-4ca3-8a9a-c1e5c11eba83"), Name = "Steve", Address = "ul.Mira", PhoneNumber = "147258369" });
+                new Provider { ProviderId = Guid.Parse("f5ea11aa-5c42-4ca3-8a9a-c1e5c11eba83"), Name = "Steve", Address = "ul.Mira", PhoneNumber = "147258369" });
 
             Categories.Add(
                 new Category { CategoryId = Guid.Parse("e4bcf5dc-c988-4072-927d-e4259ee0ac76"), Name = "Burgers" });
