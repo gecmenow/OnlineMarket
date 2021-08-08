@@ -13,7 +13,8 @@ namespace KramDeliveryFood_v3
         {
             var storeContext = new StoreContext();
             storeContext.InitProducts();
-            var products = storeContext.BaseProducts;
+            var productService = new ProductService(storeContext);
+            var products = productService.GetAllPRoducts();
             var productsAsc = products.OrderBy(p => p.Name);
 
             Console.WriteLine("---Task 1---");
@@ -23,30 +24,16 @@ namespace KramDeliveryFood_v3
                 Console.WriteLine(product.ProductId + " " + product.Name);
             }
 
-            var providers = storeContext.Providers;
-            var productsWithProviders = products.Join(providers,
-                pr => pr.ProviderId,
-                prov => prov.ProviderId,
-                (pr, prov) => new { Provider = prov.Name, Name = pr.Name });
+            var productsWithProviders = productService.GetProductsWithProviders();
 
             Console.WriteLine("---Task 2---");
 
             foreach (var provProducts in productsWithProviders)
             {
-                Console.WriteLine(provProducts.Provider + " " + provProducts.Name);
+                Console.WriteLine(provProducts.Provider + " " + provProducts.Product);
             }
 
-            var categories = storeContext.Categories;
-            var categoriesProducts = categories.Join(products,
-                cat => cat.CategoryId,
-                pr => pr.CategoryId,
-                (cat, pr) => new { CategoryId = cat.CategoryId, Category = cat.Name })
-                .GroupBy(cat => cat.CategoryId)
-                .Select(cat => new
-                {
-                    CategoryName = cat.Select(c=>c.Category).FirstOrDefault(),
-                    CategoryCount = cat.Count(),
-                });
+            var categoriesProducts = productService.GetCategoriesProducts();
 
             Console.WriteLine("---Task 3---");
 
@@ -55,17 +42,7 @@ namespace KramDeliveryFood_v3
                 Console.WriteLine(category.CategoryName + " " + category.CategoryCount);
             }
 
-            var providersProductsDesc = products.Join(providers,
-                pr => pr.ProviderId,
-                prov => prov.ProviderId,
-                (pr, prov) => new { ProviderId = prov.ProviderId, Provider = prov.Name})
-                .GroupBy(prov => prov.ProviderId)
-                .Select(prov => new
-                {
-                    ProviderName = prov.Select(prov=>prov.Provider).FirstOrDefault(),
-                    ProductsCount = prov.Count(),
-                })
-                .OrderByDescending(prov => prov.ProductsCount);
+            var providersProductsDesc = productService.GetProvidersProductsDesc();
 
             Console.WriteLine("---Task 4---");
 
@@ -74,25 +51,21 @@ namespace KramDeliveryFood_v3
                 Console.WriteLine(provider.ProviderName + " " + provider.ProductsCount);
             }
 
-            var providerJhon = products.Where(provider => provider.ProviderId == Guid.Parse("fafcc8dd-54ba-408d-8ed7-677ccb2169b4")).ToList();
-            var providerTomas = products.Where(provider => provider.ProviderId == Guid.Parse("c797ed97-cc0c-47c5-8ab3-b92aac8cb024")).ToList();
-
-            var commonProducts = providerTomas.Intersect(providerJhon, new ProductsComparer()).ToList();
+            var groupedProducts = productService.GetCommonProducts(
+                Guid.Parse("fafcc8dd-54ba-408d-8ed7-677ccb2169b4"), 
+                Guid.Parse("c797ed97-cc0c-47c5-8ab3-b92aac8cb024")
+                );
 
             Console.WriteLine("---Task 5.1---");
 
-            foreach (var common in commonProducts)
+            foreach (var common in groupedProducts.Item1)
             {
                 Console.WriteLine(common.Name + " " + common.ProductType);
             }
 
-            var variousProductsJhon = providerJhon.Except(providerTomas, new ProductsComparer()).ToList();
-            var variousProductsTomas = providerTomas.Except(providerJhon, new ProductsComparer()).ToList();
-            var variousProducts = variousProductsJhon.Concat(variousProductsTomas).ToList();
-
             Console.WriteLine("---Task 5.2---");
 
-            foreach (var various in variousProducts)
+            foreach (var various in groupedProducts.Item2)
             {
                 Console.WriteLine(various.ProviderId + " " + various.Name);
             }
