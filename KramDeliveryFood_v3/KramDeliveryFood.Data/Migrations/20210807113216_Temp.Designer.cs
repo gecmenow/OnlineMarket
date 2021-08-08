@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KramDeliveryFood.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210801154036_init")]
-    partial class init
+    [Migration("20210807113216_Temp")]
+    partial class Temp
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -129,6 +129,9 @@ namespace KramDeliveryFood.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")

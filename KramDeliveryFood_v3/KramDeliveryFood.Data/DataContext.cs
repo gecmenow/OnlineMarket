@@ -1,6 +1,7 @@
 ﻿using KramDelivery.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
+//using System.Data.Entity;
 
 namespace KramDeliveryFood.Data
 {

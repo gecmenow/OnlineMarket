@@ -1,7 +1,6 @@
 ﻿using KramDelivery.Domain.Models;
 using KramDelivery.Domain.Service;
 using KramDeliveryFood.Data;
-using Microsoft.Extensions.Configuration;
 using System;
 using System.IO;
 using System.Linq;
