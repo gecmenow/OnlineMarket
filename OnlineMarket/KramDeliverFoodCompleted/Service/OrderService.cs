@@ -13,23 +13,23 @@ namespace KramDeliverFoodCompleted.Service
         public OrderService(IData data, ILoggerService loggerService)
         {
             _data = data;
-            _data.Orders = new List<Order>();
-            _data.Order = new Order();
+            _data.Orders = new List<Orders>();
+            _data.Order = new Orders();
             _loggerService = loggerService;
         }
 
-        public void AddProductToOrder(Product product)
+        public void AddProductToOrder(Products product)
         {
             _data.Order.OrderProducts.Add(product);
             _loggerService.AddLog("Product was added to order " + product.Id);
         }
 
-        public Order GetOrder()
+        public Orders GetOrder()
         {
             return _data.Order;
         }
 
-        public IList<Order> GetOrders()
+        public IList<Orders> GetOrders()
         {
             return _data.Orders;
         }
@@ -58,7 +58,7 @@ namespace KramDeliverFoodCompleted.Service
             return false;
         }
 
-        public void CompleteOrder(Order order)
+        public void CompleteOrder(Orders order)
         {
             _data.Orders.Add(order);
         }

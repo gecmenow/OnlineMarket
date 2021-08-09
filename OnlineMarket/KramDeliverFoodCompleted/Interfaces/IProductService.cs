@@ -5,9 +5,9 @@ namespace KramDeliverFoodCompleted.Interfaces
 {
     public interface IProductService
     {
-        void AddProduct(Product product);
-        IList<Product> GetProducts();
+        void AddProduct(Products product);
+        IList<Products> GetProducts();
         bool IsRealProductId(int input);
-        Product GetProductById(int input);
+        Products GetProductById(int input);
     }
 }

@@ -16,7 +16,7 @@ namespace KramDeliverFoodCompleted.Interaction
         public void AddProduct()
         {
             ProviderMessenger.ShowAddingProductMessage();
-            var product = new Product();
+            var product = new Products();
             product.Id = Guid.NewGuid();
             Console.Write("Type product name: ");
             product.Name = Console.ReadLine();

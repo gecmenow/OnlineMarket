@@ -6,7 +6,7 @@ namespace KramDeliverFoodCompleted.Interaction
 {
     public class BuyerMessenger
     {
-        public static void ShowBuyerProducts(IEnumerable<Product> products)
+        public static void ShowBuyerProducts(IEnumerable<Products> products)
         {
             Console.WriteLine("We've got for you these products\n");
             var counter = 0;
@@ -18,7 +18,7 @@ namespace KramDeliverFoodCompleted.Interaction
             }
         }
 
-        public static void ShowBuyerOrders(IList<Order> orders)
+        public static void ShowBuyerOrders(IList<Orders> orders)
         {
             Console.WriteLine("\nYou ordered these products\n");
             var counter = 0;

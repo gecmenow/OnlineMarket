@@ -2,7 +2,7 @@
 
 namespace KramDeliverFoodCompleted.Models
 {
-    public class Product
+    public class Products
     {
         public Guid Id { get; set; }
         private string _name { get; set; }
