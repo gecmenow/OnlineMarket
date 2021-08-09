@@ -43,10 +43,10 @@ namespace KramDeliveryFood_v3.Repositories
 
         public void AddProductByCategory(Product product, Guid id)
         {
-            var sqlCategoryName = "SELECT * " +
+            var sqlCategoryName = "SELECT CategoryName " +
                 "FROM Categories " +
                 "WHERE Categories.CategoryID = @id";
-            var categoryName = db.Query<Categorie>(sqlCategoryName, new { id }).SingleOrDefault().CategoryName;
+            var categoryName = db.QueryFirstOrDefault<string>(sqlCategoryName, new { id });
             var sql =
                 "INSERT INTO [dbo].[Products]([ProductID], [Name], [CategoryId], [CategoryName], [ProviderId], [Price], [Specifications], [Description], [ProductType])" +
                 "VALUES " +
@@ -80,10 +80,10 @@ namespace KramDeliveryFood_v3.Repositories
 
         public void DeleteProductByCategory(Guid ProductId, Guid CategoryId)
         {
-            var sqlCategoryName = "SELECT * " +
+            var sqlCategoryName = "SELECT CategoryName " +
                 "FROM Categories " +
                 "WHERE Categories.CategoryID = @CategoryId";
-            var categoryName = db.Query<Categorie>(sqlCategoryName, new { CategoryId }).SingleOrDefault().CategoryName;
+            var categoryName = db.QueryFirstOrDefault<string>(sqlCategoryName, new { CategoryId });
 
             var sql = "DELETE FROM [dbo].[Products] WHERE ProductId = @ProductId AND CategoryName = @categoryName";
 
@@ -145,10 +145,10 @@ namespace KramDeliveryFood_v3.Repositories
 
         public void UpdateProductByCategory(Product product, Guid Categoryid)
         {
-            var sqlCategoryName = "SELECT * " +
+            var sqlCategoryName = "SELECT CategoryName " +
                 "FROM Categories " +
                 "WHERE Categories.CategoryID = @Categoryid";
-            var categoryName = db.Query<Categorie>(sqlCategoryName, new { Categoryid }).SingleOrDefault().CategoryName;
+            var categoryName = db.QueryFirstOrDefault<string>(sqlCategoryName, new { Categoryid });
 
             var sql = "UPDATE Products " +
                 "SET Name = @Name " +

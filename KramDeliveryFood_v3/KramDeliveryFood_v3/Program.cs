@@ -27,7 +27,7 @@ namespace KramDeliveryFood_v3
             var t2_product = repository.GetCategoryWithProductsById(Guid.Parse("caa70cb5-b151-4930-8e1f-bf9aef018762"));
             Console.WriteLine($"{t2_product.CategoryName}, {t2_product.ProductId}, {t2_product.Name}");
             Console.WriteLine("--------------------------------");
-            t2_product = repositoryContrib.GetCategoryWithProductsById(Guid.Parse("caa70cb5-b151-4930-8e1f-bf9aef018762"));
+            //t2_product = repositoryContrib.GetCategoryWithProductsById(Guid.Parse("caa70cb5-b151-4930-8e1f-bf9aef018762"));
             Console.WriteLine($"{t2_product.CategoryName}, {t2_product.ProductId}, {t2_product.Name}");
 
             Console.WriteLine("---Task 3---");
@@ -50,29 +50,29 @@ namespace KramDeliveryFood_v3
             var t4_product = repository.GetCategoryWithProductsById(Guid.Parse("caa70cb5-b151-4930-8e1f-bf9aef018762"));
             Console.WriteLine($"{t4_product.CategoryName}, {t4_product.ProductId}, {t4_product.Name}");
             Console.WriteLine("--------------------------------");
-            t4_product = repositoryContrib.GetCategoryWithProductsById(Guid.Parse("caa70cb5-b151-4930-8e1f-bf9aef018762"));
+           // t4_product = repositoryContrib.GetCategoryWithProductsById(Guid.Parse("caa70cb5-b151-4930-8e1f-bf9aef018762"));
             Console.WriteLine($"{t4_product.CategoryName}, {t4_product.ProductId}, {t4_product.Name}");
 
             var data = new StoreContext();
             data.InitProducts();
             Console.WriteLine("---Task 5---");
-            repository.AddProduct(data.BaseProducts[0]);
-            repositoryContrib.AddProduct(data.BaseProducts[0]);
+            //repository.AddProduct(data.BaseProducts[0]);
+            //repositoryContrib.AddProduct(data.BaseProducts[0]);
 
-            Console.WriteLine("---Task 6---");
-            repository.AddProductByCategory(data.BaseProducts[1], Guid.Parse("caa70cb5-b151-4930-8e1f-bf9aef018762"));
-            repositoryContrib.AddProductByCategory(data.BaseProducts[1], Guid.Parse("caa70cb5-b151-4930-8e1f-bf9aef018762"));
-            Console.WriteLine("---Task 7---");
-            repository.UpdateProduct(data.BaseProducts[0]);
-            repositoryContrib.UpdateProduct(data.BaseProducts[0]);
+            //Console.WriteLine("---Task 6---");
+            //repository.AddProductByCategory(data.BaseProducts[1], Guid.Parse("caa70cb5-b151-4930-8e1f-bf9aef018762"));
+            //repositoryContrib.AddProductByCategory(data.BaseProducts[1], Guid.Parse("caa70cb5-b151-4930-8e1f-bf9aef018762"));
+            //Console.WriteLine("---Task 7---");
+            //repository.UpdateProduct(data.BaseProducts[0]);
+            //repositoryContrib.UpdateProduct(data.BaseProducts[0]);
 
-            Console.WriteLine("---Task 8---");
-            repository.UpdateProductByCategory(data.BaseProducts[0], Guid.Parse("caa70cb5-b151-4930-8e1f-bf9aef018762"));
-            repositoryContrib.UpdateProductByCategory(data.BaseProducts[0], Guid.Parse("caa70cb5-b151-4930-8e1f-bf9aef018762"));
+            //Console.WriteLine("---Task 8---");
+            //repository.UpdateProductByCategory(data.BaseProducts[0], Guid.Parse("caa70cb5-b151-4930-8e1f-bf9aef018762"));
+            //repositoryContrib.UpdateProductByCategory(data.BaseProducts[0], Guid.Parse("caa70cb5-b151-4930-8e1f-bf9aef018762"));
 
-            Console.WriteLine("--Task 9---");
-            repository.DeleteProduct(Guid.Parse("DB7FC833-BED5-4DAB-B220-DC54A769839B"));
-            repositoryContrib.DeleteProduct(data.BaseProducts[0]);
+            //Console.WriteLine("--Task 9---");
+            //repository.DeleteProduct(Guid.Parse("DB7FC833-BED5-4DAB-B220-DC54A769839B"));
+            //repositoryContrib.DeleteProduct(data.BaseProducts[0]);
 
             Console.WriteLine("--Task 10---");
             repository.DeleteProductByCategory(Guid.Parse("DB7FC833-BED5-4DAB-B220-DC54A769839B"), Guid.Parse("caa70cb5-b151-4930-8e1f-bf9aef018762"));

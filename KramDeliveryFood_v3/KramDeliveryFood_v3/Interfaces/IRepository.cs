@@ -10,6 +10,5 @@ namespace KramDeliveryFood_v3.Interfaces
         Product GetProductById(Guid id);
         void AddProduct(Product product);
         void UpdateProduct(Product product);
-        void DeleteProduct(Guid id);
     }
 }
