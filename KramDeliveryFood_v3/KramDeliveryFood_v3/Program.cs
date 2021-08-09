@@ -1,9 +1,6 @@
 ﻿using KramDeliveryFood_v3.Models;
 using KramDeliveryFood_v3.Service;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace KramDeliveryFood_v3
 {
