@@ -15,7 +15,7 @@ namespace KramDeliveryFood_v3
             storeContext.InitProducts();
             var productService = new ProductService(storeContext);
             var products = productService.GetAllPRoducts();
-            var sortedProducts = products.OrderBy(p => p.Name);
+            var sortedProducts = productService.GetProductsAsc();
 
             Console.WriteLine("---Task 1---");
 
@@ -48,7 +48,7 @@ namespace KramDeliveryFood_v3
 
             foreach (var provider in sortedProvidersProducts)
             {
-                Console.WriteLine(provider.ProviderName + " " + provider.ProductsCount);
+                Console.WriteLine(provider.Item1 + " " + provider.Item2);
             }
 
             var groupedProducts = productService.GetGrouppedProducts(

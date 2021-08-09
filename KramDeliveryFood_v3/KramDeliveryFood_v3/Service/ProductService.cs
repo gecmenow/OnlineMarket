@@ -11,7 +11,6 @@ namespace KramDeliveryFood_v3.Service
     {
         private IData _data;
         private IList<Product> _products;
-        private IList<Provider> _providers;
 
         public ProductService(IData data)
         {
@@ -24,13 +23,14 @@ namespace KramDeliveryFood_v3.Service
             return _products;
         }
 
+        public IList<Product> GetProductsAsc()
+        {
+            return _products.OrderBy(p=>p.Name).ToList();
+        }
+
         public IList<(string Provider, string Product)> GetProductsWithProviders()
         {
-            _providers = _data.Providers;
-            var productsWithProviders = _products.Join(_providers,
-                pr => pr.ProviderId,
-                prov => prov.ProviderId,
-                (pr, prov) => new { Provider = prov.Name, Name = pr.Name }).Select(r => (r.Name, r.Provider)).ToList();
+            var productsWithProviders = _products.Select(p => new { Provider = p.Name, Product = p.Provider.Name }).Select(r => (r.Product, r.Provider)).ToList();
 
             return productsWithProviders;
         }
@@ -52,19 +52,10 @@ namespace KramDeliveryFood_v3.Service
             return categoriesProducts;
         }
 
-        public IList<(string ProviderName, int ProductsCount)> GetProvidersProductsDesc()
+        public IList<Tuple<string, int>> GetProvidersProductsDesc()
         {
-            var providersProductsDesc = _products.Join(_providers,
-                pr => pr.ProviderId,
-                prov => prov.ProviderId,
-                (pr, prov) => new { ProviderId = prov.ProviderId, Provider = prov.Name })
-                .GroupBy(prov => prov.ProviderId)
-                .Select(prov => new
-                {
-                    ProviderName = prov.Select(prov => prov.Provider).FirstOrDefault(),
-                    ProductsCount = prov.Count(),
-                })
-                .OrderByDescending(prov => prov.ProductsCount).Select(r => (r.ProviderName, r.ProductsCount)).ToList();
+            var providersProductsDesc = _products.GroupBy(p=>p.Provider).Select(p => new Tuple<string, int>(p.Key.Name, p.Count()))
+                .OrderByDescending(p => p.Item2).ToList();
 
             return providersProductsDesc;
         }
