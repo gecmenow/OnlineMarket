@@ -6,7 +6,7 @@ namespace KramDelivery.Domain.Interfaces
 {
     public interface IRepository
     {
-        List<Product> GetProducts();
+        IList<Product> GetProducts();
         Product GetProductById(Guid id);
         Guid AddProducts(Product provider);
         Guid UpdateProducts(Product provider);

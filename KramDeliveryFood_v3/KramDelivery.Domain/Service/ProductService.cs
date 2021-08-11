@@ -4,10 +4,11 @@ using KramDeliveryFood.Data;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace KramDelivery.Domain.Service
 {
-    public class ProductService : IProductService
+    public class ProductService : IProductService, IRepository
     {
         private readonly DataContext _context;
 
@@ -33,6 +34,26 @@ namespace KramDelivery.Domain.Service
         public void UpdateProduct(Product product)
         {
             _context.Products.Update(product);
+        }
+
+        public Product GetProductById(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Guid AddProducts(Product provider)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Guid UpdateProducts(Product provider)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Guid DeleteProducts()
+        {
+            throw new NotImplementedException();
         }
     }
 }
