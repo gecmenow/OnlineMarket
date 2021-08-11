@@ -12,7 +12,13 @@ namespace KramDeliveryFood_v3
         static void Main(string[] args)
         {
             var unitOfWork = new UnitOfWork();
-            var products = unitOfWork.Products.GetProducts();
+            var products = unitOfWork.Products.GetAllWithTracking();
+            var productTest = products.FirstOrDefault();
+            productTest.Name = "test";
+            
+            //unitOfWork.Products.UpdateProduct(productTest);
+            unitOfWork.Save();
+
             var productsByAlphabet = products.OrderBy(p => p.Name).ToList();
             Console.WriteLine("---Task 1 ---\n");
 

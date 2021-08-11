@@ -22,7 +22,17 @@ namespace KramDelivery.Domain.Service
 
         public IList<Product> GetProducts()
         {
+            return _context.Products.Include(p => p.Provider).Include(c => c.Categorie).AsNoTracking().ToList();
+        }
+
+        public IList<Product> GetAllWithTracking()
+        {
             return _context.Products.Include(p => p.Provider).Include(c => c.Categorie).ToList();
+        }
+
+        public void UpdateProduct(Product product)
+        {
+            _context.Products.Update(product);
         }
     }
 }
