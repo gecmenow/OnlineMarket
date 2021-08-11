@@ -1,10 +1,6 @@
-﻿using KramDelivery.Domain.Interfaces;
-using KramDelivery.Domain.Models;
-using System;
+﻿using KramDelivery.Structure.Interfaces;
+using KramDelivery.Structure.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KramDelivery.Domain.Service
 {

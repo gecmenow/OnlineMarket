@@ -1,10 +1,10 @@
-﻿using KramDelivery.Domain.Interfaces;
-using KramDelivery.Domain.Models;
-using KramDeliveryFood.Data;
+﻿using KramDelivery.Structure.Interfaces;
+using KramDelivery.Structure.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System;
+using KramDeliveryFood.Data.Data;
 
 namespace KramDelivery.Domain.Service
 {

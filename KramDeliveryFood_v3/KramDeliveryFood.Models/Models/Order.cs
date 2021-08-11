@@ -1,8 +1,8 @@
-﻿using KramDelivery.Domain.Enums;
+﻿using KramDelivery.Structure.Enums;
 using System;
 using System.Collections.Generic;
 
-namespace KramDelivery.Domain.Models
+namespace KramDelivery.Structure.Models
 {
     public class Order
     {

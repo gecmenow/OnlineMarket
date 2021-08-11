@@ -1,4 +1,4 @@
-﻿using KramDelivery.Domain.Models;
+﻿using KramDelivery.Structure.Models;
 using System.Collections.Generic;
 
 namespace KramDelivery.Domain.Service

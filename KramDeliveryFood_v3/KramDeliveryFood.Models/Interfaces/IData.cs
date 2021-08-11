@@ -1,7 +1,7 @@
-﻿using KramDelivery.Domain.Models;
+﻿using KramDelivery.Structure.Models;
 using System.Collections.Generic;
 
-namespace KramDelivery.Domain.Interfaces
+namespace KramDelivery.Structure.Interfaces
 {
     public interface IData
     {

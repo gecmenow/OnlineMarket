@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace KramDelivery.Domain.Models
+namespace KramDelivery.Structure.Models
 {
     public class Buyer
     {

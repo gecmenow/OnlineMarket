@@ -1,7 +1,8 @@
-﻿using KramDelivery.Domain.Models;
+﻿using KramDelivery.Structure.Interfaces;
+using KramDelivery.Structure.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace KramDeliveryFood.Data
+namespace KramDeliveryFood.Data.Data
 {
     public class DataContext : DbContext
     {

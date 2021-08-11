@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace KramDelivery.Domain.Models
+namespace KramDelivery.Structure.Models
 {
     public class Product
     {

@@ -1,6 +1,7 @@
 ﻿using System;
-using KramDelivery.Domain.Interfaces;
-using KramDeliveryFood.Data;
+using KramDelivery.Structure.Interfaces;
+using KramDeliveryFood;
+using KramDeliveryFood.Data.Data;
 
 namespace KramDelivery.Domain.Service
 {

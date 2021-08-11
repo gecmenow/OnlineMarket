@@ -1,8 +1,9 @@
-﻿using KramDelivery.Domain.Interfaces;
+﻿using KramDelivery.Structure.Interfaces;
+using KramDelivery.Structure.Models;
 using System;
 using System.Collections.Generic;
 
-namespace KramDelivery.Domain.Models
+namespace KramDelivery.Data
 {
     public class StoreContext : IData
     {
