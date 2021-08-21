@@ -5,4 +5,12 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\KramDeliveryFood_v3\KramDelivery.Domain\KramDelivery.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

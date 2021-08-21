@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text.Json;
 
-namespace KramDeliverFoodCompleted.Service
+namespace KramDeliverFoodCompleted.Services
 {
     public class SerializerService : ISerializerService
     {

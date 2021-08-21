@@ -3,7 +3,7 @@ using KramDeliverFoodCompleted.Models;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-namespace KramDeliverFoodCompleted.Service
+namespace KramDeliverFoodCompleted.Services
 {
     public class OrderService : IOrderService
     {
@@ -13,23 +13,23 @@ namespace KramDeliverFoodCompleted.Service
         public OrderService(IData data, ILoggerService loggerService)
         {
             _data = data;
-            _data.Orders = new List<Orders>();
-            _data.Order = new Orders();
+            _data.Orders = new List<Order>();
+            _data.Order = new Order();
             _loggerService = loggerService;
         }
 
-        public void AddProductToOrder(Products product)
+        public void AddProductToOrder(Product product)
         {
             _data.Order.OrderProducts.Add(product);
             _loggerService.AddLog("Product was added to order " + product.Id);
         }
 
-        public Orders GetOrder()
+        public Order GetOrder()
         {
             return _data.Order;
         }
 
-        public IList<Orders> GetOrders()
+        public IList<Order> GetOrders()
         {
             return _data.Orders;
         }
@@ -58,7 +58,7 @@ namespace KramDeliverFoodCompleted.Service
             return false;
         }
 
-        public void CompleteOrder(Orders order)
+        public void CompleteOrder(Order order)
         {
             _data.Orders.Add(order);
         }

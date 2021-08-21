@@ -1,6 +1,6 @@
 ﻿using KramDeliverFoodCompleted.Interaction;
-using KramDeliverFoodCompleted.Models;
-using KramDeliverFoodCompleted.Service;
+using KramDeliverFoodCompleted.Data;
+using KramDeliverFoodCompleted.Services;
 using System;
 
 namespace KramDeliverFoodCompleted
@@ -11,7 +11,7 @@ namespace KramDeliverFoodCompleted
         {
             Messenger.ShowWelcomeMessage();
             var serializerService = new SerializerService();
-            var data = new StoreContext(serializerService);
+            var data = new StoreContext();
             data.InitProducts();
             var reader = new Reader();
             var loggerService = new LoggerService();

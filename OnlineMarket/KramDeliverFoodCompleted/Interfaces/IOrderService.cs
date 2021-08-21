@@ -5,11 +5,11 @@ namespace KramDeliverFoodCompleted.Interfaces
 {
     public interface IOrderService
     {
-        Orders GetOrder();
+        Order GetOrder();
         bool IsPhoneValid(string number);
         bool IsAddressValid(string number);
-        void AddProductToOrder(Products product);
-        IList<Orders> GetOrders();
-        void CompleteOrder(Orders order);
+        void AddProductToOrder(Product product);
+        IList<Order> GetOrders();
+        void CompleteOrder(Order order);
     }
 }
