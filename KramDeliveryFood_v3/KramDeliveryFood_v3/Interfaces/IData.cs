@@ -7,6 +7,8 @@ namespace KramDeliveryFood_v3.Interfaces
     {
         IList<Product> BaseProducts { get; set; }
         IList<Order> Orders { get; set; }
+        IList<Provider> Providers { get; set; }
+        IList<Category> Categories { get; set; }
         Order Order { get; set; }
         IList<Product> OrderProducts { get; set; }
 
