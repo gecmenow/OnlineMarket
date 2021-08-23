@@ -32,14 +32,14 @@ namespace KramDeliveryFood_v3.Models
                 new Provider { ProviderId = Guid.Parse("f5ea11aa-5c42-4ca3-8a9a-c1e5c11eba83"), Name = "Steve", Address = "ul.Mira", PhoneNumber = "147258369" });
 
             Categories.Add(
-                new Category { CategoryId = Guid.Parse("e4bcf5dc-c988-4072-927d-e4259ee0ac76"), Name = "Burgers" });
+                new Category { CategoryId = Guid.Parse("e4bcf5dc-c988-4072-927d-e4259ee0ac76"), CategoryName = "Burgers" });
             Categories.Add(
-                new Category { CategoryId = Guid.Parse("ce9cfd84-067f-4a2c-a210-0e066b22507b"), Name = "Drinks" });
+                new Category { CategoryId = Guid.Parse("ce9cfd84-067f-4a2c-a210-0e066b22507b"), CategoryName = "Drinks" });
             Categories.Add(
-                new Category { CategoryId = Guid.Parse("388cb626-260f-4551-9a03-03c26399d16a"), Name = "Desserts & Shakes" });
+                new Category { CategoryId = Guid.Parse("388cb626-260f-4551-9a03-03c26399d16a"), CategoryName = "Desserts & Shakes" });
 
             BaseProducts.Add(
-                new Product { ProductId = Guid.Parse("db7fc833-bed5-4dab-b220-dc54a769839b"), Name = "Big Mac", Price = 60.00M, Specifications = "221 ккал. б15 ,ж14 ,у5", Description = "яйцо, молоко,зелень,приправы", CategoryId = Guid.Parse("e4bcf5dc-c988-4072-927d-e4259ee0ac76"), ProviderId = Guid.Parse("880e63a0-c3a5-4afe-bf01-277a3da15da6"), Provider = Providers[0], ProductType = "Burger"}
+                new Product { ProductId = Guid.Parse("db7fc833-bed5-4dab-b220-dc54a769839b"), Name = "Big Mac", Price = 60.00M, Specifications = "221 ккал. б15 ,ж14 ,у5", Description = "яйцо, молоко,зелень,приправы", CategoryId = Guid.Parse("e4bcf5dc-c988-4072-927d-e4259ee0ac76"), ProviderId = Guid.Parse("880e63a0-c3a5-4afe-bf01-277a3da15da6"), Provider = Providers[0], ProductType = "Burger" }
             );
             BaseProducts.Add(
                 new Product { ProductId = Guid.Parse("4f176a75-f45b-41fd-95b4-8ea1b1521889"), Name = "McDouble", Price = 80.00M, Specifications = "221 ккал. б15 ,ж14 ,у5", Description = "яйцо, молоко,зелень,приправы, бургеры", CategoryId = Guid.Parse("e4bcf5dc-c988-4072-927d-e4259ee0ac76"), Category = Categories[0], ProviderId = Guid.Parse("880e63a0-c3a5-4afe-bf01-277a3da15da6"), Provider = Providers[0], ProductType = "Burger" }
