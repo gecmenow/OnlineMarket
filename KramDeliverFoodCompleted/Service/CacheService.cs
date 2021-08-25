@@ -11,7 +11,7 @@ namespace KramDeliverFoodCompleted.Service
     public class CacheService : ICacheService
     {
         private readonly ICache _cache;
-        private static readonly object _locker = new object();
+        private static readonly object _locker = new();
 
         public CacheService(ICache cache)
         {
@@ -53,7 +53,10 @@ namespace KramDeliverFoodCompleted.Service
         {
             lock (_locker)
             {
-                _cache.CacheData.Remove(data);
+                if (_cache.CacheData.Equals(data))
+                {
+                    _cache.CacheData.Remove(data);
+                }
             }
         }
     }
