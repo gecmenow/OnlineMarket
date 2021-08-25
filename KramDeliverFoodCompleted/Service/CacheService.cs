@@ -24,7 +24,7 @@ namespace KramDeliverFoodCompleted.Service
             {
                 if (_cache.CacheData.Count == 5)
                 {
-                    _cache.CacheData.RemoveAt(4);
+                    _cache.CacheData.RemoveAt(1);
                 }
 
                 _cache.CacheData.Add(data);
@@ -35,9 +35,9 @@ namespace KramDeliverFoodCompleted.Service
         {
             lock (_locker)
             {
-                if (_cache.CacheData.Count() != 0)
+                if (_cache.CacheData.Count != 0)
                 {
-                    while (_cache.CacheData.Count() < 5)
+                    while (_cache.CacheData.Count < 5)
                     {
                         return _cache.CacheData;
                     }
@@ -45,9 +45,7 @@ namespace KramDeliverFoodCompleted.Service
                     return _cache.CacheData;
                 }
 
-                IList<Product> data = default;
-
-                return data;
+                return default;
             }
         }
 
