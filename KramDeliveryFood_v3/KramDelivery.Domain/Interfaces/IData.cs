@@ -11,7 +11,6 @@ namespace KramDelivery.Domain.Interfaces
         IList<Category> Categories { get; set; }
         Order Order { get; set; }
         IList<Product> OrderProducts { get; set; }
-        IList<Category> Categories { get; set; }
 
         void InitProducts();
     }
