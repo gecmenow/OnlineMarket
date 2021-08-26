@@ -38,7 +38,7 @@ namespace KramDelivery.Domain.Service
 
         public Product GetProductById(Guid id)
         {
-            throw new NotImplementedException();
+            return _context.Products.Where(p => p.ProductId == id).FirstOrDefault();
         }
 
         public Guid AddProducts(Product provider)

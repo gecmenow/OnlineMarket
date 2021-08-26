@@ -1,3 +1,6 @@
+using KramDeliverFoodCompleted.Data;
+using KramDeliverFoodCompleted.Interfaces;
+using KramDeliverFoodCompleted.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -25,7 +28,10 @@ namespace KramDeliveryFoodAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddTransient<IData, StoreContext>();
+            services.AddSingleton<ILoggerService, LoggerService>();
+            services.AddSingleton<ISerializerService, SerializerService>();
+            services.AddSingleton<IProductService, ProductService>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

@@ -5,16 +5,17 @@ using System.Collections.Generic;
 using System.Linq;
 using KramDelivery.Domain.Service;
 using AutoMapper;
+using KramDelivery.Structure.Interfaces;
 
 namespace KramDeliverFoodCompleted.Services
 {
-    public class ProductService : IProductService
+    public class ProductService : Interfaces.IProductService
     {
-        private readonly IData _data;
+        private readonly Interfaces.IData _data;
         private readonly ILoggerService _loggerService;
         private readonly ISerializerService _serializerService;
 
-        public ProductService(IData data, ILoggerService loggerService, ISerializerService serializerService)
+        public ProductService(Interfaces.IData data, ILoggerService loggerService, ISerializerService serializerService)
         {
             _data = data;
             _loggerService = loggerService;
@@ -23,24 +24,13 @@ namespace KramDeliverFoodCompleted.Services
 
         public void AddProduct(Product product)
         {
-            if (!GetProducts().Any(x => x.Id == product.Id))
+            if (!GetProducts().Any(x => x.ProductId == product.ProductId))
             {
-                product.Id = Guid.NewGuid();
+                product.ProductId = Guid.NewGuid();
                 _data.BaseProducts.Add(product);
                 _serializerService.DoSerialization<Product>(product);
-                _loggerService.AddLog("Product was added " + product.Id);
+                _loggerService.AddLog("Product was added " + product.ProductId);
             }
-        }
-
-        public IList<Product> GetProductsForApi()
-        {
-            var unitOfWork = new UnitOfWork();
-            var products = unitOfWork.Products.GetProducts();
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<KramDelivery.Structure.Models.Product, Product>());
-            var mapper = new Mapper(config);
-            var data = mapper.Map<List<Product>>(products);
-
-            return data;
         }
 
         public IList<Product> GetProducts()
@@ -82,6 +72,37 @@ namespace KramDeliverFoodCompleted.Services
         }
 
         public void DeleteProduct(Product product)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IList<KramDelivery.Structure.Models.Product> GetProductsForApi()
+        {
+            var unitOfWork = new UnitOfWork();
+            var products = unitOfWork.Products.GetProducts();
+
+            return products;
+        }
+
+        public KramDelivery.Structure.Models.Product GetProductByIdForApi(Guid id)
+        {
+            var unitOfWork = new UnitOfWork();
+            var product = unitOfWork.Products.GetProductById(id);
+
+            return product;
+        }
+
+        public void AddProduct(KramDelivery.Structure.Models.Product product)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateProduct(KramDelivery.Structure.Models.Product product)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteProduct(KramDelivery.Structure.Models.Product product)
         {
             throw new NotImplementedException();
         }

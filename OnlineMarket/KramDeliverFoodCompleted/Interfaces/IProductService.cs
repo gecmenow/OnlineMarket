@@ -11,5 +11,10 @@ namespace KramDeliverFoodCompleted.Interfaces
         Product GetProductById(int input);
         void UpdateProduct(Product product);
         void DeleteProduct(Product product);
+
+        IList<KramDelivery.Structure.Models.Product> GetProductsForApi();
+        void AddProduct(KramDelivery.Structure.Models.Product product);
+        void UpdateProduct(KramDelivery.Structure.Models.Product product);
+        void DeleteProduct(KramDelivery.Structure.Models.Product product);
     }
 }

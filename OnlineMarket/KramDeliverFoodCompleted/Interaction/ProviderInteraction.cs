@@ -17,7 +17,7 @@ namespace KramDeliverFoodCompleted.Interaction
         {
             ProviderMessenger.ShowAddingProductMessage();
             var product = new Product();
-            product.Id = Guid.NewGuid();
+            product.ProductId = Guid.NewGuid();
             Console.Write("Type product name: ");
             product.Name = Console.ReadLine();
             Console.Write("Type product price: ");

@@ -21,7 +21,7 @@ namespace KramDeliverFoodCompleted.Services
         public void AddProductToOrder(Product product)
         {
             _data.Order.OrderProducts.Add(product);
-            _loggerService.AddLog("Product was added to order " + product.Id);
+            _loggerService.AddLog("Product was added to order " + product.ProductId);
         }
 
         public Order GetOrder()

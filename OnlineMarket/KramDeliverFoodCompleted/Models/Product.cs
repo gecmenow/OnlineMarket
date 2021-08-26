@@ -1,72 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace KramDeliverFoodCompleted.Models
 {
     public class Product
     {
-        public Guid Id { get; set; }
-        private string _name { get; set; }
-        private decimal _price { get; set; }
-        private string _specifications { get; set; }
-        private string _description { get; set; }
-        public string Name
-        {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                if (!string.IsNullOrEmpty(value))
-                {
-                    _name = value;
-                }
-            }
-        }
-
-        public decimal Price
-        {
-            get
-            {
-                return _price;
-            }
-            set
-            {
-                if (value >= 0)
-                {
-                    _price = value;
-                }
-            }
-        }
-
-        public string Specifications
-        {
-            get
-            {
-                return _specifications;
-            }
-            set
-            {
-                if (!string.IsNullOrEmpty(value))
-                {
-                    _specifications = value;
-                }
-            }
-        }
-
-        public string Description
-        {
-            get
-            {
-                return _description;
-            }
-            set
-            {
-                if (!string.IsNullOrEmpty(value))
-                {
-                    _description = value;
-                }
-            }
-        }
+        public Guid ProductId { get; set; }
+        public Category Categorie { get; set; }
+        public Provider Provider { get; set; }
+        public string Name { get; set; }
+        public Guid CategoryId { get; set; }
+        public string CategoryName { get; set; }
+        public Guid ProviderId { get; set; }
+        public decimal Price { get; set; }
+        public string Specifications { get; set; }
+        public string Description { get; set; }
+        public string ProductType { get; set; }
+        public int ProductCount { get; set; }
+        public List<Order> OrderProducts = new();
     }
 }
