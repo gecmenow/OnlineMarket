@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace KramDeliveryFood_v3.Models
+namespace KramDelivery.Domain.Models
 {
     public class Provider
     {

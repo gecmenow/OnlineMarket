@@ -1,7 +1,7 @@
-﻿using KramDeliveryFood_v3.Models;
+﻿using KramDelivery.Domain.Models;
 using System.Collections.Generic;
 
-namespace KramDeliveryFood_v3.Interfaces
+namespace KramDelivery.Domain.Interfaces
 {
     public interface IData
     {
@@ -11,6 +11,7 @@ namespace KramDeliveryFood_v3.Interfaces
         IList<Category> Categories { get; set; }
         Order Order { get; set; }
         IList<Product> OrderProducts { get; set; }
+        IList<Category> Categories { get; set; }
 
         void InitProducts();
     }
