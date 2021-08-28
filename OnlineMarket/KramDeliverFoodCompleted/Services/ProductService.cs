@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using KramDelivery.Structure.Interfaces;
 using KramDelivery.Structure.Models;
-using KramDeliveryFood.Data.Data;
 
 namespace KramDeliverFoodCompleted.Services
 {
