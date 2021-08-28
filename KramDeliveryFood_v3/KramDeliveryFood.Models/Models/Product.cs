@@ -5,7 +5,7 @@ namespace KramDelivery.Structure.Models
 {
     public class Product
     {
-        public Guid ProductID { get; set; }
+        public Guid ProductId { get; set; }
         public Category Categorie { get; set; }
         public Provider Provider { get; set; }
         public string Name { get; set; }
