@@ -1,24 +1,15 @@
-using KramDelivery.Domain.Models;
-using KramDelivery.Domain.Service;
-using KramDeliveryFood.Data;
-using Microsoft.Extensions.Configuration;
+﻿using KramDelivery.Domain.Service;
 using System;
-using System.IO;
 using System.Linq;
 
 namespace KramDeliveryFood_v3
 {
     public class Program
     {
-        private static DataContext _context;
         static void Main(string[] args)
         {
-            _context = new DataContext();
-            _context.Database.EnsureCreated();
-            var data = new StoreContext();
-            data.InitProducts();
-            var productService = new ProductService(data);
-            var products = productService.GetProducts();
+            var unitOfWork = new UnitOfWork();
+            var products = unitOfWork.Products.GetAllWithTracking();
             var productsByAlphabet = products.OrderBy(p => p.Name).ToList();
             Console.WriteLine("---Task 1 ---\n");
 
@@ -35,7 +26,7 @@ namespace KramDeliveryFood_v3
                 Console.WriteLine(product.ProviderName + " - " + product.ProcutName);
             }
 
-            var categoryProductsCount = products.GroupBy(p => p.CategoryId).Select(c => new { CategoryName = c.Select(c => c.Categorie.CategoryName).FirstOrDefault(), CategoryCount = c.Count() }).ToList();
+            var categoryProductsCount = products.GroupBy(p => p.CategoryId).Select(c => new { CategoryName = c.Select(c => c.Categorie.Name).FirstOrDefault(), CategoryCount = c.Count() }).ToList();
             Console.WriteLine("\n---Task 3 ---\n");
 
             foreach (var category in categoryProductsCount)
@@ -56,9 +47,9 @@ namespace KramDeliveryFood_v3
             var commonProducts = productsJhon.Intersect(productsJhon, new ProductComparer()).ToList();
             Console.WriteLine("\n---Task 5.1---\n");
 
-            foreach (var product in commonProducts)
+            foreach (var common in commonProducts)
             {
-                Console.WriteLine(product.Name + " " + product.ProductType);
+                Console.WriteLine(common.Name + " " + common.ProductType);
             }
 
             var variousProductsJhon = productsJhon.Except(productsTomas, new ProductComparer()).ToList();
@@ -66,9 +57,9 @@ namespace KramDeliveryFood_v3
             var variousProducts = variousProductsJhon.Concat(variousProductsTomas).ToList();
             Console.WriteLine("\n---Task 5.2---\n");
 
-            foreach (var product in variousProducts)
+            foreach (var various in variousProducts)
             {
-                Console.WriteLine(product.ProviderId + " " + product.Name);
+                Console.WriteLine(various.ProviderId + " " + various.Name);
             }
 
             Console.ReadKey();

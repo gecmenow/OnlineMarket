@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace KramDelivery.Domain.Models
+namespace KramDelivery.Structure.Models
 {
     public class Product
     {
-        public Guid ProductID { get; set; }
+        public Guid ProductId { get; set; }
         public Category Categorie { get; set; }
         public Provider Provider { get; set; }
         public string Name { get; set; }
@@ -16,6 +16,7 @@ namespace KramDelivery.Domain.Models
         public string Specifications { get; set; }
         public string Description { get; set; }
         public string ProductType { get; set; }
+        public int ProductCount { get; set; }
         public List<Order> OrderProducts = new();
     }
 }

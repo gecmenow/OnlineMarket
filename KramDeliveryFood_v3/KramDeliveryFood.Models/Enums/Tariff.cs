@@ -1,4 +1,4 @@
-﻿namespace KramDelivery.Domain.Enums
+﻿namespace KramDelivery.Structure.Enums
 {
     public enum Tariff
     {
