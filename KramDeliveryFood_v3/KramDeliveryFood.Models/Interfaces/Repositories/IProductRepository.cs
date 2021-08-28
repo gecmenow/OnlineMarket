@@ -1,16 +1,24 @@
 ﻿using KramDelivery.Structure.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace KramDelivery.Structure.Interfaces
+namespace KramDeliveryFood.Structure.Interfaces.Repositories
 {
-    public interface IProductService
+    public interface IProductRepository
     {
         IList<Product> GetAllProducts();
-        Product GetProductById(Guid id);
+
         IList<Product> GetProductsByCategoryName(string category);
+
+        Product GetProductById(Guid id);
+
         void AddProduct(Product product);
+
         void UpdateProduct(Product product);
-        void DeleteProduct(Product product);
+
+        void RemoveProduct(Product product);
     }
 }

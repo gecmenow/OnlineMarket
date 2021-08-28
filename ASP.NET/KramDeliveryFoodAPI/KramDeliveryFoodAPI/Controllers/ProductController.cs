@@ -1,6 +1,4 @@
-﻿using KramDeliverFoodCompleted.Data;
-using KramDeliverFoodCompleted.Interfaces;
-using KramDeliverFoodCompleted.Services;
+﻿using KramDelivery.Structure.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -21,7 +19,7 @@ namespace KramDeliveryFoodAPI.Controllers
         [HttpGet]
         public IList<KramDelivery.Structure.Models.Product> Get()
         {
-            var result = _productService.GetProductsForApi();
+            var result = _productService.GetAllProducts();
 
             return result;
         }

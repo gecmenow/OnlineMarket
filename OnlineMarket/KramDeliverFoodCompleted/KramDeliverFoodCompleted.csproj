@@ -10,7 +10,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\KramDeliveryFood_v3\KramDelivery.Domain\KramDelivery.Domain.csproj" />
+    <ProjectReference Include="..\..\KramDeliveryFood_v3\KramDeliveryFood.Data\KramDeliveryFood.Data.csproj" />
+    <ProjectReference Include="..\..\KramDeliveryFood_v3\KramDeliveryFood.Models\KramDeliveryFood.Structure.csproj" />
   </ItemGroup>
 
 </Project>
