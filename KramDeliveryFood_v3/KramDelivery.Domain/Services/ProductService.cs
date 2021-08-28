@@ -31,29 +31,24 @@ namespace KramDelivery.Domain.Service
             return _context.Products.Include(p => p.Provider).Include(c => c.Categorie).ToList();
         }
 
-        public void UpdateProduct(Product product)
-        {
-            _context.Products.Update(product);
-        }
-
         public Product GetProductById(Guid id)
         {
             return _context.Products.Where(p => p.ProductId == id).FirstOrDefault();
         }
 
-        public Guid AddProducts(Product provider)
+        public void AddProduct(Product product)
         {
-            throw new NotImplementedException();
+            _context.Products.Add(product);
         }
 
-        public Guid UpdateProducts(Product provider)
+        public void UpdateProduct(Product product)
         {
-            throw new NotImplementedException();
+            _context.Products.Update(product);
         }
 
-        public Guid DeleteProducts()
+        public void DeleteProduct(Product product)
         {
-            throw new NotImplementedException();
+            _context.Products.Remove(product);
         }
     }
 }

@@ -84,7 +84,15 @@ namespace KramDeliverFoodCompleted.Services
             return products;
         }
 
-        public KramDelivery.Structure.Models.Product GetProductByIdForApi(Guid id)
+        public IList<KramDelivery.Structure.Models.Product> GetProductsByCategoryName(string category)
+        {
+            var unitOfWork = new UnitOfWork();
+            var products = unitOfWork.Products.GetProducts().Where(p => p.CategoryName == category).ToList();
+
+            return products;
+        }
+
+        public KramDelivery.Structure.Models.Product GetProductById(Guid id)
         {
             var unitOfWork = new UnitOfWork();
             var product = unitOfWork.Products.GetProductById(id);
@@ -94,17 +102,23 @@ namespace KramDeliverFoodCompleted.Services
 
         public void AddProduct(KramDelivery.Structure.Models.Product product)
         {
-            throw new NotImplementedException();
+            var unitOfWork = new UnitOfWork();
+            unitOfWork.Products.AddProduct(product);
+            unitOfWork.Save();
         }
 
         public void UpdateProduct(KramDelivery.Structure.Models.Product product)
         {
-            throw new NotImplementedException();
+            var unitOfWork = new UnitOfWork();
+            unitOfWork.Products.UpdateProduct(product);
+            unitOfWork.Save();
         }
 
         public void DeleteProduct(KramDelivery.Structure.Models.Product product)
         {
-            throw new NotImplementedException();
+            var unitOfWork = new UnitOfWork();
+            unitOfWork.Products.DeleteProduct(product);
+            unitOfWork.Save();
         }
     }
 }
