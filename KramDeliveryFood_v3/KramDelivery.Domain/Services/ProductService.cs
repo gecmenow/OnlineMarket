@@ -41,17 +41,12 @@ namespace KramDelivery.Domain.Service
             return _context.Products.Where(p => p.ProductID == id).FirstOrDefault();
         }
 
-        public void AddProducts(Product product)
+        public void AddProduct(Product product)
         {
             _context.Products.Add(product);
         }
 
-        public void UpdateProducts(Product product)
-        {
-            _context.Products.Update(product);
-        }
-
-        public void DeleteProducts(Product product)
+        public void DeleteProduct(Product product)
         {
             _context.Products.Remove(product);
         }
