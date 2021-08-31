@@ -17,6 +17,6 @@ jobs:
       with:
         dotnet-version: 5.0.x
     - name: Restore dependencies
-      run: dotnet restore "ASP.NET\KramDeliveryFoodAPI/KramDeliveryFoodAPI.sln"
+      run: dotnet restore "ASP.NET/KramDeliveryFoodAPI/KramDeliveryFoodAPI.sln"
     - name: Build
-      run: dotnet build "ASP.NET\KramDeliveryFoodAPI/KramDeliveryFoodAPI.sln" --no-restore
+      run: dotnet build "ASP.NET/KramDeliveryFoodAPI/KramDeliveryFoodAPI.sln" --no-restore
