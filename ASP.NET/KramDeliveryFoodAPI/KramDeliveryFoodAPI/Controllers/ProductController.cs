@@ -1,4 +1,5 @@
 ﻿using KramDeliverFoodCompleted.Data;
+using KramDeliverFoodCompleted.Models;
 using KramDeliverFoodCompleted.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace KramDeliveryFoodAPI.Controllers
     public class ProductController : ControllerBase
     {
         [HttpGet]
-        public IList<KramDeliverFoodCompleted.Models.Product> Get()
+        public IList<Product> Get()
         {
             var productService = new ProductService(new StoreContext(), new LoggerService(), new SerializerService());
             var result = productService.GetProductsForApi();
@@ -19,21 +20,21 @@ namespace KramDeliveryFoodAPI.Controllers
         }
         
         [HttpPost]
-        public void Add(KramDeliverFoodCompleted.Models.Product product)
+        public void Add(Product product)
         {
             var productService = new ProductService(new StoreContext(), new LoggerService(), new SerializerService());
             productService.AddProduct(product);
         }
 
         [HttpPut]
-        public void Update(KramDeliverFoodCompleted.Models.Product product)
+        public void Update(Product product)
         {
             var productService = new ProductService(new StoreContext(), new LoggerService(), new SerializerService());
             productService.UpdateProduct(product);
         }
 
         [HttpDelete]
-        public void Delete(KramDeliverFoodCompleted.Models.Product product)
+        public void Delete(Product product)
         {
             var productService = new ProductService(new StoreContext(), new LoggerService(), new SerializerService());
             productService.DeleteProduct(product);

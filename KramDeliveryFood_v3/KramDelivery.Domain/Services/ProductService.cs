@@ -38,22 +38,22 @@ namespace KramDelivery.Domain.Service
 
         public Product GetProductById(Guid id)
         {
-            throw new NotImplementedException();
+            return _context.Products.Where(p => p.ProductID == id).FirstOrDefault();
         }
 
-        public Guid AddProducts(Product provider)
+        public void AddProducts(Product product)
         {
-            throw new NotImplementedException();
+            _context.Products.Add(product);
         }
 
-        public Guid UpdateProducts(Product provider)
+        public void UpdateProducts(Product product)
         {
-            throw new NotImplementedException();
+            _context.Products.Update(product);
         }
 
-        public Guid DeleteProducts()
+        public void DeleteProducts(Product product)
         {
-            throw new NotImplementedException();
+            _context.Products.Remove(product);
         }
     }
 }
