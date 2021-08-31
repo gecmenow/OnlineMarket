@@ -3,7 +3,7 @@ name: .NET
 on: 
   pull_request:
     branches:
-    - asp.net/task_1
+    - asp.net/task_2
 
 jobs:
   build:
