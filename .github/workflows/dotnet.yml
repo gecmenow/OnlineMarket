@@ -1,9 +1,6 @@
 name: .NET
 
-on: 
-  pull_request:
-    branches:
-    - asp.net/task_1
+on: push
 
 jobs:
   build:
@@ -17,6 +14,6 @@ jobs:
       with:
         dotnet-version: 5.0.x
     - name: Restore dependencies
-      run: dotnet restore "ASP.NET/KramDeliveryFoodAPI/KramDeliveryFoodAPI.sln"
+      run: dotnet restore "OnlineMarket/OnlineMarket.sln"
     - name: Build
-      run: dotnet build "ASP.NET/KramDeliveryFoodAPI/KramDeliveryFoodAPI.sln" --no-restore
+      run: dotnet build "OnlineMarket/OnlineMarket.sln" --no-restore
