@@ -1,4 +1,5 @@
 ﻿using KramDelivery.Structure.Interfaces;
+using KramDelivery.Structure.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace KramDeliveryFoodAPI.Controllers
         }
 
         [HttpGet]
-        public IList<KramDelivery.Structure.Models.Product> Get()
+        public IList<Product> Get()
         {
             var result = _productService.GetAllProducts();
 
@@ -25,7 +26,7 @@ namespace KramDeliveryFoodAPI.Controllers
         }
 
         [HttpGet("{categoryName}")]
-        public IList<KramDelivery.Structure.Models.Product> Get(string categoryName)
+        public IList<Product> Get(string categoryName)
         {
             var result = _productService.GetProductsByCategoryName(categoryName);
 
@@ -33,13 +34,13 @@ namespace KramDeliveryFoodAPI.Controllers
         }
         
         [HttpPost]
-        public void Add(KramDelivery.Structure.Models.Product product)
+        public void Add(Product product)
         {
             _productService.AddProduct(product);
         }
 
         [HttpPut]
-        public void Update(KramDelivery.Structure.Models.Product product)
+        public void Update(Product product)
         {
             _productService.UpdateProduct(product);
         }
@@ -50,25 +51,5 @@ namespace KramDeliveryFoodAPI.Controllers
             var product = _productService.GetProductById(id);
             _productService.DeleteProduct(product);
         }
-        //---Product---
-        //(Get product by id)
-        //GET Product/id
-        //(Get product by category name)
-        //GET Product/categoryName
-        //---Provider---
-        //(Add provider)
-        //POST Provider
-        //(Get provider information by id)
-        //GET Provider/id
-        //---UserOrder---
-        //(Get user order by id)
-        //GET UserOrder/id
-        //(Get user orders)
-        //GET UserOrder
-        //---Category---
-        //(Get categories)
-        //GET Category
-        //(Get category by id)
-        //GET Category/id
     }
 }
