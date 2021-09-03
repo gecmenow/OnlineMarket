@@ -24,7 +24,7 @@ namespace KramDeliverFoodCompleted.Service
             {
                 if (_cache.CacheData.Count == 5)
                 {
-                    _cache.CacheData.RemoveAt(1);
+                    _cache.CacheData.RemoveAt(0);
                 }
 
                 _cache.CacheData.Add(data);
@@ -35,17 +35,7 @@ namespace KramDeliverFoodCompleted.Service
         {
             lock (_locker)
             {
-                if (_cache.CacheData.Count != 0)
-                {
-                    while (_cache.CacheData.Count < 5)
-                    {
-                        return _cache.CacheData;
-                    }
-
-                    return _cache.CacheData;
-                }
-
-                return default;
+                return _cache.CacheData.Any() ? _cache.CacheData : default;
             }
         }
 
@@ -53,7 +43,9 @@ namespace KramDeliverFoodCompleted.Service
         {
             lock (_locker)
             {
-                if (_cache.CacheData.Equals(data))
+                var result = _cache.CacheData.Where(d => d.Id == data.Id).FirstOrDefault();
+
+                if (result != null)
                 {
                     _cache.CacheData.Remove(data);
                 }
