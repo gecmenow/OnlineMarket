@@ -6,8 +6,8 @@ using System.Collections.Generic;
 
 namespace KramDeliveryFoodAPI.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
+    //[ApiController]
+    //[Route("controller")]
     public class ProductController : ControllerBase
     {
         public readonly IProductService _productService;
@@ -18,15 +18,15 @@ namespace KramDeliveryFoodAPI.Controllers
         }
 
         [HttpGet]
-        public IList<Product> Get()
+        public IList<Product> GetProducts()
         {
             var result = _productService.GetAllProducts();
 
             return result;
         }
 
-        [HttpGet("{categoryName}")]
-        public IList<Product> Get(string categoryName)
+        [HttpGet]
+        public IList<Product> GetProductsByName(string categoryName)
         {
             var result = _productService.GetProductsByCategoryName(categoryName);
 
@@ -34,7 +34,7 @@ namespace KramDeliveryFoodAPI.Controllers
         }
         
         [HttpPost]
-        public void Add(Product product)
+        public void Create(Product product)
         {
             _productService.AddProduct(product);
         }

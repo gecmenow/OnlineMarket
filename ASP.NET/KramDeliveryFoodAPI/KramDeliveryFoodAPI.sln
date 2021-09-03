@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.31613.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KramDeliveryFoodAPI", "KramDeliveryFoodAPI\KramDeliveryFoodAPI.csproj", "{DAC59FC3-BA6C-4B95-87AA-EC378B9BAC0F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KramDeliverFoodCompleted", "..\..\OnlineMarket\KramDeliverFoodCompleted\KramDeliverFoodCompleted.csproj", "{885B9FAF-9FF4-48B1-A466-82EA2459397A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KramDeliverFoodCompleted", "KramDeliverFoodCompleted\KramDeliverFoodCompleted.csproj", "{37D6F0DB-BDBA-4B20-AD5B-01D63867F657}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KramDeliveryFood.Data", "..\..\KramDeliveryFood_v3\KramDeliveryFood.Data\KramDeliveryFood.Data.csproj", "{458CE6C6-0B40-4980-9161-28420BC61A28}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KramDeliveryFood.Structure", "KramDeliveryFood.Models\KramDeliveryFood.Structure.csproj", "{22EFF67C-D99B-493B-AA9A-1925D21AA225}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KramDeliveryFood.Structure", "..\..\KramDeliveryFood_v3\KramDeliveryFood.Models\KramDeliveryFood.Structure.csproj", "{F61CA741-8DB9-4C8D-B9DA-53830D9282C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KramDeliveryFood.Data", "KramDeliveryFood.Data\KramDeliveryFood.Data.csproj", "{6D2FE14C-3FB6-4400-B1E7-ABF96BD6270D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,18 +21,18 @@ Global
 		{DAC59FC3-BA6C-4B95-87AA-EC378B9BAC0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAC59FC3-BA6C-4B95-87AA-EC378B9BAC0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAC59FC3-BA6C-4B95-87AA-EC378B9BAC0F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{885B9FAF-9FF4-48B1-A466-82EA2459397A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{885B9FAF-9FF4-48B1-A466-82EA2459397A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{885B9FAF-9FF4-48B1-A466-82EA2459397A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{885B9FAF-9FF4-48B1-A466-82EA2459397A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{458CE6C6-0B40-4980-9161-28420BC61A28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{458CE6C6-0B40-4980-9161-28420BC61A28}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{458CE6C6-0B40-4980-9161-28420BC61A28}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{458CE6C6-0B40-4980-9161-28420BC61A28}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F61CA741-8DB9-4C8D-B9DA-53830D9282C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F61CA741-8DB9-4C8D-B9DA-53830D9282C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F61CA741-8DB9-4C8D-B9DA-53830D9282C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F61CA741-8DB9-4C8D-B9DA-53830D9282C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37D6F0DB-BDBA-4B20-AD5B-01D63867F657}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37D6F0DB-BDBA-4B20-AD5B-01D63867F657}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37D6F0DB-BDBA-4B20-AD5B-01D63867F657}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37D6F0DB-BDBA-4B20-AD5B-01D63867F657}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22EFF67C-D99B-493B-AA9A-1925D21AA225}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22EFF67C-D99B-493B-AA9A-1925D21AA225}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22EFF67C-D99B-493B-AA9A-1925D21AA225}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22EFF67C-D99B-493B-AA9A-1925D21AA225}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D2FE14C-3FB6-4400-B1E7-ABF96BD6270D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D2FE14C-3FB6-4400-B1E7-ABF96BD6270D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D2FE14C-3FB6-4400-B1E7-ABF96BD6270D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D2FE14C-3FB6-4400-B1E7-ABF96BD6270D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
