@@ -78,7 +78,7 @@ namespace KramDeliverFoodCompleted.Interaction
         }
 
         public static void ShowSuccessfulOrder()
-        { 
+        {
             Console.WriteLine("Congratulations. Your order is ready and wait for the delivering\n");
         }
     }

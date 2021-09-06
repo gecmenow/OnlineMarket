@@ -7,6 +7,8 @@ namespace KramDeliverFoodCompleted.Models
         public List<Products> OrderProducts { get; set; }
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
+        public decimal Summary { get;set; }
+        public string Currency { get; set; }
 
         public Orders()
         {
