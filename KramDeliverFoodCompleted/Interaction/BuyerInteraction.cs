@@ -1,5 +1,6 @@
 ﻿using KramDeliverFoodCompleted.Service;
 using System;
+using System.Threading.Tasks;
 
 namespace KramDeliverFoodCompleted.Interaction
 {
@@ -14,7 +15,7 @@ namespace KramDeliverFoodCompleted.Interaction
             _orderService = orderService;
         }
 
-        public void MakeOrder()
+        public async Task MakeOrder()
         {
             BuyerMessenger.ShowBuyerProducts(_productService.GetProducts());
             BuyerMessenger.ShowBuyInstruction();
@@ -56,7 +57,7 @@ namespace KramDeliverFoodCompleted.Interaction
             _orderService.CompleteOrder(order);
             Messenger.ShowCurrencies();
             var currency = ReadInputData();
-            _orderService.GetSummary(currency);
+            await _orderService.GetSummary(currency);
             var orders = _orderService.GetOrders();
             BuyerMessenger.ShowBuyerOrders(orders);
             _orderService.ClearOrders();

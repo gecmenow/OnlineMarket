@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using static KramDeliverFoodCompleted.Interfaces.ICurrerncies;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace KramDeliverFoodCompleted.Service
 {
@@ -49,9 +50,9 @@ namespace KramDeliverFoodCompleted.Service
             _data.Orders.Clear();
         }
 
-        public void GetSummary(int currency)
+        public async Task GetSummary(int currency)
         {
-            var currencies = _currerncyExchangeService.GetCurrencies().Result;
+            var currencies = await _currerncyExchangeService.GetCurrencies();
 
             _data.Currencies = JsonConvert.DeserializeObject<Currency>(currencies).ExchangeRate.Where(x => x.Currency != null).ToList();
 

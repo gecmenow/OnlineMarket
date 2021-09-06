@@ -1,5 +1,6 @@
 ﻿using KramDeliverFoodCompleted.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace KramDeliverFoodCompleted.Interfaces
 {
@@ -11,7 +12,7 @@ namespace KramDeliverFoodCompleted.Interfaces
         bool IsPhoneValid(string number);
         bool IsAddressValid(string number);
         IList<Order> GetOrders();
-        void GetSummary(int currency);
+        Task GetSummary(int currency);
         void ClearOrders();
     }
 }

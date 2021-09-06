@@ -25,7 +25,8 @@ namespace KramDeliverFoodCompleted.Service
 
         public void AddProduct(Product product)
         {
-            if (!GetProducts().Any(x => x.Id == product.Id))
+            //|| !GetProducts().Any(x => x.Id == product.Id)
+            if (GetProducts() == null )
             {
                 product.Id = Guid.NewGuid();
                 _serializerService.DoSerialization<Product>(product);
@@ -45,9 +46,16 @@ namespace KramDeliverFoodCompleted.Service
             _data.BaseProducts = _serializerService.DoDeserialization<Product>();
             AddToCacheDelegate addToCache = _cacheService.AddToCache;
 
-            foreach (var product in _data.BaseProducts)
+            if (_data.BaseProducts == null)
             {
-                addToCache(product);
+                return default;
+            }
+            else
+            {
+                foreach (var product in _data.BaseProducts)
+                {
+                    addToCache(product);
+                }
             }
 
             return _data.BaseProducts;

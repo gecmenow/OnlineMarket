@@ -2,12 +2,13 @@ using KramDeliverFoodCompleted.Data;
 using KramDeliverFoodCompleted.Interaction;
 using KramDeliverFoodCompleted.Service;
 using System;
+using System.Threading.Tasks;
 
 namespace KramDeliverFoodCompleted
 {    
     public class Program
     {
-        private static void Main(string[] args)
+        private static async Task Main(string[] args)
         {
             Messenger.ShowWelcomeMessage();
             var serializerService = new SerializerService();
@@ -31,7 +32,7 @@ namespace KramDeliverFoodCompleted
                 switch (choice)
                 {
                     case 1:
-                        userInteraction.MakeOrder();
+                        await userInteraction.MakeOrder();
                         break;
                     case 2:
                         providerInteraction.AddProduct();
