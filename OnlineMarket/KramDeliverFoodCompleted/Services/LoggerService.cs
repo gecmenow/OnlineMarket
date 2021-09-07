@@ -2,7 +2,7 @@
 using System;
 using System.IO;
 
-namespace KramDeliverFoodCompleted.Service
+namespace KramDeliverFoodCompleted.Services
 {
     public class LoggerService : ILoggerService
     {

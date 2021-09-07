@@ -38,17 +38,17 @@ namespace KramDelivery.Domain.Service
 
         public Product GetProductById(Guid id)
         {
-            return _context.Products.Where(p => p.ProductId == id).FirstOrDefault();
+            return _context.Products.Where(p => p.ProductID == id).FirstOrDefault();
         }
 
-        public void AddProducts(Product product)
+        public void AddProduct(Product product)
         {
             _context.Products.Add(product);
         }
 
         public void DeleteProduct(Product product)
         {
-            _context.Remove(product);
+            _context.Products.Remove(product);
         }
     }
 }

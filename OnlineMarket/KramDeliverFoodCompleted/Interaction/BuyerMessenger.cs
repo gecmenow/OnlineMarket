@@ -17,6 +17,7 @@ namespace KramDeliverFoodCompleted.Interaction
                 counter++;
             }
         }
+
         public static void ShowBuyerOrders(IList<Order> orders)
         {
             Console.WriteLine("\nYou ordered these products\n");
@@ -32,7 +33,6 @@ namespace KramDeliverFoodCompleted.Interaction
 
                 Console.WriteLine("\nThe products will be delivered to the person by this information. \n" +
                     order.Address + "\n" +
-                    "Your order costs " + Math.Round(order.Summary, 2) + " " + order.Currency + "\n" +
                     "We'll call you by this phone - " + order.PhoneNumber + " Thanks\n");
             }
         }

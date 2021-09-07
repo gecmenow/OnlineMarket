@@ -1,7 +1,6 @@
+﻿using KramDeliverFoodCompleted.Interaction;
 using KramDeliverFoodCompleted.Data;
-using KramDeliverFoodCompleted.Interaction;
-using KramDeliverFoodCompleted.Models;
-using KramDeliverFoodCompleted.Service;
+using KramDeliverFoodCompleted.Services;
 using System;
 
 namespace KramDeliverFoodCompleted
@@ -17,9 +16,7 @@ namespace KramDeliverFoodCompleted
             var reader = new Reader();
             var loggerService = new LoggerService();
             var orderService = new OrderService(data, loggerService);
-            var cache = new Cache();
-            var cacheService = new CacheService(cache);
-            var productService = new ProductService(data, loggerService, serializerService, cacheService);
+            var productService = new ProductService(data, loggerService, serializerService);
             var userInteraction = new BuyerInteraction(productService, orderService);
             var providerInteraction = new ProviderInteraction(productService);
             var isRunning = true;
