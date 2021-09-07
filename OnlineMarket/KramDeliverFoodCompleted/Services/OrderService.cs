@@ -62,7 +62,6 @@ namespace KramDeliverFoodCompleted.Services
         {
             _data.Orders.Add(order);
         }
-
         private bool checkPhone(string number)
         {
             var pattern = @"^(\+380|0)(\(\d{2}\)|\d{2})\s?\d{3}\s?\d{2}\s?\d{2}$";

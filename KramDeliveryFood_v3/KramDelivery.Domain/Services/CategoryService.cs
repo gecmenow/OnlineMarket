@@ -4,10 +4,10 @@ using System.Collections.Generic;
 
 namespace KramDelivery.Domain.Service
 {
-    public class CategoryServies : ICategoryService
+    public class CategoryService : ICategoryService
     {
         private IData _data;
-        public CategoryServies(IData data)
+        public CategoryService(IData data)
         {
             _data = data;
         }

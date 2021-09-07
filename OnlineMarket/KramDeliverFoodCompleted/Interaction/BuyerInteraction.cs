@@ -16,47 +16,52 @@ namespace KramDeliverFoodCompleted.Interaction
 
         public void MakeOrder()
         {
-            BuyerMessenger.ShowBuyerProducts(_productService.GetProducts());
-            BuyerMessenger.ShowBuyInstruction();
+            var products = _productService.GetProducts();
 
-            while (true)
+            if (products != null)
             {
-                var input = ReadInputData();
+                BuyerMessenger.ShowBuyerProducts(products);
+                BuyerMessenger.ShowBuyInstruction();
 
-                while (!_productService.IsRealProductId(input))
+                while (true)
                 {
-                    input = ReadInputData();
+                    var input = ReadInputData();
+
+                    while (!_productService.IsRealProductId(input))
+                    {
+                        input = ReadInputData();
+                    }
+
+                    var product = _productService.GetProductById(input);
+
+                    _orderService.AddProductToOrder(product);
+
+                    if (!Reader.BuyMoreProducts())
+                    {
+                        break;
+                    }
                 }
 
-                var product = _productService.GetProductById(input);
+                BuyerMessenger.ShowAddPhoneMessage();
 
-                _orderService.AddProductToOrder(product);
-
-                if (!Reader.BuyMoreProducts())
+                while (!_orderService.IsPhoneValid(Console.ReadLine()))
                 {
-                    break;
+                    BuyerMessenger.ShowWrongInputMessage();
                 }
+
+                BuyerMessenger.ShowAddAddressMessage();
+
+                while (!_orderService.IsAddressValid(Console.ReadLine()))
+                {
+                    BuyerMessenger.ShowWrongInputMessage();
+                }
+
+                var order = _orderService.GetOrder();
+                _orderService.CompleteOrder(order);
+
+                var orders = _orderService.GetOrders();
+                BuyerMessenger.ShowBuyerOrders(orders);
             }
-
-            BuyerMessenger.ShowAddPhoneMessage();
-
-            while (!_orderService.IsPhoneValid(Console.ReadLine()))
-            {
-                BuyerMessenger.ShowWrongInputMessage();
-            }
-
-            BuyerMessenger.ShowAddAddressMessage();
-
-            while (!_orderService.IsAddressValid(Console.ReadLine()))
-            {
-                BuyerMessenger.ShowWrongInputMessage();
-            }
-
-            var order = _orderService.GetOrder();
-            _orderService.CompleteOrder(order);
-
-            var orders = _orderService.GetOrders();
-            BuyerMessenger.ShowBuyerOrders(orders);
         }  
 
         private int ReadInputData()

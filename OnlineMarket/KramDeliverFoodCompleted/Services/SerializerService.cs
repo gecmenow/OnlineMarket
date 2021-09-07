@@ -14,8 +14,15 @@ namespace KramDeliverFoodCompleted.Services
         public void DoSerialization<T>(T input) where T : class
         {
             var fileName = typeof(T).Name + ".txt";
+            var folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, FolderName);
             var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, FolderName, fileName);
             var result = JsonSerializer.Serialize(input);
+
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+
             using var file = new StreamWriter(path, true);
             file.WriteLine(result);
         }
