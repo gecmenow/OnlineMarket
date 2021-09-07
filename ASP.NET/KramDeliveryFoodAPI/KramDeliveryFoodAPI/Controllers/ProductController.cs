@@ -1,7 +1,7 @@
-﻿using KramDeliverFoodCompleted.Data;
-using KramDeliverFoodCompleted.Models;
-using KramDeliverFoodCompleted.Services;
+﻿using KramDelivery.Structure.Interfaces;
+using KramDelivery.Structure.Models;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 
 namespace KramDeliveryFoodAPI.Controllers
@@ -10,11 +10,25 @@ namespace KramDeliveryFoodAPI.Controllers
     [Route("[controller]")]
     public class ProductController : ControllerBase
     {
+        public readonly IProductService _productService;
+
+        public ProductController(IProductService productService)
+        {
+            _productService = productService;
+        }
+
         [HttpGet]
         public IList<Product> Get()
         {
-            var productService = new ProductService(new StoreContext(), new LoggerService(), new SerializerService());
-            var result = productService.GetProductsForApi();
+            var result = _productService.GetAllProducts();
+
+            return result;
+        }
+
+        [HttpGet("{categoryName}")]
+        public IList<Product> Get(string categoryName)
+        {
+            var result = _productService.GetProductsByCategoryName(categoryName);
 
             return result;
         }
@@ -22,42 +36,20 @@ namespace KramDeliveryFoodAPI.Controllers
         [HttpPost]
         public void Add(Product product)
         {
-            var productService = new ProductService(new StoreContext(), new LoggerService(), new SerializerService());
-            productService.AddProduct(product);
+            _productService.AddProduct(product);
         }
 
         [HttpPut]
         public void Update(Product product)
         {
-            var productService = new ProductService(new StoreContext(), new LoggerService(), new SerializerService());
-            productService.UpdateProduct(product);
+            _productService.UpdateProduct(product);
         }
 
-        [HttpDelete]
-        public void Delete(Product product)
+        [HttpDelete("{id}")]
+        public void Delete(Guid id)
         {
-            var productService = new ProductService(new StoreContext(), new LoggerService(), new SerializerService());
-            productService.DeleteProduct(product);
+            var product = _productService.GetProductById(id);
+            _productService.DeleteProduct(product);
         }
-        //---Product---
-        //(Get product by id)
-        //GET Product/id
-        //(Get product by category name)
-        //GET Product/categoryName
-        //---Provider---
-        //(Add provider)
-        //POST Provider
-        //(Get provider information by id)
-        //GET Provider/id
-        //---UserOrder---
-        //(Get user order by id)
-        //GET UserOrder/id
-        //(Get user orders)
-        //GET UserOrder
-        //---Category---
-        //(Get categories)
-        //GET Category
-        //(Get category by id)
-        //GET Category/id
     }
 }

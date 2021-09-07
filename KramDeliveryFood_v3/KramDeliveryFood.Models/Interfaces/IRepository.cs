@@ -8,8 +8,8 @@ namespace KramDelivery.Structure.Interfaces
     {
         IList<Product> GetProducts();
         Product GetProductById(Guid id);
-        void AddProduct(Product product);
-        void UpdateProduct(Product product);
+        void AddProduct(Product provider);
+        void UpdateProduct(Product provider);
         void DeleteProduct(Product product);
     }
 }

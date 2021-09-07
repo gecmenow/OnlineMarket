@@ -1,3 +1,5 @@
+using KramDeliverFoodCompleted.Services;
+using KramDelivery.Structure.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -18,6 +20,8 @@ namespace KramDeliveryFoodAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
