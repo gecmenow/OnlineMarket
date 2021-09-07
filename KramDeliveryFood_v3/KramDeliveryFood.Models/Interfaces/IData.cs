@@ -1,5 +1,6 @@
 ﻿using KramDelivery.Structure.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace KramDelivery.Structure.Interfaces
 {
@@ -11,6 +12,7 @@ namespace KramDelivery.Structure.Interfaces
         IList<Category> Categories { get; set; }
         Order Order { get; set; }
         IList<Product> OrderProducts { get; set; }
+        IList<ExchangeRate> Currencies { get; set; }
 
         void InitProducts();
     }

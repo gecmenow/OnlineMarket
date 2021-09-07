@@ -6,7 +6,7 @@ namespace KramDeliverFoodCompleted.Interaction
 {
     public class BuyerMessenger
     {
-        public static void ShowBuyerProducts(IEnumerable<Products> products)
+        public static void ShowBuyerProducts(IEnumerable<Product> products)
         {
             Console.WriteLine("We've got for you these products\n");
             var counter = 0;
@@ -17,8 +17,7 @@ namespace KramDeliverFoodCompleted.Interaction
                 counter++;
             }
         }
-
-        public static void ShowBuyerOrders(IList<Orders> orders)
+        public static void ShowBuyerOrders(IList<Order> orders)
         {
             Console.WriteLine("\nYou ordered these products\n");
             var counter = 0;
@@ -33,6 +32,7 @@ namespace KramDeliverFoodCompleted.Interaction
 
                 Console.WriteLine("\nThe products will be delivered to the person by this information. \n" +
                     order.Address + "\n" +
+                    "Your order costs " + Math.Round(order.Summary, 2) + " " + order.Currency + "\n" +
                     "We'll call you by this phone - " + order.PhoneNumber + " Thanks\n");
             }
         }
@@ -78,7 +78,7 @@ namespace KramDeliverFoodCompleted.Interaction
         }
 
         public static void ShowSuccessfulOrder()
-        {
+        { 
             Console.WriteLine("Congratulations. Your order is ready and wait for the delivering\n");
         }
     }
