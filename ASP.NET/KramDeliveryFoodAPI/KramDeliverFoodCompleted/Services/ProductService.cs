@@ -8,10 +8,12 @@ namespace KramDeliverFoodCompleted.Services
     public class ProductService : IProductService
     {
         private IUnitOfWork _unitOfWork;
+        private ICategoryService _categoryService;
 
-        public ProductService(IUnitOfWork unitOfWork)
+        public ProductService(IUnitOfWork unitOfWork, ICategoryService categoryService)
         {
             _unitOfWork = unitOfWork;
+            _categoryService = categoryService;
         }
 
         public IList<Product> GetAllProducts()
@@ -31,12 +33,16 @@ namespace KramDeliverFoodCompleted.Services
 
         public void AddProduct(Product product)
         {
+            var category = _categoryService.GetCategoryById(product.CategoryId);
+            product.CategoryName = category.Name;
             _unitOfWork.Product.AddProduct(product);
             _unitOfWork.Save();
         }
 
         public void UpdateProduct(Product product)
         {
+            var category = _categoryService.GetCategoryById(product.CategoryId);
+            product.CategoryName = category.Name;
             _unitOfWork.Product.UpdateProduct(product);
             _unitOfWork.Save();
         }

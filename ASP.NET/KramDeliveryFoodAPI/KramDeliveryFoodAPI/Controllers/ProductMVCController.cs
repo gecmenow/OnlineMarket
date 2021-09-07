@@ -45,8 +45,6 @@ namespace KramDeliveryFoodAPI.Controllers
                 var config = new MapperConfiguration(cfg => cfg.CreateMap<ProductVM, Product>());
                 var mapper = new Mapper(config);
                 var mappedProduct = mapper.Map<ProductVM, Product>(product);
-                var category = _categoryService.GetCategoryById(product.CategoryId);
-                mappedProduct.CategoryName = category.Name;
                 _productService.AddProduct(mappedProduct);
             }
 
@@ -72,8 +70,6 @@ namespace KramDeliveryFoodAPI.Controllers
                 var config = new MapperConfiguration(cfg => cfg.CreateMap<ProductVM, Product>());
                 var mapper = new Mapper(config);
                 var mappedProduct = mapper.Map<ProductVM, Product>(product);
-                var category = _categoryService.GetCategoryById(product.CategoryId);
-                mappedProduct.CategoryName = category.Name;
                 _productService.UpdateProduct(mappedProduct);
             }
 

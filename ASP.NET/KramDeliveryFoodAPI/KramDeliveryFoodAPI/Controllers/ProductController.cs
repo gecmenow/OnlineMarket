@@ -34,22 +34,28 @@ namespace KramDeliveryFoodAPI.Controllers
         }
         
         [HttpPost]
-        public void Create(Product product)
+        public IActionResult Create(Product product)
         {
             _productService.AddProduct(product);
+
+            return Ok();
         }
 
         [HttpPut]
-        public void Update(Product product)
+        public IActionResult Update(Product product)
         {
             _productService.UpdateProduct(product);
+
+            return Ok();
         }
 
         [HttpDelete("{id}")]
-        public void Delete(Guid id)
+        public IActionResult Delete(Guid id)
         {
             var product = _productService.GetProductById(id);
             _productService.DeleteProduct(product);
+
+            return Ok();
         }
     }
 }
