@@ -14,11 +14,11 @@ namespace KramDeliverFoodCompleted.Services
         private ICategoryRepository _categoryRepository;
         private IProviderRepository _providerRepository;
 
-        public UnitOfWork()
+        public UnitOfWork(IProductRepository productRepository, ICategoryRepository categoryRepository, IProviderRepository providerRepository)
         {
-            _productRepository = new ProductRepository(db);
-            _categoryRepository = new CategoryRepository(db);
-            _providerRepository = new ProviderRepository(db);
+            _productRepository = productRepository;
+            _categoryRepository = categoryRepository;
+            _providerRepository = providerRepository;
         }
 
         public IProductRepository Product

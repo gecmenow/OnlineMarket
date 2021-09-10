@@ -1,5 +1,8 @@
+using KramDeliverFoodCompleted.Repositories;
 using KramDeliverFoodCompleted.Services;
 using KramDelivery.Structure.Interfaces;
+using KramDeliveryFood.Data.Data;
+using KramDeliveryFood.Structure.Interfaces.Repositories;
 using KramDeliveryFoodAPI.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,6 +30,10 @@ namespace KramDeliveryFoodAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<DataContext>();
+            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<IProviderRepository, ProviderRepository>();
             services.AddTransient<IProviderService, ProviderService>();
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IProductService, ProductService>();
