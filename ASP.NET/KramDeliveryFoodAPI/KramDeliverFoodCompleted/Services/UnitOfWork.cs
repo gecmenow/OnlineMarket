@@ -14,12 +14,17 @@ namespace KramDeliverFoodCompleted.Services
         private ICategoryRepository _categoryRepository;
         private IProviderRepository _providerRepository;
 
+        public UnitOfWork(IProductRepository productRepository, ICategoryRepository categoryRepository, IProviderRepository providerRepository)
+        {
+            _productRepository = productRepository;
+            _categoryRepository = categoryRepository;
+            _providerRepository = providerRepository;
+        }
+
         public IProductRepository Product
         {
             get
             {
-                if (_productRepository == null)
-                    _productRepository = new ProductRepository(db);
                 return _productRepository;
             }
         }
@@ -28,8 +33,6 @@ namespace KramDeliverFoodCompleted.Services
         {
             get
             {
-                if (_categoryRepository == null)
-                    _categoryRepository = new CategoryRepository(db);
                 return _categoryRepository;
             }
         }
@@ -38,8 +41,6 @@ namespace KramDeliverFoodCompleted.Services
         {
             get
             {
-                if (_providerRepository == null)
-                    _providerRepository = new ProviderRepository(db);
                 return _providerRepository;
             }
         }

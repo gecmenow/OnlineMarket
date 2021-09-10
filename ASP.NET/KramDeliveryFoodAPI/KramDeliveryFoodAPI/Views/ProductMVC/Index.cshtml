@@ -14,7 +14,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Categorie)
+                @Html.DisplayNameFor(model => model.Category)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Provider)
@@ -44,7 +44,7 @@
     @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Categorie.CategoryId)
+                @Html.DisplayFor(modelItem => item.Category.CategoryId)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Provider.ProviderId)
