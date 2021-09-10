@@ -14,8 +14,7 @@ namespace KramDeliverFoodCompleted.Services
             _unitOfWork = unitOfWork;
         }
 
-        public IList<Category> Get
-            s()
+        public IList<Category> GetCategories()
         {
             return _unitOfWork.Category.GetCategories();
         }
