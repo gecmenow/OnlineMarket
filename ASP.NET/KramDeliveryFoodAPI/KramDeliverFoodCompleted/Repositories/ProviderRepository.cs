@@ -25,7 +25,7 @@ namespace KramDeliverFoodCompleted.Repositories
 
         public Provider GetProviderById(Guid id)
         {
-            return _context.Providers.Where(p => p.ProviderId == id).FirstOrDefault();
+            return _context.Providers.FirstOrDefault(p => p.ProviderId == id);
         }
     }
 }

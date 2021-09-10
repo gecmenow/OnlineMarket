@@ -1,13 +1,13 @@
 ﻿using KramDelivery.Structure.Interfaces;
 using KramDelivery.Structure.Models;
+using KramDeliveryFoodAPI.Filters;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 
 namespace KramDeliveryFoodAPI.Controllers
 {
-    //[ApiController]
-    //[Route("controller")]
+    [ServiceFilter(typeof(HandleExceptionFilter))]
     public class ProductController : ControllerBase
     {
         public readonly IProductService _productService;
@@ -18,6 +18,7 @@ namespace KramDeliveryFoodAPI.Controllers
         }
 
         [HttpGet]
+        [ServiceFilter(typeof(RequestBodyFilter))]
         public IList<Product> GetProducts()
         {
             var result = _productService.GetAllProducts();

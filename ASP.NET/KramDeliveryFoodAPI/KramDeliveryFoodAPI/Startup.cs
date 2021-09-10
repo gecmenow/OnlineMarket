@@ -1,5 +1,6 @@
 using KramDeliverFoodCompleted.Services;
 using KramDelivery.Structure.Interfaces;
+using KramDeliveryFoodAPI.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -24,15 +25,19 @@ namespace KramDeliveryFoodAPI
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IProviderService, ProviderService>();
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddSingleton<HandleExceptionFilter>();
+            services.AddTransient<RequestBodyFilter>();
 
-            services.AddControllers();
+            services.AddControllers(options =>
+                options.Filters.Add(typeof(HandleExceptionFilter))
+            );
+
             services.AddMvc();
             services.AddSwaggerGen(c =>
             {
@@ -40,7 +45,6 @@ namespace KramDeliveryFoodAPI
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

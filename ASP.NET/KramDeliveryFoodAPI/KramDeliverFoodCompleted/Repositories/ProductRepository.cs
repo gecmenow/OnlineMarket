@@ -21,17 +21,17 @@ namespace KramDeliverFoodCompleted.Repositories
 
         public IList<Product> GetAllProducts()
         {
-            return _context.Products.Include(c => c.Categorie).Include(p => p.Provider).AsNoTracking().ToList();
+            return _context.Products.Include(c => c.Category).Include(p => p.Provider).AsNoTracking().ToList();
         }
 
         public IList<Product> GetProductsByCategoryName(string category)
         {
-            return _context.Products.Where(p => p.CategoryName == category).Include(c => c.Categorie).Include(p => p.Provider).AsNoTracking().ToList();
+            return _context.Products.Include(c => c.Category).Include(p => p.Provider).Where(p => p.CategoryName == category).AsNoTracking().ToList();
         }
 
         public Product GetProductById(Guid id)
         {
-            return _context.Products.Where(p => p.ProductId == id).FirstOrDefault();
+            return _context.Products.FirstOrDefault(p => p.ProductId == id);
         }
 
         public void AddProduct(Product product)

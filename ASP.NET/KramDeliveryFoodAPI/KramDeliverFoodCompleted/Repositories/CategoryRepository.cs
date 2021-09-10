@@ -25,7 +25,7 @@ namespace KramDeliverFoodCompleted.Repositories
 
         public Category GetCategoryById(Guid id)
         {
-            return _context.Categories.Where(c => c.CategoryId == id).FirstOrDefault();
+            return _context.Categories.FirstOrDefault(c => c.CategoryId == id);
         }
     }
 }
