@@ -6,8 +6,6 @@ using System.Collections.Generic;
 
 namespace KramDeliveryFoodAPI.Controllers
 {
-    //[ApiController]
-    //[Route("controller")]
     public class ProductController : ControllerBase
     {
         public readonly IProductService _productService;
