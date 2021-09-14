@@ -2,6 +2,7 @@
 using KramDelivery.Structure.Models;
 using KramDeliveryFoodAPI.Filters;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Collections.Generic;
 
@@ -10,23 +11,34 @@ namespace KramDeliveryFoodAPI.Controllers
     [ServiceFilter(typeof(HandleExceptionFilter))]
     public class ProductController : ControllerBase
     {
-        public readonly IProductService _productService;
+        private readonly IProductService _productService;
+        private readonly IMemoryCache _memoryCache;
 
-        public ProductController(IProductService productService)
+        public ProductController(IProductService productService, IMemoryCache memoryCache)
         {
             _productService = productService;
+            _memoryCache = memoryCache;
         }
 
         [HttpGet]
         [ServiceFilter(typeof(RequestBodyFilter))]
         public IList<Product> GetProducts()
         {
-            var result = _productService.GetAllProducts();
+            if (!_memoryCache.TryGetValue(DateTime.Now.Day, out IList<Product> result))
+            {
+                result = _productService.GetAllProducts();
+
+                _memoryCache.Set(DateTime.Now.Day, result, new MemoryCacheEntryOptions
+                {
+                    AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(2)
+                });
+            }
 
             return result;
         }
 
         [HttpGet]
+        [ServiceFilter(typeof(HandleExceptionFilter))]
         public IList<Product> GetProductsByName(string categoryName)
         {
             var result = _productService.GetProductsByCategoryName(categoryName);
