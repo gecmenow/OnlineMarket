@@ -1,5 +1,8 @@
+using KramDeliverFoodCompleted.Repositories;
 using KramDeliverFoodCompleted.Services;
 using KramDelivery.Structure.Interfaces;
+using KramDeliveryFood.Data.Data;
+using KramDeliveryFood.Structure.Interfaces.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -20,10 +23,17 @@ namespace KramDeliveryFoodAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<DataContext>();
+            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<IProviderRepository, ProviderRepository>();
+            services.AddTransient<IProviderService, ProviderService>();
+            services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 
             services.AddControllers();
+            services.AddMvc();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "KramDeliveryFoodAPI", Version = "v1" });
@@ -40,12 +50,56 @@ namespace KramDeliveryFoodAPI
             }
 
             app.UseRouting();
-
+            app.UseStaticFiles();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+                    name: "mvcProductGet",
+                    pattern: "mvc/product",
+                    defaults: new { controller = "ProductMVC", action = "Index" }
+                );
+
+                endpoints.MapControllerRoute(
+                    name: "mvcProduct",
+                    pattern: "mvc/product/{action}/{id?}",
+                    defaults: new { controller = "ProductMVC" }
+                );
+
+                endpoints.MapControllerRoute(
+                    name: "apiProductGet",
+                    pattern: "api/product",
+                    defaults: new { controller = "Product", action = "GetProducts" }
+                );
+
+                endpoints.MapControllerRoute(
+                    name: "apiCreateProduct",
+                    pattern: "api/createProduct",
+                    defaults: new { controller = "Product", action = "Create" }
+                );
+
+                endpoints.MapControllerRoute(
+                    name: "apiDeleteProduct",
+                    pattern: "api/deleteProduct/{id?}",
+                    defaults: new { controller = "Product", action = "Create" }
+                );
+
+                endpoints.MapControllerRoute(
+                    name: "apiProductByCategory",
+                    pattern: "api/product/{categoryName}",
+                    defaults: new { controller = "Product", action = "GetProductsByName" }
+                );
+
+                endpoints.MapControllerRoute(
+                    name: "apiProduct",
+                    pattern: "api/{controller=Product}/{action}/{id?}"
+                );
+
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Product}/{action=Get}/{id?}"
+                );
             });
         }
     }
