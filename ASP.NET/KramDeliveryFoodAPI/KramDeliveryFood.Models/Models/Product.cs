@@ -18,6 +18,5 @@ namespace KramDelivery.Structure.Models
         public string Specifications { get; set; }
         public string Description { get; set; }
         public string ProductType { get; set; }
-        public List<Order> OrderProducts = new();
     }
 }
