@@ -3,6 +3,7 @@ using KramDeliverFoodCompleted.Services;
 using KramDelivery.Structure.Interfaces;
 using KramDeliveryFood.Data.Data;
 using KramDeliveryFood.Structure.Interfaces.Repositories;
+using KramDeliveryFoodAPI.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -31,8 +32,13 @@ namespace KramDeliveryFoodAPI
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddSingleton<HandleExceptionFilter>();
+            services.AddTransient<RequestBodyFilter>();
 
-            services.AddControllers();
+            services.AddControllers(options =>
+                options.Filters.Add(typeof(HandleExceptionFilter))
+            );
+
             services.AddMvc();
             services.AddSwaggerGen(c =>
             {
