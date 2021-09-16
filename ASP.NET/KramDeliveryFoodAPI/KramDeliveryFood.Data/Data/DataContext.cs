@@ -9,9 +9,7 @@ namespace KramDeliveryFood.Data.Data
 {
     public class DataContext : DbContext
     {
-        public DbSet<Buyer> Buyers { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<Order> Orders { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Provider> Providers { get; set; }
 
@@ -31,13 +29,6 @@ namespace KramDeliveryFood.Data.Data
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
             builder.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"));
-        }
-
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            builder.Entity<Order>()
-                .HasMany(e => e.Products)
-                .WithMany(w => w.OrderProducts);
         }
     }
 }
