@@ -1,5 +1,6 @@
 ﻿using KramDelivery.Structure.Interfaces;
 using KramDelivery.Structure.Models;
+using KramDeliveryFoodAPI.Filters;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -17,15 +18,16 @@ namespace KramDeliveryFoodAPI.Controllers
         }
 
         [HttpGet]
-        public IList<Product> Get()
+        [ServiceFilter(typeof(RequestBodyFilter))]
+        public IList<Product> GetProducts()
         {
             var result = _productService.GetAllProducts();
 
             return result;
         }
 
-        [HttpGet("{categoryName}")]
-        public IList<Product> Get(string categoryName)
+        [HttpGet]
+        public IList<Product> GetProductsByName(string categoryName)
         {
             var result = _productService.GetProductsByCategoryName(categoryName);
 
@@ -33,7 +35,7 @@ namespace KramDeliveryFoodAPI.Controllers
         }
         
         [HttpPost]
-        public void Add(Product product)
+        public IActionResult Create(Product product)
         {
             _productService.AddProduct(product);
 
@@ -41,7 +43,7 @@ namespace KramDeliveryFoodAPI.Controllers
         }
 
         [HttpPut]
-        public void Update(Product product)
+        public IActionResult Update(Product product)
         {
             _productService.UpdateProduct(product);
 

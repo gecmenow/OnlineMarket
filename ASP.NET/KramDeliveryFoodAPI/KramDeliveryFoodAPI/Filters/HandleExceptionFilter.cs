@@ -13,6 +13,7 @@ namespace KramDeliveryFoodAPI.Filters
     public class HandleExceptionFilter : IExceptionFilter
     {
         private ILogger<HandleExceptionFilter> _logger;
+        
         private readonly IWebHostEnvironment _env;
 
         public HandleExceptionFilter(ILogger<HandleExceptionFilter> logger, IWebHostEnvironment env)
