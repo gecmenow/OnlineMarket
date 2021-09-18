@@ -1,8 +1,5 @@
 ﻿using KramDelivery.Structure.Interfaces;
-using KramDelivery.Structure.Models;
-using KramDeliveryFoodAPI.Filters;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Collections.Generic;
 
@@ -11,35 +8,23 @@ namespace KramDeliveryFoodAPI.Controllers
     [ServiceFilter(typeof(HandleExceptionFilter))]
     public class ProductController : ControllerBase
     {
-        private readonly IProductService _productService;
-        private readonly IMemoryCache _memoryCache;
+        public readonly IProductService _productService;
 
-        public ProductController(IProductService productService, IMemoryCache memoryCache)
+        public ProductController(IProductService productService)
         {
             _productService = productService;
-            _memoryCache = memoryCache;
         }
 
         [HttpGet]
-        [ServiceFilter(typeof(RequestBodyFilter))]
-        public IList<Product> GetProducts()
+        public IList<KramDelivery.Structure.Models.Product> Get()
         {
-            if (!_memoryCache.TryGetValue(DateTime.Now.Day, out IList<Product> result))
-            {
-                result = _productService.GetAllProducts();
-
-                _memoryCache.Set(DateTime.Now.Day, result, new MemoryCacheEntryOptions
-                {
-                    AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(2)
-                });
-            }
+            var result = _productService.GetAllProducts();
 
             return result;
         }
 
-        [HttpGet]
-        [ServiceFilter(typeof(HandleExceptionFilter))]
-        public IList<Product> GetProductsByName(string categoryName)
+        [HttpGet("{categoryName}")]
+        public IList<KramDelivery.Structure.Models.Product> Get(string categoryName)
         {
             var result = _productService.GetProductsByCategoryName(categoryName);
 
@@ -47,7 +32,7 @@ namespace KramDeliveryFoodAPI.Controllers
         }
         
         [HttpPost]
-        public IActionResult Create(Product product)
+        public void Add(KramDelivery.Structure.Models.Product product)
         {
             _productService.AddProduct(product);
 
@@ -55,7 +40,7 @@ namespace KramDeliveryFoodAPI.Controllers
         }
 
         [HttpPut]
-        public IActionResult Update(Product product)
+        public void Update(KramDelivery.Structure.Models.Product product)
         {
             _productService.UpdateProduct(product);
 
