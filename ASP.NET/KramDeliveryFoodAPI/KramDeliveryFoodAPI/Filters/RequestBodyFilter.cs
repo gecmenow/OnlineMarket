@@ -29,9 +29,9 @@ namespace KramDeliveryFoodAPI.Filters
             }
             else
             {
-                var value = ((IEnumerable)result.Value).Cast<object>().ToList();
+                var requestBodyData = ((IEnumerable)result.Value).Cast<object>().ToList();
 
-                foreach (var data in value)
+                foreach (var data in requestBodyData)
                 {
                     Console.WriteLine(data);
                 }
