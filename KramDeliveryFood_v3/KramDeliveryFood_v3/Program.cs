@@ -26,7 +26,7 @@ namespace KramDeliveryFood_v3
                 Console.WriteLine(product.ProviderName + " - " + product.ProcutName);
             }
 
-            var categoryProductsCount = products.GroupBy(p => p.CategoryId).Select(c => new { CategoryName = c.Select(c => c.Categorie.Name).FirstOrDefault(), CategoryCount = c.Count() }).ToList();
+            var categoryProductsCount = products.GroupBy(p => p.CategoryId).Select(c => new { CategoryName = c.Select(c => c.Categorie.CategoryName).FirstOrDefault(), CategoryCount = c.Count() }).ToList();
             Console.WriteLine("\n---Task 3 ---\n");
 
             foreach (var category in categoryProductsCount)
